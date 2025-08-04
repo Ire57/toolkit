@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Moltes Cares de la Ciència</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fbdad9;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #53110e;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+            margin-top: 60px;
+            background: #9d1915;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        .intro-section {
+            background: white;
+            border: 2px solid #f28f8c;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 20px rgba(255, 145, 139, 0.1);
+        }
+
+        .intro-summary {
+            font-size: 1.1rem;
+            color: #53110e;
+            margin-bottom: 20px;
+        }
+
+        .intro-full {
+            display: none;
+            font-size: 1rem;
+            color: #53110e;
+            margin-bottom: 20px;
+        }
+        .intro-full p{
+            margin-bottom: 0.7rem;
+        }
+
+        .intro-full h3{
+            margin-bottom: 0.7rem;
+            margin-top: 2rem;
+        }
+
+        .intro-full.show {
+            display: block;
+        }
+
+        .expand-btn {
+            background: #f28f8c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background: #e62e25;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .cube-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cube-container {
+            perspective: 1200px;
+            perspective-origin: center center;
+            margin-bottom: 30px;
+        }
+
+        .cube {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(80deg) rotateY(15deg);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: grab;
+            margin: 50px;
+        }
+
+        .cube:active {
+            cursor: grabbing;
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .face {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border: 2px solid rgba(255, 145, 139, 0.3);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            color: #53110e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(255, 145, 139, 0.2);
+        }
+
+        .face:hover {
+            box-shadow: 0 12px 40px rgba(255, 29, 17, 0.3);
+        }
+
+        .face h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .face .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .face.active {
+            box-shadow: 0 0 30px #be1818;
+        }
+
+        /* Caras específicas */
+        .etica {
+            background: linear-gradient(135deg, #fdeeee, #f7bcbb);
+            transform: translateZ(125px);
+        }
+
+        .creativitat {
+            background: linear-gradient(135deg, #f28f8c, #e62e25);
+            transform: rotateY(90deg) translateZ(125px);
+        }
+
+        .experimental {
+            background: linear-gradient(135deg,#fdeeee, #f7bcbb);
+            transform: rotateY(180deg) translateZ(125px);
+        }
+
+        .tecnologia {
+            background: linear-gradient(135deg, #f28f8c, #e62e25);
+            transform: rotateY(-90deg) translateZ(125px);
+        }
+
+        .comunicacio {
+            background: linear-gradient(135deg, #f28f8c, #e62e25);
+            transform: rotateX(90deg) translateZ(125px);
+        }
+
+        .cares {
+            background: linear-gradient(135deg, #9d1915, #53110e);
+            transform: rotateX(-90deg) translateZ(125px);
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+            color: #FFFFEE;
+        }
+        .keyboard-hint {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            bottom: 2rem;
+            right: 2rem;
+            background: #9d1915;
+            color: #FFFFEE;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .keyboard-hint p{
+            text-align: center;
+            font-size: 1rem;
+        }
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .control-btn {
+            background: #FFDCDA;
+            border: 2px solid #f28f8c;
+            color: #53110e;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .control-btn:hover {
+            background: #e52920;
+            color: #FFFFEE;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px #9d1915;
+        }
+
+        .control-btn.active {
+            background: #e52920;
+            color: #FFFFEE;
+            border-color: #e41513;
+        }
+
+        .description-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(255, 145, 139, 0.1);
+            border: 2px solid #f7bcbb;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .description-panel.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .visit-btn {
+            background: #FF1D11;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .visit-btn:hover {
+            background: #e41513;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px #9d1915;
+        }
+
+        .description-panel h2 {
+            color: #e41513;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .description-panel .desc-icon {
+            font-size: 2.5rem;
+        }
+
+        .description-panel p {
+            color: #53110e;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .collaborations-section {
+            margin-bottom: 80px;
+        }
+
+        .collaborations-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #e41513;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .collaborations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .collaboration-card {
+            width: 95%;
+            height: 100%;
+            min-height: 400px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .collaboration-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(255, 145, 139, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-front {
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .card-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .card-back {
+            background: white;
+            border: 2px solid #f7bcbb;
+            transform: rotateY(180deg);
+            padding: 20px;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .card-back h3 {
+            color: #e41513;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .card-back p {
+            color: #53110e;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .card-back .social-icons {
+            margin: 10px 0;
+        }
+
+        .card-back .social-icons a {
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 20px;
+            color: #e41513;
+            transition: color 0.3s ease;
+        }
+
+        .card-back .social-icons a:hover {
+            color: #e41513;
+        }
+
+        .card-back .mail {
+            font-size: 0.85rem;
+            color: #53110e;
+            margin-bottom: 10px;
+        }
+
+        .card-back .web-link {
+            font-size: 0.9rem;
+            color: #e41513;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .card-back .web-link:hover {
+            color: #e41513;
+        }
+
+        /* Estilos generales del footer */
+        .footer {
+          background-color: #53110e;
+          color: #fff;
+          padding: 40px 20px;
+          font-family: Arial, sans-serif;
+          text-align: center;
+        }
+
+        /* Contenedor de las 3 secciones principales */
+        .footer-container {
+          display: flex;
+          justify-content: space-around; /* Distribuye las secciones de forma equitativa */
+          flex-wrap: wrap; /* Permite que las secciones se apilen en móviles */
+          max-width: 1200px; /* Ancho máximo para el footer */
+          margin: 0 auto 30px;
+          gap: 30px; /* Espacio entre las columnas */
+        }
+
+        /* Estilo para cada una de las tres secciones del footer */
+        .footer-section {
+          text-align: left;
+          min-width: 200px; /* Ancho mínimo para evitar que se aplasten */
+        }
+
+        .footer-section h3, .footer-section h4 {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+
+        .footer-section p {
+          font-size: 0.95rem;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        /* Contenedor de enlaces de navegación */
+        .footer-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          margin-bottom: 20px; /* Espacio antes de los iconos sociales */
+        }
+
+        .footer-nav a {
+          color: #fff;
+          text-decoration: none;
+          font-size: 1rem;
+        }
+
+        .footer-nav a:hover {
+          text-decoration: underline;
+        }
+
+        /* Contenedor de los iconos de redes sociales */
+        .footer-social {
+          display: flex;
+          gap: 15px;
+          font-size: 1.6rem;
+        }
+
+        .footer-social a {
+          color: #fff;
+          transition: transform 0.2s ease;
+          text-decoration: none;
+        }
+
+        .footer-social a:hover {
+          transform: scale(1.2);
+        }
+
+        /* Estilos para la nueva sección de colaboraciones */
+        .footer-collaborations {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .footer-collaborations a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .footer-collaborations a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sección de copyright */
+        .footer-legal {
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          padding-top: 20px;
+        }
+
+        .footer-copy {
+          font-size: 0.8rem;
+          opacity: 0.6;
+          margin-top: 10px;
+        }
+
+        /* Media query para móviles */
+        @media (max-width: 768px) {
+          .footer-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+
+          .footer-section {
+              text-align: center;
+          }
+      
+          .footer-nav, .footer-social, .footer-collaborations {
+              align-items: center;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="hero-section">
+            <h1 class="hero-title">Les Moltes Cares de la Ciència</h1>
+            <p class="hero-description">Explora les diferents dimensions que defineixen la ciència moderna.</p>
+        </div>
+        <div class="intro-section" id="about">
+          <div class="intro-summary">
+            <h2>Les moltes cares de la ciència</h2>
+            <p>A l’era de la desinformació, tenir una visió àmplia de què és la ciència, com funciona i qui la fa és essencial per poder distingir entre evidència i opinió,
+                 i no caure en pseudociències ni enganys. D’aquí neix aquest projecte: un recurs educatiu pensat per ajudar a entendre què implica realment ser científic i 
+                 quines qualitats (crítiques, ètiques, creatives i col·laboratives) són fonamentals per fer ciència avui.</p>
+
+
+            </div>
+      
+          <div class="intro-full" id="introFull">
+            <p>Hem creat un toolkit educatiu gratuït i en format web, pensat per a alumnes de 4t d’ESO i 1r de batxillerat. L’objectiu és proporcionar una eina útil i accessible als centres educatius per treballar la ciència des d’un enfoc més ampli i humà.</p>
+          
+            <p>Amb aquest recurs volem mostrar les diferents cares de la ciència: no només l’experimentació en un laboratori, sinó també la seva dimensió ètica, tecnològica, artística i comunicativa. El toolkit inclou activitats breus i adaptables que permeten obrir espais de reflexió, creativitat i pensament crític dins l’aula.</p>
+        
+            <p>Totes les activitats estan dissenyades per ser útils per a docents, aplicables de forma autònoma i totalment gratuïtes.</p>
+        
+            <h3>El perquè d'aquest projecte</h3>
+        
+            <p>Vivim en un context on els negacionismes i les pseudociències tenen cada vegada més força. La ciència sovint arriba tard als debats públics, i si la ciutadania no entén com funciona la ciència en conjunt, qualsevol opinió pot semblar igual de vàlida que l'evidència científica.</p>
+        
+            <p>Quan el debat públic esclata (vacunes, canvi climàtic, intel·ligència artificial...) la ciència sovint arriba tard. Saltar a explicar com funciona un descobriment només quan hi ha controvèrsia és un error: si la ciutadania no entén com funciona la ciència en conjunt, qualsevol opinió —per esbojarrada que sigui— pot semblar igual de vàlida que l'evidència científica.</p>
+        
+            <p>Si a una persona sense cap context ni formació científica li presentem dues opcions: una teoria conspiranoica (per exemple, que les vacunes posen 5G o provoquen autisme) i un científic que afirma que això és fals, és molt probable que ho percebi com un "enfrontament d'opinions". Però una persona amb una visió més àmplia del mètode científic, de com es construeix el coneixement i de quines garanties té el procés, serà capaç de detectar molt més fàcilment quina de les dues posicions és un engany.</p>
+        
+            <p>Aquí és on el sistema educatiu falla. L'ensenyament de la ciència sovint es limita a memoritzar continguts desconnectats, sense entendre com es fa ciència, qui la fa, per què es fa ni en quines condicions. No hi ha prou espais per desenvolupar pensament crític ni per entendre que el coneixement científic és una construcció col·lectiva, provisional i rigorosa.</p>
+        
+            <p>Per això, com a científiques i científics ens hi hem posat de ple. Hem creat aquest toolkit pensat per acompanyar l'alumnat (i el professorat) a entendre millor què és la ciència, com funciona i qui la fa. Volem anar molt més enllà de fer la ciència divertida: volem que sigui comprensible, discutible i compartida.</p>
+        
+            <p>El primer mòdul del toolkit gira entorn de la pregunta: què fa falta per ser un bon científic? I per respondre-la, hem dissenyat activitats sota el nom "Les moltes cares de la ciència", que volen trencar el tòpic del científic solitari amb bata, tancat en un laboratori. Per ser un bon científic cal molt més: pensament crític, consciència ètica, capacitat comunicativa, bagatge cultural, coneixement del context social i, sobretot, entendre que la ciència es fa en equip i amb responsabilitat.</p>
+        
+            <p>Aquest projecte és només l'inici. Però creiem fermament que, si volem una societat menys vulnerable a la desinformació i més capaç de participar en els debats tecnocientífics, cal començar per aquí.</p>
+        
+            <h3>Qui som?</h3>
+        
+            <p>Som l’equip iGEM UB 2025, un grup d’estudiants de la Universitat de Barcelona que participem al concurs internacional iGEM, la competició de biologia sintètica més important del món. Fa anys que hi participem i hem estat reconeguts amb medalles d’or, en gran part pel nostre compromís amb l’educació i la divulgació científica.</p>
+          </div>
+      
+          <button class="expand-btn" onclick="toggleIntro()" id="expandBtn">Més informació</button>
+        </div>
+
+        <div class="keyboard-hint">
+            <p>Usa ← → per navegar, clica amb el ratolí sobre el cub i mou-lo, o clica als botons per a veure les moltes cares de la ciència.</p>
+        </div>
+        <div class="main-content">
+            <div class="cube-section" id="activitats">
+                <div class="controls">                    
+                    <button class="control-btn active" onclick="showFace('cares')"> Reset</button>
+                    <button class="control-btn" onclick="showFace('etica')"> Bioètica</button>
+                    <button class="control-btn" onclick="showFace('creativitat')"> Creativitat</button>
+                    <button class="control-btn" onclick="showFace('experimental')"> Experimental</button>
+                    <button class="control-btn" onclick="showFace('tecnologia')"> Tecnologia</button>
+                    <button class="control-btn" onclick="showFace('comunicacio')"> Comunicació</button>
+                </div>
+
+                <div class="cube-container">
+                    <div class="cube" id="cube">
+                        <div class="face etica" onclick="selectFace('etica')">
+                            <h3>Ètica</h3>
+                        </div>
+                        <div class="face creativitat" onclick="selectFace('creativitat')">
+                            <h3>Creativitat</h3>
+                        </div>
+                        <div class="face experimental" onclick="selectFace('experimental')">
+                            <h3>Experimental</h3>
+                        </div>
+                        <div class="face tecnologia" onclick="selectFace('tecnologia')">
+                            <h3>Tecnologia</h3>
+                        </div>
+                        <div class="face comunicacio" onclick="selectFace('comunicacio')">
+                            <h3>Comunicació</h3>
+                        </div>
+                        <div class="face cares" onclick="selectFace('cares')">
+                            <h3>Les Moltes Cares<br>de la<br>Ciència</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="description-panel" id="descriptionPanel">
+                    <h2 id="descTitle">
+                        Les Moltes Cares<br>de la<br>Ciència
+                    </h2>
+                    <p id="descText">
+                        Utilitza les fletxes, el ratolí o els botons superiors per a veure les diferents cares de la ciència.    
+                    </p>
+                    <a href="#" class="visit-btn" id="visitBtn"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="collaborations-section">
+            <h2>Col·laboracions</h2>
+            <div class="collaborations-grid">
+                <div class="collaboration-card">
+                    <div class="card-inner">
+                      <div class="card-front">
+                        <!-- Imagen representativa del Institut -->
+                        <img src="imatges/verificat.png" alt="Verifica't" class="institut-img" />
+                      </div>
+                      <div class="card-back">
+                        <div class="social-icons">
+                            <p>
+                                La primera entitat de fact-checking de Catalunya.
+                            </p>
+                          
+                          <p>
+                            Visita <a href="https://desfake.cat/">Desfake</a>, un projecte de Verifica't amb més activitats contra la desinformació.
+                          </p>
+                          <a href="https://www.instagram.com/verifi_cat/" class="fa-brands fa-instagram"></a>
+                            <a href="https://x.com/veri_fi_cat" class="fa-brands fa-twitter"></a>
+                        </div>
+                        
+                        <a href="https://www.verificat.cat/es/" target="_blank" class="web-link">Visita la web →</a>
+                      </div>
+                    </div>
+
+                </div>
+
+                <div class="collaboration-card">
+                    <div class="card-inner">
+                      <div class="card-front">
+                        <!-- Imagen representativa del Institut -->
+                        <img src="imatges/pedrera.png" alt="Institut Educatiu" class="institut-img" />
+                      </div>
+                      <div class="card-back">
+                        <p>
+                            A la Fundació Catalunya La Pedrera tenim un somni: volem millorar la qualitat de vida de les persones generant oportunitats que transformin positivament la societat.
+                        </p>
+                        <div class="social-icons">
+                          <a href="https://www.instagram.com/fclp_fundacio/#" class="fa-brands fa-instagram"></a>
+                          <a href="https://x.com/FCLP_Fundacio" class="fa-brands fa-twitter"></a>
+                        </div>
+
+                        <a href="https://fundaciocatalunya-lapedrera.com/ca" target="_blank" class="web-link">Visita la web →</a>
+                      </div>
+                    </div>
+
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+   <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Les Moltes Cares de la Ciència</h3>
+                <p>Un projecte educatiu per entendre què és la ciència, com funciona i qui la fa.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Qui som</h4>
+                <nav class="footer-nav">
+                    <a href="#about">Qui som</a>
+                    <a href="#activitats">Activitats</a>
+                    <a href="mailto:skippitub@gmail.com">Contacte</a>
+                </nav>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/igemubarcelona/" class="fa-brands fa-instagram"></a>
+                    <a href="https://es.linkedin.com/company/skippit-igem-ub" target="_blank" class="fa-brands fa-linkedin"></a>
+                    <a href="https://www.gofundme.com/f/help-us-represent-barcelona-at-the-igem-jamboree-in-paris" target="_blank" class="fa-solid fa-money-bill-transfer"></a>                    
+                    <a href="https://www.tiktok.com/@igembarcelonaub" target="_blank" class="fa-brands fa-tiktok"></a>
+                    <a href="https://x.com/igemubarcelona" target="_blank" class="fa-brands fa-twitter"></a>
+                    <a href="https://www.youtube.com/channel/UCNkAse1Gpz3AD8FlBm0FQNA" target="_blank" class="fa-brands fa-youtube"></a>
+
+                    
+                    
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Col·laboracions</h4>
+                <div class="footer-collaborations">
+                    <a href="https://www.verificat.cat/es/" target="_blank">Verifica't</a>
+                    <a href="https://fundaciocatalunya-lapedrera.com/ca" target="_blank">Fundació la Pedrera</a>
+                    <a href="https://www.mariottigenomicslab.com/" target="_blank">Marco Mariotti's lab </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <p class="footer-copy">© 2025 - Les Moltes Cares de la Ciència</p>
+        </div>
+    </footer>
+
+
+    
+
+    <script>
+        const cube = document.getElementById('cube');
+        const descriptionPanel = document.getElementById('descriptionPanel');
+        const descTitle = document.getElementById('descTitle');
+        const descText = document.getElementById('descText');
+
+        let currentFace = 'cares';
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let currentRotationX = 80;
+        let currentRotationY = 15;
+
+        const faces = {
+            cares: {
+                title: 'Les moltes cares de la ciència',
+                description: 'Utilitza les fletxes, el ratolí o els botons superiors per a veure les diferents cares de la ciència.',
+                rotation: { x: 80, y: 15 },
+                url: '/cares'
+            },
+            etica: {
+                title: 'Bioètica',
+                description: 'L\'ètica científica és fonamental per garantir que la recerca es desenvolupi de manera responsable i beneficiosa per a la societat. Inclou la integritat en la investigació, el respecte pels subjectes d\'estudi, la transparència en els resultats i la consideració de les implicacions socials i ambientals del treball científic.',
+                rotation: { x: -10, y: 15 },
+                url: 'bioetica.html'
+            },
+            creativitat: {
+                title: 'Creativitat Científica',
+                description: 'La creativitat és el motor de la innovació científica. Permet als investigadors plantejar noves hipòtesis, desenvolupar metodologies originals i trobar solucions inesperades als problemes complexos. La ciència avança gràcies a la capacitat de pensar fora dels esquemes establerts.',
+                rotation: { x: -10, y: -75 },
+                url: '/creativitat'
+            },
+            experimental: {
+                title: 'Mètode Experimental',
+                description: 'El mètode experimental és la base del coneixement científic rigorós. A través de la formulació d\'hipòtesis, el disseny d\'experiments controlats i l\'anàlisi sistemàtica de dades, els científics poden validar o refutar teories i construir coneixement fiable sobre el món natural.',
+                rotation: { x: -10, y: -165 },
+                url: 'experimental.html'
+            },
+            tecnologia: {
+                title: 'Tecnologia Científica',
+                description: 'La tecnologia és tant una eina com un producte de la ciència. Els avenços tecnològics permeten noves formes d\'investigació i mesurament, mentre que la recerca científica impulsa el desenvolupament de tecnologies innovadores que transformen la societat.',
+                rotation: { x: -10, y: 105 },
+                url: '/tecnologia.html'
+            },
+            comunicacio: {
+                title: 'Comunicació Científica',
+                description: 'La comunicació científica és essencial per compartir descobriments, facilitar la col·laboració entre investigadors i fer accessible el coneixement científic al públic general. Una comunicació efectiva promou la comprensió pública de la ciència i fomenta la presa de decisions informades.',
+                rotation: { x: -75, y: 15 },
+                url: '/comunicacio.html'
+            }
+        };
+
+        function toggleIntro() {
+            const introFull = document.getElementById('introFull');
+            const expandBtn = document.getElementById('expandBtn');
+            
+            if (introFull.classList.contains('show')) {
+                introFull.classList.remove('show');
+                expandBtn.textContent = 'Més informació';
+            } else {
+                introFull.classList.add('show');
+                expandBtn.textContent = 'Menys informació';
+            }
+        }
+
+        function showFace(faceName) {
+            currentFace = faceName;
+            const face = faces[faceName];
+            
+            // Actualizar botones
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Rotar cubo
+            currentRotationX = face.rotation.x;
+            currentRotationY = face.rotation.y;
+            cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+            
+            // Actualizar descripción
+            updateDescription(faceName);
+        }
+
+        function selectFace(faceName) {
+            showFace(faceName);
+            // Actualizar el botón activo
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(faces[faceName].icon)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function updateDescription(faceName) {
+            const face = faces[faceName];
+            const visitBtn = document.getElementById('visitBtn');
+            
+            descriptionPanel.classList.remove('show');
+            
+            setTimeout(() => {
+                descTitle.innerHTML = face.title;
+                descText.textContent = face.description;
+                visitBtn.textContent = `Visitar pàgina de ${face.title.replace(' Científica', '').replace(' Científic', '')}`;
+                visitBtn.href = face.url;
+                descriptionPanel.classList.add('show');
+            }, 200);
+        }
+
+        function resetCube() {
+            currentRotationX = 80;
+            currentRotationY = 15;
+            cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+            
+            // Ocultar descripción
+            descriptionPanel.classList.remove('show');
+            
+            // Desactivar todos los botones
+            document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+        }
+
+        // Interacción con ratón
+        cube.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            cube.style.transition = 'none';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+
+            const rotationY = currentRotationY + (deltaX * 0.5);
+            const rotationX = currentRotationX - (deltaY * 0.5);
+
+            cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                cube.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                const transform = cube.style.transform;
+                const rotateXMatch = transform.match(/rotateX\(([^)]+)\)/);
+                const rotateYMatch = transform.match(/rotateY\(([^)]+)\)/);
+                
+                if (rotateXMatch) currentRotationX = parseFloat(rotateXMatch[1]);
+                if (rotateYMatch) currentRotationY = parseFloat(rotateYMatch[1]);
+            }
+        });
+
+        // Navegación por teclado
+        document.addEventListener('keydown', (e) => {
+            const faceNames = Object.keys(faces);
+            const currentIndex = faceNames.indexOf(currentFace);
+            
+            if (e.key === 'ArrowLeft') {
+                const prevIndex = currentIndex > 0 ? currentIndex - 1 : faceNames.length - 1;
+                showFace(faceNames[prevIndex]);
+                updateActiveButton(faceNames[prevIndex]);
+            } else if (e.key === 'ArrowRight') {
+                const nextIndex = currentIndex < faceNames.length - 1 ? currentIndex + 1 : 0;
+                showFace(faceNames[nextIndex]);
+                updateActiveButton(faceNames[nextIndex]);
+            }
+        });
+
+        function updateActiveButton(faceName) {
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.includes(faces[faceName].icon)) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Eventos táctiles para móviles
+        cube.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            cube.style.transition = 'none';
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+
+            const deltaX = e.touches[0].clientX - startX;
+            const deltaY = e.touches[0].clientY - startY;
+
+            const rotationY = currentRotationY + (deltaX * 0.5);
+            const rotationX = currentRotationX - (deltaY * 0.5);
+
+            cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchend', () => {
+            if (isDragging) {
+                isDragging = false;
+                cube.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                const transform = cube.style.transform;
+                const rotateXMatch = transform.match(/rotateX\(([^)]+)\)/);
+                const rotateYMatch = transform.match(/rotateY\(([^)]+)\)/);
+                
+                if (rotateXMatch) currentRotationX = parseFloat(rotateXMatch[1]);
+                if (rotateYMatch) currentRotationY = parseFloat(rotateYMatch[1]);
+            }
+        });
+
+        // Inicializar
+        window.addEventListener('load', () => {
+            updateDescription('cares');
+            setTimeout(() => {
+                descriptionPanel.classList.add('show');
+            }, 500);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9698531fd399cf9c',t:'MTc1NDI1MDQyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
