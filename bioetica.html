@@ -927,31 +927,31 @@
                         <div class="role-icon">🧠</div>
                         <div class="role-title">Pacient amb TDAH</div>
                         <div class="role-description">Fitxa amb preguntes i recursos específics</div>
-                        <button class="activity-button" onclick="downloadRolePDF('tdah')">📎 Descarregar PDF</button>
+                        <button class="activity-button" onclick="downloadFile('Representants del pacient amb TDAH.pdf')"> Descarregar PDF</button>
                     </div>
                     <div class="role-card">
                         <div class="role-icon">🏭</div>
                         <div class="role-title">Grindhouse Wetware</div>
                         <div class="role-description">Fitxa amb preguntes i recursos específics</div>
-                        <button class="activity-button" onclick="downloadRolePDF('empresa')">📎 Descarregar PDF</button>
+                        <button class="activity-button" onclick="downloadFile('Representants de Grindhouse Wetware.pdf')"> Descarregar PDF</button>
                     </div>
                     <div class="role-card">
                         <div class="role-icon">🌈</div>
                         <div class="role-title">Moviment neurodivergent</div>
                         <div class="role-description">Fitxa amb preguntes i recursos específics</div>
-                        <button class="activity-button" onclick="downloadRolePDF('neurodivergent')">📎 Descarregar PDF</button>
+                        <button class="activity-button" onclick="downloadFile('Representants del moviment neurodivergent.pdf')"> Descarregar PDF</button>
                     </div>
                     <div class="role-card">
                         <div class="role-icon">⚕️</div>
                         <div class="role-title">Científics/metges escèptics</div>
                         <div class="role-description">Fitxa amb preguntes i recursos específics</div>
-                        <button class="activity-button" onclick="downloadRolePDF('metges')">📎 Descarregar PDF</button>
+                        <button class="activity-button" onclick="downloadFile('RCientífi cs i metges escèptics.pdf')"> Descarregar PDF</button>
                     </div>
                     <div class="role-card">
                         <div class="role-icon">⚖️</div>
                         <div class="role-title">Comissió de bioètica</div>
                         <div class="role-description">Fitxa amb preguntes i recursos específics</div>
-                        <button class="activity-button" onclick="downloadRolePDF('bioetica')">📎 Descarregar PDF</button>
+                        <button class="activity-button" onclick="downloadFile('Comissió de Bioètica.pdf')"> Descarregar PDF</button>
                     </div>
                 </div>
 
@@ -974,11 +974,11 @@
 
                 
                 
-                <h4>📎 Fitxa post-debat</h4>
+                <h4>Fitxa post-debat</h4>
                 <div class="info-box">
                     <h5>Reflexió individual</h5>
-                    <p>Fitxa editable per a la reflexió personal després del debat</p>
-                    <button class="activity-button" onclick="downloadPostDebatePDF()">📝 Descarregar fitxa reflexió</button>
+                    <p>Fitxa per a la reflexió personal després del debat</p>
+                    <button class="activity-button" onclick="downloadFile('REFLEXIÓ INDIVIDUAL POST-DEBAT.pdf')"> Descarregar fitxa reflexió</button>
                 </div>
             </div>
         </div>
@@ -1393,294 +1393,19 @@
         }
 
         // PDF Generation Functions
-        function downloadRolePDF(roleType) {
-            const roleData = {
-                'tdah': {
-                    title: 'Pacient amb TDAH',
-                    icon: '🧠',
-                    description: 'Sou una persona diagnosticada amb TDAH que podria beneficiar-se d\'aquesta tecnologia.',
-                    questions: [
-                        'Com afecta el TDAH la vostra vida diària?',
-                        'Quins beneficis espereu d\'aquesta tecnologia?',
-                        'Com respondríeu a les crítiques sobre "dopatge cognitiu"?',
-                        'Quin és el vostre dret a accedir a aquesta millora?'
-                    ],
-                    arguments: [
-                        'Dret a la salut i al benestar',
-                        'Millora de la qualitat de vida',
-                        'Igualtat d\'oportunitats',
-                        'Autonomia personal'
-                    ]
-                },
-                'empresa': {
-                    title: 'Grindhouse Wetware',
-                    icon: '🏭',
-                    description: 'Sou l\'empresa que ha desenvolupat aquesta tecnologia innovadora.',
-                    questions: [
-                        'Quins són els beneficis de la vostra tecnologia?',
-                        'Com garantiu la seguretat del dispositiu?',
-                        'Com respondeu a les crítiques sobre desigualtat?',
-                        'Quin és el vostre model de negoci?'
-                    ],
-                    arguments: [
-                        'Innovació tecnològica',
-                        'Beneficis per als usuaris',
-                        'Rigor científic',
-                        'Llibertat de mercat'
-                    ]
-                },
-                'neurodivergent': {
-                    title: 'Moviment neurodivergent',
-                    icon: '🌈',
-                    description: 'Defenseu la diversitat neurològica com un valor, no com un problema.',
-                    questions: [
-                        'Per què la neurodiversitat és un valor?',
-                        'Quins riscos comporta "normalitzar" el cervell?',
-                        'Com afecta aquesta tecnologia l\'acceptació social?',
-                        'Quines alternatives proposeu?'
-                    ],
-                    arguments: [
-                        'Valor de la diversitat',
-                        'Risc de discriminació',
-                        'Pressió social per conformar-se',
-                        'Acceptació i inclusió'
-                    ]
-                },
-                'metges': {
-                    title: 'Científics/metges escèptics',
-                    icon: '⚕️',
-                    description: 'Qüestioneu la seguretat i eficàcia d\'aquesta tecnologia.',
-                    questions: [
-                        'Quins són els riscos per a la salut?',
-                        'Hi ha prou evidència científica?',
-                        'Quines són les implicacions ètiques?',
-                        'Quines alternatives més segures existeixen?'
-                    ],
-                    arguments: [
-                        'Principi de precaució',
-                        'Falta d\'evidència',
-                        'Riscos desconeguts',
-                        'Ètica mèdica'
-                    ]
-                },
-                'bioetica': {
-                    title: 'Comissió de bioètica',
-                    icon: '⚖️',
-                    description: 'Heu d\'escoltar tots els arguments i prendre una decisió raonada.',
-                    questions: [
-                        'Quins són els principis ètics en joc?',
-                        'Com equilibreu beneficis i riscos?',
-                        'Quines implicacions socials té aquesta decisió?',
-                        'Quins criteris utilitzareu per decidir?'
-                    ],
-                    arguments: [
-                        'Principis bioètics',
-                        'Bé comú vs. drets individuals',
-                        'Justícia distributiva',
-                        'Precaució vs. innovació'
-                    ]
-                }
-            };
+        function downloadFile(fileName) {
+            // La ruta a tu carpeta de PDFs.
+            // Asegúrate de que esta ruta sea correcta.
+            const folderPath = 'docs/';
+            const fileUrl = folderPath + fileName;
 
-            const role = roleData[roleType];
-            if (!role) return;
-
-            // Create PDF content
-            const pdfContent = `
-FITXA DE ROL: ${role.title} ${role.icon}
-
-DESCRIPCIÓ DEL VOSTRE ROL:
-${role.description}
-
-PREGUNTES GUIA PER A LA PREPARACIÓ:
-${role.questions.map((q, i) => `${i + 1}. ${q}`).join('\n')}
-
-ARGUMENTS CLAU A CONSIDERAR:
-${role.arguments.map((a, i) => `• ${a}`).join('\n')}
-
-INSTRUCCIONS:
-1. Llegiu atentament la vostra descripció de rol
-2. Responeu a les preguntes guia
-3. Busqueu informació addicional fiable
-4. Prepareu els vostres arguments principals
-5. Penseu en possibles contraarguments
-
-ESTRUCTURA DEL DEBAT:
-• Introducció (2 min): Presenteu la vostra posició
-• Arguments (5 min): Desenvolupeu els vostres punts clau
-• Conclusions (2 min): Resumiu i feu una crida a l'acció
-
-Recordeu: Defenseu el vostre rol amb respecte i arguments sòlids!
-            `;
-
-            // Create and download PDF
-            const blob = new Blob([pdfContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Fitxa_${role.title.replace(/\s+/g, '_')}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
-
-        function downloadPostDebatePDF() {
-            const pdfContent = `
-FITXA DE REFLEXIÓ POST-DEBAT
-Bioètica: Millora cognitiva amb modafinil
-
-NOM: _________________________________    DATA: _______________
-
-INSTRUCCIONS: Respon a les següents preguntes de manera reflexiva i honesta.
-
-1. OPINIÓ PERSONAL
-Si fossis membre de la comissió de bioètica, quina decisió prendries sobre la pròtesi de modafinil? Justifica la teva resposta.
-
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-2. ARGUMENTS MÉS CONVINCENTS
-Quins arguments t'han semblat més sòlids durant el debat? Per què?
-
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-3. CANVI DE PERSPECTIVA
-Ha canviat la teva opinió inicial després d'escoltar els arguments? Explica com i per què.
-
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-4. IMPLICACIONS FUTURES
-Com creus que aquest tipus de tecnologies afectaran la societat en els pròxims anys?
-
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-5. DILEMES ÈTICS
-Quin ha estat el dilema ètic més difícil de resoldre per a tu? Per què?
-
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-6. APRENENTATGES
-Què has après sobre bioètica i presa de decisions ètiques?
-
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-
-7. APLICACIÓ PERSONAL
-Com aplicaries aquest tipus de reflexió ètica a altres situacions de la teva vida?
-
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-            `;
-
-            const blob = new Blob([pdfContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Fitxa_Reflexio_Post_Debat.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
-
-        function downloadCredentialsPDF() {
-            const currentDate = new Date().toLocaleDateString('ca-ES');
-            
-            const credentialsContent = `
-PLANTILLA D'ACREDITACIONS - DEBAT DE BIOÈTICA
-Cas: Pròtesi subcutània amb modafinil
-Data: ${currentDate}
-
-═══════════════════════════════════════════════════════════════════
-
-REPRESENTANT DE PACIENTS
-Associació TDAH Catalunya
-
-Nom: _________________________________
-
-Comissió de Bioètica · Sessió Extraordinària
-ID: RP-001
-
-═══════════════════════════════════════════════════════════════════
-
-DELEGAT CORPORATIU
-Grindhouse Wetware Inc.
-
-Nom: _________________________________
-
-Comissió de Bioètica · Sessió Extraordinària
-ID: DC-002
-
-═══════════════════════════════════════════════════════════════════
-
-ACTIVISTA NEURODIVERGENT
-Moviment per la Neurodiversitat
-
-Nom: _________________________________
-
-Comissió de Bioètica · Sessió Extraordinària
-ID: AN-003
-
-═══════════════════════════════════════════════════════════════════
-
-EXPERT MÈDIC
-Col·legi de Metges de Catalunya
-
-Nom: _________________________________
-
-Comissió de Bioètica · Sessió Extraordinària
-ID: EM-004
-
-═══════════════════════════════════════════════════════════════════
-
-MEMBRE DE LA COMISSIÓ
-Comitè de Bioètica de Catalunya
-
-Nom: _________________________________
-
-Comissió de Bioètica · Sessió Extraordinària
-ID: CB-005
-
-═══════════════════════════════════════════════════════════════════
-
-INSTRUCCIONS:
-1. Imprimeix aquesta plantilla
-2. Retalla cada acreditació
-3. Emplena els noms dels participants
-4. Opcional: plastifica per a major durabilitat
-
-Cada acreditació mesura aproximadament 10cm x 7cm
-            `;
-
-            const blob = new Blob([credentialsContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Acreditacions_Debat_Bioetica.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
+            const link = document.createElement('a');
+            link.href = fileUrl;
+            link.setAttribute('download', fileName);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }            
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9695b2a7e2c5c912',t:'MTc1NDIyMjg4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
