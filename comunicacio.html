@@ -2102,6 +2102,222 @@
                 text-align: center;
             }
         }
+        .collaboration-section {
+            margin: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 3rem;
+        }
+        
+        .collaboration-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 20%, #ffffff 100%);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .collaboration-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(251, 191, 36, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(251, 191, 36, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .magnifying-icon {
+            font-size: 4rem;
+            color: #1f2937;
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .text-content {
+            flex: 1;
+        }
+        
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #1f2937;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #374151;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #1f2937;
+            border: 2px solid #1f2937;
+        }
+        
+        .btn-secondary:hover {
+            background: #1f2937;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .verificat-logo {
+            padding: 1rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+        
+        .verificat-logo img {
+            width: 15rem;
+            height: auto;
+        }
+        
+        .verificat-text {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .cta-section {
+            background: #1f2937;
+            color: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-button {
+            background: #fbbf24;
+            color: #1f2937;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #f59e0b;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .collaboration-card {
+                padding: 2rem;
+            }
+            
+            .card-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .main-title {
+                font-size: 2rem;
+            }
+            
+            .magnifying-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2.5rem;
+                margin: 0 auto;
+            }
+            
+            .buttons-container {
+                justify-content: center;
+            }
+            
+            .btn {
+                flex: 1;
+                min-width: 200px;
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .btn {
+                min-width: 100%;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2131,7 +2347,39 @@
                 <p class="hero-subtitle">Aprenem a pensar com científiques… i a detectar quan ens volen enganyar.</p>
                 <p class="hero-description">Aquest recurs educatiu proposa 3 activitats dinàmiques i progressives per desenvolupar el pensament crític, la comprensió científica i les competències digitals. A través de casos reals, eines en línia i debats actius, l'alumnat aprèn a identificar fonts fiables, reconèixer pseudociències i analitzar informació científica amb rigor.</p>
             </div>
-            
+            <div class="collaboration-card">
+                <div class="card-content">
+                    
+                    
+                    <div class="text-content">
+                        <h3 class="main-title"> Activitat realitzada amb Verificat</h3>
+                        <p class="subtitle">Verifica't és una associació sense ànim de lucre amb l'objectiu de combatre la desinformació i la manipulació a Internet.</p>
+                        <p class="description">
+                            Si voleu fer més activitats com aquestes, en el seu projecte <i>Desfake</i>, 
+                            tenen activitats similars d’alfabetització mediàtica i informacional per promoure una ciutadania crítica
+                        </p>
+                        <p class="description">
+                            També ofereixen formació per al professorat
+                        </p>
+                        
+                        <div class="buttons-container">
+                            <a href="https://desfake.cat/" target="_blank" class="btn btn-primary">
+                                Descobreix Desfake
+                            </a>
+                            <a href="https://desfake.cat/oferta-formativa/centres-desfake/" target="_blank" class="btn btn-secondary">
+                                Formació per a docents
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="verificat-logo">
+                        <div>
+                            <img src="imatges/Lisa.png" alt="Lisa amb ulleres" class="comic-character" />
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
             <div class="activities-section">
                 <h2 class="section-title">Activitats</h2>
                 <div class="activities-grid">
@@ -2164,6 +2412,12 @@
             <div class="detail-header">
                 <button class="back-button" onclick="showHome()">← Tornar a l'inici</button>
                 <h2 class="detail-title">Sessió 1: Informar o influenciar?</h2>
+                <div class="cta-section">
+                    <p class="cta-title">Vols fer més activitats com aquesta a la teva escola?</p>
+                    <a href="https://desfake.cat/" target="_blank" class="cta-button">
+                        Visita desfake.cat de Verifica't
+                    </a>
+                </div>
             </div>
             
             <div class="session-tabs">
@@ -2288,6 +2542,12 @@
             <div class="detail-header">
                 <button class="back-button" onclick="showHome()">← Tornar a l'inici</button>
                 <h2 class="detail-title">Sessió 2: Fonts i verificació</h2>
+                <div class="cta-section">
+                    <p class="cta-title">Vols fer més activitats com aquesta a la teva escola?</p>
+                    <a href="https://desfake.cat/" target="_blank" class="cta-button">
+                        Visita desfake.cat de Verifica't
+                    </a>
+                </div>
             </div>
             
             <div class="session-tabs">                
@@ -2451,6 +2711,12 @@
             <div class="detail-header">
                 <button class="back-button" onclick="showHome()">← Tornar a l'inici</button>
                 <h2 class="detail-title">Sessió 3: Pseudociències</h2>
+                <div class="cta-section">
+                    <p class="cta-title">Vols fer més activitats com aquesta a la teva escola?</p>
+                    <a href="https://desfake.cat/" target="_blank" class="cta-button">
+                        Visita desfake.cat de Verifica't
+                    </a>
+                </div>
             </div>
             
             <div class="session-tabs">
