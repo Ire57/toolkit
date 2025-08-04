@@ -1155,6 +1155,7 @@
                     <div class="progress-dot"></div>
                     <div class="progress-dot"></div>
                     <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
                   </div>
                 </div>
                 <!-- Theoretical Introduction -->
@@ -1789,7 +1790,6 @@
                     <div class="progress-dot"></div>
                     <div class="progress-dot"></div>
                     <div class="progress-dot"></div>
-                    <div class="progress-dot"></div>
                   </div>
                 </div>
 
@@ -1962,6 +1962,7 @@
             </div>
         </div>
     </main>
+    
    <div id="footer"></div>
     <script>
     fetch('footer.html')
@@ -1970,6 +1971,8 @@
             document.getElementById('footer').innerHTML = data;
         });
     </script>
+
+    
     <script>
         // Navigation functions
         function showHome() {
@@ -2058,51 +2061,73 @@
         function setupComicSlideshow(comicContainer) {
             let currentFrame = 1;
             const totalFrames = comicContainer.querySelectorAll('.comic-frame').length;
-        
             const frames = comicContainer.querySelectorAll('.comic-frame');
             const dots = comicContainer.querySelectorAll('.progress-dot');
-            const prevBtn = comicContainer.querySelector('.prev-btn'); // Cambiamos los IDs a clases
-            const nextBtn = comicContainer.querySelector('.next-btn'); // Cambiamos los IDs a clases
-        
-            function updateComicDisplay() {
+            const prevBtn = comicContainer.querySelector('.prev-btn');
+            const nextBtn = comicContainer.querySelector('.next-btn');
+
+            const updateComicDisplay = () => {
                 frames.forEach(frame => frame.classList.remove('active'));
                 dots.forEach(dot => dot.classList.remove('active'));
-            
                 frames[currentFrame - 1].classList.add('active');
                 dots[currentFrame - 1].classList.add('active');
-            
                 prevBtn.disabled = currentFrame === 1;
                 nextBtn.disabled = currentFrame === totalFrames;
-            }
+            };
         
-            // Funciones para los botones
-            function prevFrame() {
+            const prevFrame = () => {
                 if (currentFrame > 1) {
                     currentFrame--;
                     updateComicDisplay();
                 }
-            }
+            };
         
-            function nextFrame() {
+            const nextFrame = () => {
                 if (currentFrame < totalFrames) {
                     currentFrame++;
                     updateComicDisplay();
                 }
-            }
+            };
 
-            // Asignar eventos a los botones
             prevBtn.addEventListener('click', prevFrame);
             nextBtn.addEventListener('click', nextFrame);
-        
-            // Inicializar el primer frame
             updateComicDisplay();
+        
+            // Evento para activar el cómic cuando se hace clic en él
+            comicContainer.addEventListener('click', () => {
+                document.querySelectorAll('.comic-slideshow').forEach(comic => {
+                    comic.classList.remove('active-comic');
+                });
+                comicContainer.classList.add('active-comic');
+            });
         }
 
-        // Inicializar todos los cómics que haya en la página
+        // Inicializar todos los cómics al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
             const comicSlideshows = document.querySelectorAll('.comic-slideshow');
             comicSlideshows.forEach(comic => setupComicSlideshow(comic));
+
+            // Al cargar, activamos el primer cómic para que el teclado funcione de entrada
+        if (comicSlideshows.length > 0) {
+            comicSlideshows[0].classList.add('active-comic');
+        }
+
+        // Escuchador de eventos del teclado para controlar el cómic activo
+                document.addEventListener('keydown', (event) => {
+                    const activeComic = document.querySelector('.comic-slideshow.active-comic');
+                    if (activeComic) {
+                        const prevBtn = activeComic.querySelector('.prev-btn');
+                        const nextBtn = activeComic.querySelector('.next-btn');
+
+                        if (event.key === 'ArrowLeft' && !prevBtn.disabled) {
+                            prevBtn.click();
+                        } else if (event.key === 'ArrowRight' && !nextBtn.disabled) {
+                            nextBtn.click();
+                        }
+                    }
+                });
         });
+                
     </script>    
     <script>
         // Global variables

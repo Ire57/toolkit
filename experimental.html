@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="footer.css">
     <title>Experimental</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,8 +14,8 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #FFFEE8;
+            font-family: 'Inter', sans-serif;
+            background: #fbdad9;
             min-height: 100vh;
             color: #53110e;
             line-height: 1.6;
@@ -59,7 +60,7 @@
         }
 
         .logo:hover {
-            color: #be1818;
+            color: #e52920;
         }
 
         .nav-menu {
@@ -79,7 +80,7 @@
 
         .nav-item a:hover {
             color: #e41513;
-            background: rgba(220, 38, 38, 0.1);
+            background: rgba(229, 62, 62, 0.1);
         }
 
         .hamburger {
@@ -95,7 +96,50 @@
             background: #333;
             transition: 0.3s;
         }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
 
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                backdrop-filter: blur(10px);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+            }
+        }
         /* Main Content */
         .main-content {
             max-width: 1200px;
@@ -113,13 +157,31 @@
             line-height: 1.2;
         }
 
-        .page-subtitle {
+        .hero-section {
             text-align: center;
-            font-size: 1.3rem;
-            color: #be1818;
-            margin-bottom: 20px;
-            font-weight: 500;
+            margin-bottom: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            backdrop-filter: blur(20px);
         }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #e41513;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
 
         /* Internal Navigation */
         .internal-nav {
@@ -162,7 +224,7 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px #9d1915;
         }
-
+        
         /* Content Sections */
         .content-section {
             display: none;
@@ -413,7 +475,7 @@
         }
 
         .comic-character {
-            font-size: 4rem;
+            width: 100%;
             margin-bottom: 15px;
             display: block;
         }
@@ -1589,7 +1651,7 @@
 <body>
     <header class="header">
         <nav class="nav-container">
-            <a href="#" class="logo" onclick="showHome()">Experimental</a>
+            <a href="#" class="logo" onclick="showHome()"> Comunicació</a>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item active"><a href="#" onclick="showContent('professorat')">Guia professorat</a></li>
                 <li class="nav-item"><a href="#" onclick="showContent('alumne')">Introducció per l'alumne</a></li>
@@ -1603,11 +1665,13 @@
             </div>
         </nav>
     </header>
-
+    
     <main class="main-content">
-        <h1 class="page-title">Extracció de DNA a partir de fruites</h1>
-        <p class="page-subtitle">Descobreix els secrets genètics amagats dins les fruites</p>
         
+        <div class="hero-section">
+                <h1 class="hero-title">Experimental</h1>
+                <p class="hero-subtitle">Extracció de DNA a partir de fruites</p>
+            </div>
         
 
         <!-- Introducció per l'alumne -->
@@ -1622,37 +1686,51 @@
                 <h4 style="color: #e41513; margin-bottom: 20px;"> Història: L'equip GenCodis</h4>
                 
                 <div class="comic-frame active" id="frame1">
-                    <span class="comic-character">🌍</span>
+                    <img src="imatges/experimental/1.png" alt="Lisa amb ulleres" class="comic-character" />
                     <div class="comic-text">
-                        En un futur no gaire llunyà, el món ha canviat. Una estranya malaltia ha començat a afectar les plantes de cultiu més comunes, i els científics de tot el planeta treballen a contrarellotge per descobrir què hi passa.
+                        En un futur no gaire llunyà, el món ha canviat. Una estranya malaltia afecta les plantes de cultiu més comunes...
                     </div>
                 </div>
                 
                 <div class="comic-frame" id="frame2">
-                    <span class="comic-character">🧬</span>
+                    <img src="imatges/experimental/2.png" alt="Lisa amb ulleres" class="comic-character" />
                     <div class="comic-text">
-                        La sospita principal: alguna cosa ha canviat en el seu ADN. Però per confirmar-ho, cal fer el que pocs han intentat fora d'un laboratori avançat... cal extreure l'ADN i examinar-lo amb detall.
+                        Els científics treballen a contrarellotge per descobrir què hi passa. La sospita: alguna cosa ha canviat en el seu ADN. Però per confirmar-ho, cal fer el que pocs han intentat fora d'un laboratori avançat... cal extreure l'ADN i examinar-lo amb detall.
                     </div>
                 </div>
                 
                 <div class="comic-frame" id="frame3">
-                    <span class="comic-character">👥</span>
+                    <img src="imatges/experimental/3.png" alt="Lisa amb ulleres" class="comic-character" />
                     <div class="comic-text">
-                        Tu formes part d'un petit equip d'investigadors anomenat GenCodis, especialitzat a analitzar l'origen genètic dels organismes vius. Heu rebut una mostra misteriosa: una fruita aparentment normal, però que podria contenir les pistes clau per entendre la mutació.
+                        Tu formes part d'un petit equip d'investigadors anomenat Skippit, especialitzat a analitzar l'origen genètic dels organismes vius. Heu rebut una mostra misteriosa...
                     </div>
                 </div>
                 
                 <div class="comic-frame" id="frame4">
-                    <span class="comic-character">🎯</span>
+                    <img src="imatges/experimental/4.png" alt="Lisa amb ulleres" class="comic-character" />
                     <div class="comic-text">
-                        El teu repte és clar: aconseguir veure l'ADN amb els teus propis ulls. Amb els recursos que teniu al vostre abast —sabó, sal, alcohol i una mica d'enginy— comença la missió.
+                        Una fruita aparentment normal, però que podria contenir les pistes clau per entendre la mutació. El teu repte és clar: aconseguir veure l’ADN amb els teus propis ulls.
+
                     </div>
                 </div>
                 
                 <div class="comic-frame" id="frame5">
-                    <span class="comic-character">🔬</span>
+                    <img src="imatges/experimental/5.png" alt="Lisa amb ulleres" class="comic-character" />
                     <div class="comic-text">
-                        La fruita amaga dins seu un codi antic i valuós: l'ADN, el llibre de la vida. Si aconseguiu fer-lo visible, podreu comparar-lo amb altres mostres i buscar-ne alteracions. És una carrera contra el temps, però també una oportunitat única per descobrir com funciona la vida a escala microscòpica.
+                        Amb els recursos que teniu al vostre abast (sabó, sal, alcohol i una mica d’enginy) comença la missió. La fruita amaga dins seu un codi antic i valuós: l’ADN, el llibre de la vida. 
+                    </div>
+                </div>
+                <div class="comic-frame" id="frame6">
+                    <img src="imatges/experimental/6.png" alt="Lisa amb ulleres" class="comic-character" />
+                    <div class="comic-text">
+                        Si aconseguiu fer-lo visible, podreu comparar-lo amb altres mostres i buscar-ne alteracions. 
+                    </div>
+                </div>
+                <div class="comic-frame" id="frame7">
+                    <img src="imatges/experimental/7.png" alt="Lisa amb ulleres" class="comic-character" />
+                    <div class="comic-text">
+                        És una carrera contra el temps, però també una oportunitat única per descobrir com funciona la vida a escala microscòpica.
+
                     </div>
                 </div>
                 
@@ -1663,6 +1741,8 @@
                 
                 <div class="comic-progress">
                     <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
                     <div class="progress-dot"></div>
                     <div class="progress-dot"></div>
                     <div class="progress-dot"></div>
@@ -1816,21 +1896,7 @@
             <div class="explanation-section">
                 <h2 class="section-title">QUÈ ESTÀ PASSANT?</h2>
                 <div class="explanation-item">
-                    <div class="animation-container">
-                        <div class="soap-animation">
-                            <div class="cell-large">
-                                <div class="nucleus">
-                                    <div class="dna-thread"></div>
-                                </div>
-                            </div>
-                            <div class="soap-circle"></div>
-                            <div class="soap-circle"></div>
-                            <div class="soap-circle"></div>
-                            <div class="soap-circle"></div>
-                            <div class="soap-circle"></div>
-                            <div class="soap-circle"></div>
-                        </div>
-                    </div>
+                    
                     <div class="explanation-text">
                         <h3>El sabó trenca les membranes</h3>
                         <p>Una animació mostra una cèl·lula rodona, envoltada per una membrana doble formada per dues capes de lípids. De sobte, apareixen molècules de sabó representades com gotetes amb una "cua" corbada i greixosa. Aquestes molècules s'acosten i s'insereixen entre els lípids de la membrana, fent-la inestable. Es formen bombolles i petits forats, i la membrana es comença a trencar. El contingut cel·lular comença a sortir suaument, i s'hi veu el nucli, també envoltat per una membrana que es desfà de la mateixa manera. L'ADN, representat com una llarg fil cargolat, s'allibera lentament cap a l'exterior.</p>
@@ -1838,26 +1904,7 @@
                 </div>
 
                 <div class="explanation-item">
-                    <div class="animation-container">
-                        <div class="salt-animation">
-                            <div class="dna-thread-mixed"></div>
-                            <div class="dna-thread-mixed"></div>
-                            <div class="dna-thread-mixed"></div>
-                            <div class="protein-ball"></div>
-                            <div class="protein-ball"></div>
-                            <div class="protein-ball"></div>
-                            <div class="protein-ball"></div>
-                            <div class="salt-sphere positive"></div>
-                            <div class="salt-sphere negative"></div>
-                            <div class="salt-sphere positive"></div>
-                            <div class="salt-sphere negative"></div>
-                            <div class="salt-sphere positive"></div>
-                            <div class="salt-sphere negative"></div>
-                            <div class="separated-dna"></div>
-                            <div class="separated-dna"></div>
-                            <div class="separated-dna"></div>
-                        </div>
-                    </div>
+                    
                     <div class="explanation-text">
                         <h3>La sal separa l'ADN de les proteïnes</h3>
                         <p>L'escena comença amb una cadena d'ADN cargolada que està fortament enganxada a unes estructures rodones, que representen les proteïnes. Tot està suspès dins la cèl·lula. Llavors arriben molècules de sal, visualitzades com petites esferes amb signes "+" (Na⁺) i "–" (Cl⁻). Aquestes esferes es col·loquen estratègicament entre l'ADN i les proteïnes, com si trenquessin una connexió magnètica. A poc a poc, la cadena d'ADN es desprèn de les proteïnes i comença a flotar lliurement, mentre les proteïnes queden aïllades. La càmera destaca la separació i la llibertat de moviment de l'ADN.</p>
@@ -1865,28 +1912,7 @@
                 </div>
 
                 <div class="explanation-item">
-                    <div class="animation-container">
-                        <div class="alcohol-animation">
-                            <div class="test-tube">
-                                <div class="aqueous-solution">
-                                    Solució aquosa
-                                    <div class="faint-dna"></div>
-                                    <div class="faint-dna"></div>
-                                    <div class="faint-dna"></div>
-                                    <div class="faint-dna"></div>
-                                    <div class="faint-dna"></div>
-                                </div>
-                                <div class="alcohol-pour">Alcohol</div>
-                                <div class="interface-line"></div>
-                                <div class="precipitating-dna"></div>
-                                <div class="precipitating-dna"></div>
-                                <div class="precipitating-dna"></div>
-                                <div class="precipitating-dna"></div>
-                                <div class="precipitating-dna"></div>
-                                <div class="dna-cloud">🧬</div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="explanation-text">
                         <h3>L'alcohol precipita l'ADN</h3>
                         <p>L'animació mostra una proveta mig plena amb una solució aquosa on l'ADN dissolt és invisible. Des de dalt, cau lentament una capa d'alcohol fred, que no es barreja, i forma una franja clara al damunt. Quan les dues capes es toquen, comencen a aparèixer fils blancs molt fins a la interfície. Aquests filaments es cargolen i es fan més densos, formant una mena de núvol blanquinós. L'animació destaca aquest moment: les molècules d'ADN s'ajunten i surten de la solució, mentre el fred evita que es trenquin. L'escena transmet com l'alcohol fa visible allò que abans estava amagat.</p>
@@ -1953,6 +1979,17 @@
         </div>
     </main>
 
+    
+    <div id="footer"></div>
+    <script>
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+        });
+    </script>
+
+
     <script>
         function goBack() {
             window.history.back();
@@ -2016,7 +2053,7 @@
         }
 
         let currentFrame = 1;
-        const totalFrames = 5;
+        const totalFrames = 7;
 
         function changeFrame(direction) {
             // Hide current frame
@@ -2033,8 +2070,20 @@
             // Update button states
             document.getElementById('prevBtn').disabled = currentFrame === 1;
             document.getElementById('nextBtn').disabled = currentFrame === totalFrames;
-        }
 
+            
+        }
+        document.addEventListener('keydown', (event) => {
+            // Si se pulsa la flecha izquierda y no estamos en la primera viñeta
+            if (event.key === 'ArrowLeft' && currentFrame > 1) {
+                changeFrame(-1);
+            }
+
+            // Si se pulsa la flecha derecha y no estamos en la última viñeta
+            if (event.key === 'ArrowRight' && currentFrame < totalFrames) {
+                changeFrame(1);
+            }
+        });
         // Initialize buttons
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('prevBtn').disabled = true;
