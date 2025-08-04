@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tecnologia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         * {
             margin: 0;
@@ -217,6 +218,11 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
             backdrop-filter: blur(20px);
         }
+        .sequence-box {
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            line-height: 1.4;
+        }
 
         .detail-header {
             margin-bottom: 30px;
@@ -245,6 +251,212 @@
             color: #2d3748;
             margin-bottom: 20px;
         }
+        /*ACTIVITY 1*/
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        /* Utility classes */
+        .container { max-width: 1200px; margin: 0 auto; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .p-8 { padding: 2rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-4 { padding: 1rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-12 { margin-top: 3rem; }
+        .ml-4 { margin-left: 1rem; }
+        
+        /* Layout */
+        .min-h-screen { min-height: 100vh; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .space-x-8 > * + * { margin-left: 2rem; }
+        .space-x-3 > * + * { margin-left: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .space-y-1 > * + * { margin-top: 0.25rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .grid { display: grid; }
+        .overflow-x-auto { overflow-x: auto; }
+        .overflow-y-auto { overflow-y: auto; }
+        .max-h-40 { max-height: 10rem; }
+        .sticky { position: sticky; }
+        .top-0 { top: 0; }
+        .z-10 { z-index: 10; }
+        
+        /* Grid */
+        @media (min-width: 768px) {
+            .md\\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+        .gap-6 { gap: 1.5rem; }
+        
+        /* Typography */
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .text-center { text-align: center; }
+        .leading-relaxed { line-height: 1.625; }
+        .max-w-none { max-width: none; }
+        .prose { max-width: 65ch; }
+        .whitespace-nowrap { white-space: nowrap; }
+        
+        /* Colors */
+        .text-white { color: #ffffff; }
+        .text-gray-800 { color: #1f2937; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-600 { color: #4b5563; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-blue-600 { color: #2563eb; }
+        .text-blue-700 { color: #1d4ed8; }
+        .text-blue-800 { color: #1e40af; }
+        .text-green-700 { color: #15803d; }
+        .text-green-800 { color: #166534; }
+        .text-purple-700 { color: #7c3aed; }
+        .text-purple-800 { color: #6b21a8; }
+        .text-yellow-700 { color: #a16207; }
+        .text-yellow-800 { color: #92400e; }
+        .text-amber-700 { color: #b45309; }
+        .text-amber-800 { color: #92400e; }
+        .text-indigo-700 { color: #4338ca; }
+        .text-indigo-800 { color: #3730a3; }
+        
+        /* Backgrounds */
+        .bg-white { background-color: #ffffff; }
+        .bg-gray-800 { background-color: #1f2937; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-blue-50 { background-color: #eff6ff; }
+        .bg-green-50 { background-color: #f0fdf4; }
+        .bg-green-600 { background-color: #16a34a; }
+        .bg-green-700 { background-color: #15803d; }
+        .bg-purple-50 { background-color: #faf5ff; }
+        .bg-purple-600 { background-color: #9333ea; }
+        .bg-yellow-50 { background-color: #fefce8; }
+        .bg-amber-50 { background-color: #fffbeb; }
+        .bg-indigo-50 { background-color: #eef2ff; }
+        
+        /* Gradients */
+        .bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)); }
+        .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .from-blue-50 { --tw-gradient-from: #eff6ff; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(239, 246, 255, 0)); }
+        .to-indigo-100 { --tw-gradient-to: #e0e7ff; }
+        .from-blue-600 { --tw-gradient-from: #2563eb; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(37, 99, 235, 0)); }
+        .to-indigo-700 { --tw-gradient-to: #4338ca; }
+        .to-purple-50 { --tw-gradient-to: #faf5ff; }
+        
+        /* Borders */
+        .border { border-width: 1px; }
+        .border-2 { border-width: 2px; }
+        .border-l-4 { border-left-width: 4px; }
+        .border-b-2 { border-bottom-width: 2px; }
+        .border-gray-200 { border-color: #e5e7eb; }
+        .border-blue-600 { border-color: #2563eb; }
+        .border-transparent { border-color: transparent; }
+        .border-green-200 { border-color: #bbf7d0; }
+        .border-yellow-200 { border-color: #fef3c7; }
+        .border-purple-200 { border-color: #e9d5ff; }
+        .border-blue-400 { border-color: #60a5fa; }
+        .border-amber-400 { border-color: #fbbf24; }
+        .border-indigo-200 { border-color: #c7d2fe; }
+        
+        /* Border radius */
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .rounded-full { border-radius: 9999px; }
+        
+        /* Shadows */
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        
+        /* Lists */
+        .list-disc { list-style-type: disc; }
+        .list-inside { list-style-position: inside; }
+        
+        /* Sizing */
+        .w-6 { width: 1.5rem; }
+        .h-6 { height: 1.5rem; }
+        
+        /* Opacity */
+        .opacity-90 { opacity: 0.9; }
+        
+        /* Transitions */
+        .transition-colors { transition-property: color, background-color, border-color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        
+        /* Hover states */
+        .hover\\:text-blue-600:hover { color: #2563eb; }
+        .hover\\:border-blue-600:hover { border-color: #2563eb; }
+        .hover\\:bg-green-700:hover { background-color: #15803d; }
+        .hover\\:underline:hover { text-decoration: underline; }
+        
+        /* Custom activity styles */
+        .activity-content {
+            display: none;
+        }
+        .activity-content.active {
+            display: block;
+        }
+        .sequence-box {
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+        
+        /* Navigation button styles */
+        .nav-btn {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+            font-family: inherit;
+        }
+        
+        /* Links */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Button styles */
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+
+
+
+
+
 
         .session-tabs {
             display: flex;
@@ -735,26 +947,23 @@
             </div>
             
             <div class="activities-section">
-                <h2 class="section-title">📚 Continguts del curs</h2>
+                <h2 class="section-title"> Continguts del curs</h2>
                 <div class="activities-grid">
                     
 
                     <div class="activity-card" onclick="showSection('activitat1')">
-                        <div class="activity-icon">🎯</div>
                         <h3 class="activity-title">Activitat 1</h3>
                         <p class="activity-description">Primera aproximació als algoritmes amb exercicis pràctics i exemples quotidians.</p>
                         <button class="activity-button">Explorar</button>
                     </div>
 
                     <div class="activity-card" onclick="showSection('activitat2')">
-                        <div class="activity-icon">🧩</div>
                         <h3 class="activity-title">Activitat 2</h3>
                         <p class="activity-description">Desenvolupament del pensament lògic mitjançant la resolució de problemes estructurats.</p>
                         <button class="activity-button">Descobrir</button>
                     </div>
 
                     <div class="activity-card" onclick="showSection('activitat3')">
-                        <div class="activity-icon">🚨</div>
                         <h3 class="activity-title">Ruta d'emergència</h3>
                         <p class="activity-description">Trobar el camí més ràpid utilitzant algoritmes d'optimització en situacions d'emergència.</p>
                         <button class="activity-button">Començar</button>
@@ -766,40 +975,375 @@
         
 
         <!-- Activitat 1 Section -->
-        <div id="activitat1" class="activity-detail">
+         <div id="activitat1" class="activity-detail">
+                    
             <div class="detail-header">
                 <button class="back-button" onclick="showHome()">← Tornar a l'inici</button>
-                <h2 class="detail-title">🎯 Activitat 1</h2>
+                <h2 class="detail-title"> Activitat 2</h2>
             </div>
             
             <div class="session-tabs">
-                <button class="tab-button active" onclick="showTab('activitat1', 'professorat1')">👩‍🏫 Guia del professorat</button>
-                <button class="tab-button" onclick="showTab('activitat1', 'alumnat1')">🎓 Introducció per l'alumnat</button>
+                <button class="tab-button active" onclick="showTab('activitat1', 'professorat1')"> Guia del professorat</button>
+                <button class="tab-button" onclick="showTab('activitat1', 'alumnat1')"> Introducció per l'alumnat</button>
             </div>
 
             <div id="professorat1" class="content-section active">
-                <h3>👩‍🏫 Guia del professorat - Activitat 1</h3>
-                <p>Contingut de la guia del professorat per a la primera activitat...</p>
+                <h3> Guia del professorat - Activitat 2</h3>
                 
-                <h4>🎯 Objectius</h4>
+                <h4> Petit resum</h4>
+                <p>
+                  Aquesta activitat introdueix l’alumnat al món de la <b>bioinformàtica</b>, mostrant com podem obtenir informació útil a partir de dades genètiques reals.
+                </p>
                 <ul>
-                    <li>Introduir els conceptes bàsics d'algoritme</li>
-                    <li>Desenvolupar el pensament seqüencial</li>
-                    <li>Practicar la descomposició de problemes</li>
+                  <li>
+                    A la <b>Part BLAST</b>, l’alumnat treballarà amb una seqüència d’ADN desconeguda i aprendrà a utilitzar l’eina online
+                    <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank">BLAST</a> per identificar d’on prové i quina funció pot tenir. Això els permetrà entendre com es poden estudiar els gens a partir de les seves seqüències.
+                  </li>
+                  <li>
+                    A la <b>Part PDB</b>, descobriran com és l’estructura tridimensional de les proteïnes utilitzant un visor en línia. Això els ajudarà a entendre com la forma d’una proteïna està relacionada amb la seva funció dins de l’organisme.
+                  </li>
+                </ul>
+                <p>
+                  L’activitat connecta la teoria sobre <b></b>ADN i proteïnes</b> amb eines reals de recerca, mostrant aplicacions pràctiques de la biologia molecular.
+                </p>
+                <h4> Objectius</h4>
+                <ul>
+                    <li>Part BLAST: familiaritzar-se amb l’ús de l’eina BLAST per identificar l’origen i la funció d’una seqüència
+                         d’ADN desconeguda. Aquesta activitat introdueix les bases de la bioinformàtica i mostra com podem extreure 
+                         informació biològica valuosa a partir de dades genètiques.</li>
+                    <li>Part PDB: descobrir com és l’estructura real de les proteïnes i entendre com la seva forma tridimensional
+                         està relacionada amb la seva funció biològica. Els alumnes utilitzaran un visor online per explorar models
+                          reals de proteïnes obtinguts amb tècniques experimentals.</li>
                 </ul>
 
-                <div class="info-box">
-                    <h5>📋 Materials necessaris</h5>
-                    <p>Llapis, paper, targetes d'instruccions, cronòmetre</p>
-                </div>
+                <h4>Competències treballades</h4>
+                    <div class="highlight-box">
+                      <ul>
+                        <li>
+                          <strong>Competència digital:</strong> ús d'eines digitals especialitzades com BLAST i el PDB de manera autònoma i eficaç; cerca, selecció i anàlisi d'informació científica en entorns digitals.
+                        </li>
+                        <li>
+                          <strong>Competència en ciències i tecnologia:</strong> comprensió del dogma central de la biologia molecular (ADN → ARN → proteïna → funció); relació d'una seqüència genètica amb la proteïna que codifica i la seva funció; interpretació de dades de seqüències d’ADN i d’estructures de proteïnes; valoració del paper de la bioinformàtica en la recerca.
+                        </li>
+                        <li>
+                          <strong>Aprendre a aprendre:</strong> aplicació de coneixements teòrics a situacions noves; desenvolupament de la capacitat d’anàlisi i de raonament científic.
+                        </li>
+                        <li>
+                          <strong>Competència matemàtica:</strong> interpretació visual de models tridimensionals de proteïnes.
+                        </li>
+                      </ul>
+                    </div>
+                <h4>⏱ Materials necessaris i durada</h4>
+                    <div class="info-box">
+                      <h5>Durada total estimada: 60 minuts</h5>
+                      <ul>
+                        <li>
+                          <strong>Part BLAST</strong>
+                          <ul>
+                            <li>
+                              <strong>Durada:</strong> 30 minuts
+                            </li>
+                            <li>
+                              <strong>Materials:</strong> Ordinador amb accés a Internet, enllaç a <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank">BLAST</a> i una seqüència d'ADN.
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <strong>Part PDB</strong>
+                          <ul>
+                            <li>
+                              <strong>Durada:</strong> 30 minuts
+                            </li>
+                            <li>
+                              <strong>Materials:</strong> Ordinador, tauleta o mòbil amb accés a Internet i accés al visor <a href="https://www.rcsb.org" target="_blank">PDB</a>.
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                
+                
             </div>
+        
+
 
             <div id="alumnat1" class="content-section">
-                <h3>🎓 Introducció per l'alumnat - Activitat 1</h3>
-                <p>Benvinguts a la primera activitat de pensament computacional...</p>
-            </div>
-        </div>
+                <h3> Activitat 2: Predir el plegament amb Intel·ligència Artificial</h3>
+                <div class="comic-slideshow">
+                  <h4 style="color: #e41513; margin-bottom: 20px;">Història: Missió d’Emergència</h4>
+                                
+                  <div class="comic-frame active" id="frame1">
+                    <span class="comic-character">🚨</span>
+                    <div class="comic-text">
+                      Imagina que ets part d'un equip d'emergències a la teva localitat. Acaba de passar un imprevist i alguns carrers estan bloquejats. De sobte, hi ha una emergència urgent en un punt llunyà del mapa!
+                    </div>
+                  </div>
+                
+                  <div class="comic-frame" id="frame2">
+                    <span class="comic-character">🚑</span>
+                    <div class="comic-text">
+                      El teu vehicle és al punt d'Inici (I) de la vostra base d'emergències. Heu rebut una trucada urgent: hi ha una situació crítica al punt de Destí (D) que requereix la vostra intervenció immediata.
+                    </div>
+                  </div>
+                
+                  <div class="comic-frame" id="frame3">
+                    <span class="comic-character">🚧</span>
+                    <div class="comic-text">
+                      Però hi ha un problema: diversos carrers estan bloquejats per accidents, obres o riuades. No podeu passar per aquests punts i heu de trobar una ruta alternativa que sigui la més ràpida possible.
+                    </div>
+                  </div>
+                
+                  <div class="comic-frame" id="frame4">
+                    <span class="comic-character">🗺️</span>
+                    <div class="comic-text">
+                      Teniu un mapa de la zona organitzat com una graella. Cada casella representa un carrer o cruïlla, i podeu moure-us en quatre direccions: amunt, avall, esquerra i dreta. Cada moviment costa 1 unitat de temps.
+                    </div>
+                  </div>
+                
+                  <div class="comic-frame" id="frame5">
+                    <span class="comic-character">🎯</span>
+                    <div class="comic-text">
+                      Cal arribar al punt de destí en el menor temps possible! Heu de pensar estratègicament, analitzar les opcions disponibles i trobar la ruta òptima evitant els obstacles.
+                    </div>
+                  </div>
+                
+                  <div class="comic-frame" id="frame6">
+                    <span class="comic-character">🧠</span>
+                    <div class="comic-text">
+                      Aquest repte us ajudarà a desenvolupar el pensament computacional: aprendre a descomposar problemes, reconèixer patrons i crear algoritmes per trobar solucions eficients. Esteu preparats?
+                    </div>
+                  </div>
+                
+                  <div class="comic-controls">
+                    <button class="comic-btn prev-btn">← Anterior</button> <button class="comic-btn next-btn">Següent →</button> </div>
 
+                    <div class="comic-progress"></div>
+                
+                  <div class="comic-progress">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                  </div>
+                </div>
+                <!-- Theoretical Introduction -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-4"> Introducció teòrica: El dogma central de la biologia molecular</h3>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-6">
+                        <p class="text-gray-700 mb-4">
+                            Tot el que som —com som físicament, com funciona el nostre cos, i fins i tot com reaccionem a certs medicaments— té a veure amb la informació que portem dins les cèl·lules. Aquesta informació està escrita en el nostre ADN, que és com un manual d'instruccions molt gran.
+                        </p>
+                        
+                        <p class="text-gray-700 mb-4">
+                            Aquests "capítols" del manual s'anomenen gens. Cada gen conté la informació per fer una proteïna concreta. Les proteïnes són les molècules que fan pràcticament tot dins del nostre cos: formen part dels músculs, del cabell, ajuden a digerir el menjar, transporten oxigen a la sang, o fan funcionar el cervell.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-green-800 mb-2">1. Replicació</h4>
+                            <p class="text-sm text-green-700">L'ADN es pot copiar a si mateix quan una cèl·lula es divideix</p>
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-yellow-800 mb-2">2. Transcripció</h4>
+                            <p class="text-sm text-yellow-700">La informació d'un gen es copia a un ARN missatger (ARNm)</p>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
+                            <h4 class="font-semibold text-purple-800 mb-2">3. Traducció</h4>
+                            <p class="text-sm text-purple-700">L'ARNm arriba als ribosomes i es fa la proteïna</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-6 mb-6">
+                        <h4 class="text-lg font-semibold text-amber-800 mb-3"> Analogia culinària</h4>
+                        <p class="text-amber-700">
+                            És com si tinguéssim una recepta (ADN), que copiem en una nota (ARNm), i després el cuiner (ribosoma) la llegeix per fer el plat (proteïna).
+                        </p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-blue-800 mb-3"> Exemple real: el color dels ulls</h4>
+                        <p class="text-blue-700 mb-3">
+                            Hi ha un gen que codifica per una proteïna relacionada amb la producció de melanina, el pigment que dona color a la pell, el cabell i els ulls. Si aquest gen produeix molta melanina a l'iris, els ulls són marrons. Si en produeix poca, els ulls són blaus o verds.
+                        </p>
+                        <p class="text-blue-700 font-medium">
+                            Per tant, el color dels ulls depèn d'un gen que dona instruccions per fer una proteïna concreta: <strong>gen → ARN → proteïna → funció o característica</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- BLAST Section -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-4"> Part A: Anàlisi amb BLAST</h3>
+                    
+                    <div class="bg-green-50 rounded-lg p-6 mb-6">
+                        <h4 class="text-xl font-semibold text-green-800 mb-3">Què és el BLAST?</h4>
+                        <p class="text-green-700 mb-4">
+                            BLAST (Basic Local Alignment Search Tool) és una eina bioinformàtica desenvolupada pel NCBI que permet comparar una seqüència d'ADN, ARN o proteïna amb milions d'altres seqüències emmagatzemades en bases de dades públiques.
+                        </p>
+                        
+                        <h5 class="font-semibold text-green-800 mb-2">Per a què serveix BLAST?</h5>
+                        <ul class="list-disc list-inside text-green-700 space-y-1">
+                            <li>Identificar l'origen d'una seqüència desconeguda (organisme)</li>
+                            <li>Trobar gens coneguts similars (homòlegs)</li>
+                            <li>Cercar la funció biològica de la seqüència</li>
+                            <li>Investigar evolució molecular i conservació genètica</li>
+                            <li>Donar pistes sobre malalties, funcions cel·lulars o aplicacions biotecnològiques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-3">🧬 Seqüència d'ADN desconeguda</h4>
+                        <div class="bg-gray-50 rounded-lg p-4 sequence-box text-sm text-gray-800 max-h-40 overflow-y-auto">
+                            CTGCAGAAATAACTAGGTACTAAGCCCGTTTGTGAAAAGTGGCCAAACCCATAAATTTGGCAATTACAATAAAGAAGCTAAAATTGTGGTCAAACTCACAAACATTTTTATTATATACATTTTAGTAGCTGATGCTTATAAAAGCAATATTTAAATCGTAAACAACAAATAAAATAAAATTTAAACGATGTGATTAAGAGCCAAAGGTCCTCTAGAAAAAGGTATTTAAGCAACGGAATTCCTTTGTGTTACATTCTTGAATGTCGCTCGCAGTGACATTAGCATTCCGGTACTGTTGGTAAAATGGAAGACGCCAAAAACATAAAGAAAGGCCCGGCGCCATTCTATCCTCTAGAGGATGGAACCGCTGGAGAGCAACTGCATAAGGCTATGAAGAGATACGCCCTGGTTCCTGGAACAATTGCTTTTGTGAGTATTTCTGTCTGATTTCTTTCGAGTTAACGAAATGTTCTTATGTTTCTTTAGACAGATGCACATATCGAGGTGAACATCACGTACGCGGAATACTTCGAAATGTCCGTTCGGTTGGCAGAAGCTATGAAACGATATGGGCTGAATACAAATCACAGAATCGTCGTATGCAGTGAAAACTCTCTTCAATTCTTTATGCCGGTGTTGGGCGCGTTATTTATCGGAGTTGCAGTTGCGCCCGCGAACGACATTTATAATGAACGTAAGCACCCTCGCCATCAGACCAAAGGGAATGACGTATTTAATTTTTAAGGTGAATTGCTCAACAGTATGAACATTTCGCAGCCTACCGTAGTGTTTGTTTCCAAAAAGGGGTTGCAAAAAATTTTGAACGTGCAAAAAAAATTACCAATAATCCAGAAAATTATTATCATGGATTCTAAAACGGATTACCAGGGATTTCAGTCGATGTACACGTTCGTCACATCTCATCTACCTCCCGGTTTTAATGAATACGATTTTGTACCAGAGTCCTTTGATCGTGACAAAACAATTGCACTGATAATGAATTCCTCTGGATCTACTGGGTTACCTAAGGGTGTGGCCCTTCCGCATAGAACTGCCTGCGTCAGATTCTCGCATGCCAGGTATGTCGTATAACAAGAGATTAAGTAATGTTGCTACACACATTGTAGAGATCCTATTTTTGGCAATCAAATCATTCCGGATACTGCGATTTTAAGTGTTGTTCCATTCCATCACGGTTTTGGAATGTTTACTACACTCGGATATTTGATATGTGGATTTCGAGTCGTCTTAATGTATAGATTTGAAGAAGAGCTGTTTTTACGATCCCTTCAGGATTACAAAATTCAAAGTGCGTTGCTAGTACCAACCCTATTTTCATTCTTCGCCAAAAGCACTCTGATTGACAAATACGATTTATCTAATTTACACGAAATTGCTTCTGGGGGCGCACCTCTTTCGAAAGAAGTCGGGGAAGCGGTTGCAAAACGGTGAGTTAAGCGCATTGCTAGTATTTCAAGGCTCTAAAACGGCGCGTAGCTTCCATCTTCCAGGGATACGACAAGGATATGGGCTCACTGAGACTACATCAGCTATTCTGATTACACCCGAGGGGGATGATAAACCGGGCGCGGTCGGTAAAGTTGTTCCATTTTTTGAAGCGAAGGTTGTGGATCTGGATACCGGGAAAACGCTGGGCGTTAATCAGAGAGGCGAATTATGTGTCAGAGGACCTATGATTATGTCCGGTTATGTAAACAATCCGGAAGCGACCAACGCCTTGATTGACAAGGATGGATGGCTACATTCTGGAGACATAGCTTACTGGGACGAAGACGAACACTTCTTCATAGTTGACCGCTTGAAGTCTTTAATTAAATACAAAGGATATCAGGTAATGAAGATTTTTACATGCACACACGCTACAATACCTGTAGGTGGCCCCCGCTGAATTGGAATCGATATTGTTACAACACCCCAACATCTTCGACGCGGGCGTGGCAGGTCTTCCCGACGATGACGCCGGTGAACTTCCCGCCGCCGTTGTTGTTTTGGAGCACGGAAAGACGATGACGGAAAAAGAGATCGTGGATTACGTCGCCAGTAAATGAATTCGTTTTACGTTACTCGTACTACAATTCTTTTCATAGGTCAAGTAACAACCGCGAAAAAGTTGCGCGGAGGAGTTGTGTTTGTGGACGAAGTACCGAAAGGTCTTACCGGAAAACTCGACGCAAGAAAAATCAGAGAGATCCTCATAAAGGCCAAGAAGGGCGGAAAGTCCAAATTGTAAAATGTAACTGTATTCAGCGATGACGAAATTCTTAGCTATTGTAATATTATATGCAAATTGATGAATGGTAATTTTGTAATTGTGGGTCACTGTACTATTTTAACGAATAATAAAATCAGGTATAGGTAACTAAAAA
+                        </div>
+                        <button onclick="copySequence()" class="mt-3 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
+                             Copiar seqüència
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4"> Instruccions pas a pas</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</span>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Accedeix a BLAST</h5>
+                                    <p class="text-gray-600">Entra a <a href="https://blast.ncbi.nlm.nih.gov/" target="_blank" class="text-blue-600 hover:underline">https://blast.ncbi.nlm.nih.gov/</a> i fes clic a "Nucleotide BLAST"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</span>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Enganxa la seqüència</h5>
+                                    <p class="text-gray-600">A l'espai "Enter Query Sequence", enganxa la seqüència anterior</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</span>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Comprova els paràmetres</h5>
+                                    <ul class="text-gray-600 list-disc list-inside ml-4">
+                                        <li>Base de dades: deixa seleccionada "nr/nt"</li>
+                                        <li>Job title: escriu un nom per identificar la cerca</li>
+                                        <li>Organisme: deixa-ho buit</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">4</span>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Executa la cerca</h5>
+                                    <p class="text-gray-600">Fes clic a "BLAST" i espera els resultats (30-60 segons)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-yellow-800 mb-3"> Preguntes d'anàlisi</h4>
+                        <div class="space-y-3 text-yellow-700">
+                            <p><strong>Sobre el resultat amb més coincidència (Per. Ident. més alt):</strong></p>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li>Quin organisme és el més probable d'origen de la seqüència?</li>
+                                <li>Quin gen o regió genòmica es mostra com a més coincident?</li>
+                                <li>Quina és la identitat percentual (Percent identity)?</li>
+                                <li>En quin cromosoma o genoma es troba aquesta seqüència?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDB Section -->
+                <div class="mb-8">
+                    <h3 class="text-2xl font-semibold text-purple-700 mb-4"> Part B: Exploració d'estructures amb PDB</h3>
+                    
+                    <div class="bg-purple-50 rounded-lg p-6 mb-6">
+                        <h4 class="text-xl font-semibold text-purple-800 mb-3">Què és el PDB?</h4>
+                        <p class="text-purple-700 mb-4">
+                            El Protein Data Bank (PDB) és una base de dades mundial on es guarden estructures de proteïnes i altres biomolècules. Aquestes estructures s'han obtingut gràcies a tècniques com la cristal·lografia de raigs X o la criomicroscòpia electrònica.
+                        </p>
+                        
+                        <h5 class="font-semibold text-purple-800 mb-2">Què permet el visor del PDB?</h5>
+                        <ul class="list-disc list-inside text-purple-700 space-y-1">
+                            <li>Veure proteïnes reals en 3D</li>
+                            <li>Girar-les, ampliar-les i observar-ne els detalls</li>
+                            <li>Comparar formes, mides i estructures</li>
+                            <li>Relacionar estructura i funció, com peces d'un trencaclosques molecular</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4"> Instruccions pas a pas</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">1</span>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Cerca una proteïna coneguda</h5>
+                                    <p class="text-gray-600 mb-2">Ves a <a href="https://www.rcsb.org" target="_blank" class="text-blue-600 hover:underline">https://www.rcsb.org</a></p>
+                                    <p class="text-gray-600">Per aquesta activitat utilitzarem: <a href="https://www.rcsb.org/structure/1LCI" target="_blank" class="text-blue-600 hover:underline">https://www.rcsb.org/structure/1LCI</a> (luciferasa)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">2</span>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Explora el model 3D</h5>
+                                    <p class="text-gray-600">Fes clic a "3D View", mou la proteïna i observa-la</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">3</span>
+                                <div>
+                                    <h5 class="font-semibold text-gray-800">Recull dades bàsiques</h5>
+                                    <p class="text-gray-600">Busca el nom complet, funció principal i organisme d'origen</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-indigo-800 mb-3"> Preguntes d'observació</h4>
+                        <div class="space-y-3 text-indigo-700">
+                            <p><strong>Sobre l'estructura 3D:</strong></p>
+                            <ul class="list-disc list-inside ml-4 space-y-1">
+                                <li>Com és la forma general (espiral? globular? allargada?)</li>
+                                <li>Té forats, canals o parts destacades?</li>
+                                <li>Et recorda a alguna cosa?</li>
+                                <li>Per què creus que la forma d'una proteïna és tan important?</li>
+                                <li>Com t'ajuda veure la proteïna en 3D a entendre millor com funciona?</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Reflection -->
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4"> Reflexió final</h4>
+                    <div class="space-y-3 text-gray-700">
+                        <p><strong>Després de completar ambdues parts, reflexiona sobre:</strong></p>
+                        <ul class="list-disc list-inside ml-4 space-y-2">
+                            <li>Què has après sobre la seqüència d'ADN inicial?</li>
+                            <li>Com pot ser útil una eina com BLAST en recerca biomèdica o ambiental?</li>
+                            <li>Quins límits o incerteses has trobat en la interpretació dels resultats?</li>
+                            <li>Com es relaciona l'estructura 3D de la proteïna amb la seva funció?</li>
+                            <li>Quina connexió veus entre el gen analitzat amb BLAST i la proteïna visualitzada al PDB?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        
+    
         <!-- Activitat 2 Section -->
         <div id="activitat2" class="activity-detail">
             <div class="detail-header">
@@ -808,8 +1352,8 @@
             </div>
             
             <div class="session-tabs">
-                <button class="tab-button active" onclick="showTab('activitat2', 'professorat2')">👩‍🏫 Guia del professorat</button>
-                <button class="tab-button" onclick="showTab('activitat2', 'alumnat2')">🎓 Introducció per l'alumnat</button>
+                <button class="tab-button active" onclick="showTab('activitat2', 'professorat2')"> Guia del professorat</button>
+                <button class="tab-button" onclick="showTab('activitat2', 'alumnat2')"> Introducció per l'alumnat</button>
             </div>
 
             <div id="professorat2" class="content-section active">
@@ -939,28 +1483,28 @@
                         <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">1</div>
                             <div>
-                                <h5 style="margin: 0 0 5px 0; color: #1e40af;">📋 Copia la seqüència</h5>
+                                <h5 style="margin: 0 0 5px 0; color: #1e40af;"> Copia la seqüència</h5>
                                 <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Selecciona una seqüència d'aminoàcids d'exemple</p>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <div style="width: 40px; height: 40px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">2</div>
                             <div>
-                                <h5 style="margin: 0 0 5px 0; color: #059669;">🌐 Ves a la web</h5>
+                                <h5 style="margin: 0 0 5px 0; color: #059669;"> Ves a la web</h5>
                                 <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Accedeix a <a href="https://alphafoldserver.com/" target="_blank" style="color: #3b82f6;">alphafoldserver.com</a></p>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <div style="width: 40px; height: 40px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">3</div>
                             <div>
-                                <h5 style="margin: 0 0 5px 0; color: #d97706;">▶️ Executa la predicció</h5>
+                                <h5 style="margin: 0 0 5px 0; color: #d97706;">▶ Executa la predicció</h5>
                                 <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Enganxa la seqüència i prem el botó d'executar</p>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <div style="width: 40px; height: 40px; background: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">4</div>
                             <div>
-                                <h5 style="margin: 0 0 5px 0; color: #7c3aed;">🔍 Interpreta els resultats</h5>
+                                <h5 style="margin: 0 0 5px 0; color: #7c3aed;"> Interpreta els resultats</h5>
                                 <p style="margin: 0; color: #64748b; font-size: 0.9rem;">Analitza l'estructura 3D predita i les seves característiques</p>
                             </div>
                         </div>
@@ -972,19 +1516,19 @@
                     <h4> Glossari de termes:</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
                         <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h5 style="color: #d97706; margin: 0 0 8px 0;">🧬 Plegament</h5>
+                            <h5 style="color: #d97706; margin: 0 0 8px 0;"> Plegament</h5>
                             <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Procés pel qual una proteïna adopta la seva forma tridimensional funcional</p>
                         </div>
                         <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h5 style="color: #d97706; margin: 0 0 8px 0;">🔗 Aminoàcid</h5>
+                            <h5 style="color: #d97706; margin: 0 0 8px 0;"> Aminoàcid</h5>
                             <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Molècula bàsica que forma les proteïnes, com els "comptes" d'un collar</p>
                         </div>
                         <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h5 style="color: #d97706; margin: 0 0 8px 0;">🏗️ Estructura secundària</h5>
+                            <h5 style="color: #d97706; margin: 0 0 8px 0;"> Estructura secundària</h5>
                             <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Formes locals de la proteïna com hèlixs i làmines</p>
                         </div>
                         <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h5 style="color: #d97706; margin: 0 0 8px 0;">🤖 AlphaFold</h5>
+                            <h5 style="color: #d97706; margin: 0 0 8px 0;"> AlphaFold</h5>
                             <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Sistema d'IA de DeepMind que prediu estructures de proteïnes</p>
                         </div>
                     </div>
@@ -1171,51 +1715,44 @@
                   <h4 style="color: #e41513; margin-bottom: 20px;">Història: Missió d’Emergència</h4>
                                 
                   <div class="comic-frame active" id="frame1">
-                    <span class="comic-character">🚨</span>
+                    <img src="imatges/tecno/inici.png" alt="Una ambulancia" class="comic-character" />
                     <div class="comic-text">
-                      Imagina que ets part d'un equip d'emergències a la teva localitat. Acaba de passar un imprevist i alguns carrers estan bloquejats. De sobte, hi ha una emergència urgent en un punt llunyà del mapa!
+                     Un matí tranquil a la base d’emergències es trenca amb una alerta urgent. A l'altra punta del mapa hi ha una situació crítica… però els carrers estan tallats!
                     </div>
                   </div>
                 
                   <div class="comic-frame" id="frame2">
-                    <span class="comic-character">🚑</span>
+                    <img src="imatges/tecno/carrers.png" alt="Una ambulancia" class="comic-character" />
                     <div class="comic-text">
-                      El teu vehicle és al punt d'Inici (I) de la vostra base d'emergències. Heu rebut una trucada urgent: hi ha una situació crítica al punt de Destí (D) que requereix la vostra intervenció immediata.
+                     L’aigua d’una riuada ha inundat diversos camins. Altres carrers estan tallats per obres. Cal pensar ràpid: com hi arribem?
                     </div>
                   </div>
                 
                   <div class="comic-frame" id="frame3">
-                    <span class="comic-character">🚧</span>
+                    <img src="imatges/tecno/mapa.png" alt="Una ambulancia" class="comic-character" />
                     <div class="comic-text">
-                      Però hi ha un problema: diversos carrers estan bloquejats per accidents, obres o riuades. No podeu passar per aquests punts i heu de trobar una ruta alternativa que sigui la més ràpida possible.
+                      No podem improvisar. Necessitem un algorisme! Una estratègia clara per trobar el camí més ràpid... i segur.
                     </div>
                   </div>
                 
                   <div class="comic-frame" id="frame4">
-                    <span class="comic-character">🗺️</span>
+                    <img src="imatges/tecno/camí.png" alt="Una ambulancia" class="comic-character" />
                     <div class="comic-text">
-                      Teniu un mapa de la zona organitzat com una graella. Cada casella representa un carrer o cruïlla, i podeu moure-us en quatre direccions: amunt, avall, esquerra i dreta. Cada moviment costa 1 unitat de temps.
+                      Amb el mapa a la mà i la ruta decidida, el vehicle surt disparat. No es pot fallar. Cada segon compta.
                     </div>
                   </div>
                 
                   <div class="comic-frame" id="frame5">
-                    <span class="comic-character">🎯</span>
+                    <img src="imatges/tecno/final.png" alt="Una ambulancia" class="comic-character" />
                     <div class="comic-text">
-                      Cal arribar al punt de destí en el menor temps possible! Heu de pensar estratègicament, analitzar les opcions disponibles i trobar la ruta òptima evitant els obstacles.
-                    </div>
-                  </div>
-                
-                  <div class="comic-frame" id="frame6">
-                    <span class="comic-character">🧠</span>
-                    <div class="comic-text">
-                      Aquest repte us ajudarà a desenvolupar el pensament computacional: aprendre a descomposar problemes, reconèixer patrons i crear algoritmes per trobar solucions eficients. Esteu preparats?
+                       Arriben just a temps. L’estratègia ha funcionat. Quan tot falla, l’enginy i el càlcul obren pas.
                     </div>
                   </div>
                 
                   <div class="comic-controls">
-                    <button class="comic-btn" onclick="changeFrame(-1)">← Anterior</button>
-                    <button class="comic-btn" onclick="changeFrame(1)">Següent →</button>
-                  </div>
+                    <button class="comic-btn prev-btn">← Anterior</button> <button class="comic-btn next-btn">Següent →</button> </div>
+
+                    <div class="comic-progress"></div>
                 
                   <div class="comic-progress">
                     <div class="progress-dot active"></div>
@@ -1450,41 +1987,89 @@
             event.target.classList.add('active');
         }
 
+        function copySequence() {
+            const sequence = `CTGCAGAAATAACTAGGTACTAAGCCCGTTTGTGAAAAGTGGCCAAACCCATAAATTTGGCAATTACAATAAAGAAGCTAAAATTGTGGTCAAACTCACAAACATTTTTATTATATACATTTTAGTAGCTGATGCTTATAAAAGCAATATTTAAATCGTAAACAACAAATAAAATAAAATTTAAACGATGTGATTAAGAGCCAAAGGTCCTCTAGAAAAAGGTATTTAAGCAACGGAATTCCTTTGTGTTACATTCTTGAATGTCGCTCGCAGTGACATTAGCATTCCGGTACTGTTGGTAAAATGGAAGACGCCAAAAACATAAAGAAAGGCCCGGCGCCATTCTATCCTCTAGAGGATGGAACCGCTGGAGAGCAACTGCATAAGGCTATGAAGAGATACGCCCTGGTTCCTGGAACAATTGCTTTTGTGAGTATTTCTGTCTGATTTCTTTCGAGTTAACGAAATGTTCTTATGTTTCTTTAGACAGATGCACATATCGAGGTGAACATCACGTACGCGGAATACTTCGAAATGTCCGTTCGGTTGGCAGAAGCTATGAAACGATATGGGCTGAATACAAATCACAGAATCGTCGTATGCAGTGAAAACTCTCTTCAATTCTTTATGCCGGTGTTGGGCGCGTTATTTATCGGAGTTGCAGTTGCGCCCGCGAACGACATTTATAATGAACGTAAGCACCCTCGCCATCAGACCAAAGGGAATGACGTATTTAATTTTTAAGGTGAATTGCTCAACAGTATGAACATTTCGCAGCCTACCGTAGTGTTTGTTTCCAAAAAGGGGTTGCAAAAAATTTTGAACGTGCAAAAAAAATTACCAATAATCCAGAAAATTATTATCATGGATTCTAAAACGGATTACCAGGGATTTCAGTCGATGTACACGTTCGTCACATCTCATCTACCTCCCGGTTTTAATGAATACGATTTTGTACCAGAGTCCTTTGATCGTGACAAAACAATTGCACTGATAATGAATTCCTCTGGATCTACTGGGTTACCTAAGGGTGTGGCCCTTCCGCATAGAACTGCCTGCGTCAGATTCTCGCATGCCAGGTATGTCGTATAACAAGAGATTAAGTAATGTTGCTACACACATTGTAGAGATCCTATTTTTGGCAATCAAATCATTCCGGATACTGCGATTTTAAGTGTTGTTCCATTCCATCACGGTTTTGGAATGTTTACTACACTCGGATATTTGATATGTGGATTTCGAGTCGTCTTAATGTATAGATTTGAAGAAGAGCTGTTTTTACGATCCCTTCAGGATTACAAAATTCAAAGTGCGTTGCTAGTACCAACCCTATTTTCATTCTTCGCCAAAAGCACTCTGATTGACAAATACGATTTATCTAATTTACACGAAATTGCTTCTGGGGGCGCACCTCTTTCGAAAGAAGTCGGGGAAGCGGTTGCAAAACGGTGAGTTAAGCGCATTGCTAGTATTTCAAGGCTCTAAAACGGCGCGTAGCTTCCATCTTCCAGGGATACGACAAGGATATGGGCTCACTGAGACTACATCAGCTATTCTGATTACACCCGAGGGGGATGATAAACCGGGCGCGGTCGGTAAAGTTGTTCCATTTTTTGAAGCGAAGGTTGTGGATCTGGATACCGGGAAAACGCTGGGCGTTAATCAGAGAGGCGAATTATGTGTCAGAGGACCTATGATTATGTCCGGTTATGTAAACAATCCGGAAGCGACCAACGCCTTGATTGACAAGGATGGATGGCTACATTCTGGAGACATAGCTTACTGGGACGAAGACGAACACTTCTTCATAGTTGACCGCTTGAAGTCTTTAATTAAATACAAAGGATATCAGGTAATGAAGATTTTTACATGCACACACGCTACAATACCTGTAGGTGGCCCCCGCTGAATTGGAATCGATATTGTTACAACACCCCAACATCTTCGACGCGGGCGTGGCAGGTCTTCCCGACGATGACGCCGGTGAACTTCCCGCCGCCGTTGTTGTTTTGGAGCACGGAAAGACGATGACGGAAAAAGAGATCGTGGATTACGTCGCCAGTAAATGAATTCGTTTTACGTTACTCGTACTACAATTCTTTTCATAGGTCAAGTAACAACCGCGAAAAAGTTGCGCGGAGGAGTTGTGTTTGTGGACGAAGTACCGAAAGGTCTTACCGGAAAACTCGACGCAAGAAAAATCAGAGAGATCCTCATAAAGGCCAAGAAGGGCGGAAAGTCCAAATTGTAAAATGTAACTGTATTCAGCGATGACGAAATTCTTAGCTATTGTAATATTATATGCAAATTGATGAATGGTAATTTTGTAATTGTGGGTCACTGTACTATTTTAACGAATAATAAAATCAGGTATAGGTAACTAAAAA`;
+            
+            navigator.clipboard.writeText(sequence).then(() => {
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '✅ Copiat!';
+                button.classList.remove('bg-green-600', 'hover:bg-green-700');
+                button.classList.add('bg-green-700');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-700');
+                    button.classList.add('bg-green-600', 'hover:bg-green-700');
+                }, 2000);
+            }).catch(() => {
+                alert('No s\'ha pogut copiar la seqüència. Selecciona-la manualment.');
+            });
+        }
         
+        // Initialize with intro active
+        document.addEventListener('DOMContentLoaded', function() {
+            const introBtn = document.querySelector('button[onclick="showActivity(\'intro\')"]');
+            if (introBtn) {
+                introBtn.classList.remove('border-transparent', 'text-gray-700');
+                introBtn.classList.add('border-blue-600', 'text-blue-600');
+            }
+        });
 
         
         // Comic
-         function showContent(contentType) {
-            if (contentType === 'alumne') {
-                    currentFrame = 1;
-                    document.querySelectorAll('.comic-frame').forEach(frame => frame.classList.remove('active'));
-                    document.querySelectorAll('.progress-dot').forEach(dot => dot.classList.remove('active'));
-                    document.getElementById('frame1').classList.add('active');
-                    document.querySelectorAll('.progress-dot')[0].classList.add('active');
-                    document.getElementById('prevBtn').disabled = true;
-                    document.getElementById('nextBtn').disabled = false;
+         // Esta función inicializa un cómic, permitiendo que existan varios en la página
+        function setupComicSlideshow(comicContainer) {
+            let currentFrame = 1;
+            const totalFrames = comicContainer.querySelectorAll('.comic-frame').length;
+        
+            const frames = comicContainer.querySelectorAll('.comic-frame');
+            const dots = comicContainer.querySelectorAll('.progress-dot');
+            const prevBtn = comicContainer.querySelector('.prev-btn'); // Cambiamos los IDs a clases
+            const nextBtn = comicContainer.querySelector('.next-btn'); // Cambiamos los IDs a clases
+        
+            function updateComicDisplay() {
+                frames.forEach(frame => frame.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+            
+                frames[currentFrame - 1].classList.add('active');
+                dots[currentFrame - 1].classList.add('active');
+            
+                prevBtn.disabled = currentFrame === 1;
+                nextBtn.disabled = currentFrame === totalFrames;
+            }
+        
+            // Funciones para los botones
+            function prevFrame() {
+                if (currentFrame > 1) {
+                    currentFrame--;
+                    updateComicDisplay();
                 }
-         }
-         let currentFrame = 1;
-        const totalFrames = 5;
+            }
+        
+            function nextFrame() {
+                if (currentFrame < totalFrames) {
+                    currentFrame++;
+                    updateComicDisplay();
+                }
+            }
 
-        function changeFrame(direction) {
-            // Hide current frame
-            document.getElementById(`frame${currentFrame}`).classList.remove('active');
-            document.querySelectorAll('.progress-dot')[currentFrame - 1].classList.remove('active');
-            
-            // Update frame number
-            currentFrame += direction;
-            
-            // Show new frame
-            document.getElementById(`frame${currentFrame}`).classList.add('active');
-            document.querySelectorAll('.progress-dot')[currentFrame - 1].classList.add('active');
-            
-            // Update button states
-            document.getElementById('prevBtn').disabled = currentFrame === 1;
-            document.getElementById('nextBtn').disabled = currentFrame === totalFrames;
+            // Asignar eventos a los botones
+            prevBtn.addEventListener('click', prevFrame);
+            nextBtn.addEventListener('click', nextFrame);
+        
+            // Inicializar el primer frame
+            updateComicDisplay();
         }
+
+        // Inicializar todos los cómics que haya en la página
+        document.addEventListener('DOMContentLoaded', () => {
+            const comicSlideshows = document.querySelectorAll('.comic-slideshow');
+            comicSlideshows.forEach(comic => setupComicSlideshow(comic));
+        });
     </script>
+
+    
     <script>
         // Global variables
         let canvas, ctx, fitnessCanvas, fitnessCtx, diversityCanvas, diversityCtx;
