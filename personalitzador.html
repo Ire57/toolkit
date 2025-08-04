@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+  <title>Animal Card Generator</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #ede6d1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+    .card {
+      position: relative;
+      width: 420px;
+      height: 700px;
+      background-color: #ede6d1;
+      border-radius: 20px;
+      border: 10px solid #7f745a;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+  .animal-name {
+  font-family: 'Satisfy', cursive;
+  font-size: 30px;
+  text-align: center;
+  margin: 70px auto 20px;
+  padding: 12px 30px;
+  }
+
+.engraved-plaque {
+  font-family: 'Satisfy', cursive;
+  font-size: 28px;
+  color: #3a2a16;
+  padding: 10px 22px;
+  background: linear-gradient(to bottom, #f3e4c3, #e7d4aa);
+  border: 2px solid #a58b60;
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 4px rgba(255,255,255,0.4),
+    2px 4px 8px rgba(0,0,0,0.2),
+    0 0 0 4px #d8c193 inset;
+  position: relative;
+  width: fit-content;
+  margin: 70px auto 20px;
+
+  /* Grabado sutil */
+  text-shadow:
+    0.8px 0.8px 0 #e7d4aa,
+    -0.8px -0.8px 1px #2c1d0f;
+}
+
+.engraved-plaque::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: #5c4033;
+  border-radius: 50%;
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+
+
+  .image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  padding: 10px; /* margen interior en todos lados */
+  box-sizing: border-box; /* importante para que el padding no expanda el contenedor */
+}
+
+
+/* Para que la imagen no tenga margen extra y ocupe todo */
+.animal-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  left: 10px;
+  right: 10px;
+}
+
+/* Celos (tapes) posicionados absolutamente respecto a image-wrapper */
+.tape {
+  position: absolute;
+  width: 60px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Celos superiores pegados a la parte superior de la imagen */
+.tape.top-left {
+  top: 2px; /* puedes ajustar estos valores */
+  left: 2px;
+  transform: rotate(-15deg);
+}
+.tape.top-right {
+  top: 2px;
+  right: 2px;
+  transform: rotate(15deg);
+}
+
+.tape.bottom-left {
+  top: 2px;
+  left: 2px;
+  transform: rotate(15deg);
+}
+.tape.bottom-right {
+  /* no bottom */
+  right: 2px;
+  transform: rotate(-15deg);
+}
+
+    
+    .stamp {
+      position: absolute;
+      bottom: 18px;
+      left: 45px;
+      max-width: 250%;
+      max-height: 250px;
+      transform: rotate(-5deg);
+      opacity: 0.8;
+      z-index: 9999;
+    }
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="file"] {
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #7f745a;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="animal-name engraved-plaque" id="animalName">Weta Alpina</div>
+    <div class="image-wrapper" id="imageWrapper">
+      <img id="animalImage" class="animal-img" src="" alt="Animal"/>
+      <div class="tape top-left" id="tapeTopLeft"></div>
+      <div class="tape top-right" id="tapeTopRight"></div>
+      <div class="tape bottom-left" id="tapeBottomLeft"></div>
+      <div class="tape bottom-right" id="tapeBottomRight"></div>
+    </div>
+    <img id="stampImage" class="stamp" src="" alt="Stamp">
+  </div>
+
+  <div class="controls">
+    <label>Nombre del animal:</label>
+    <input type="text" id="animalNameInput" placeholder="Escribe el nombre del animal">
+
+    <label>Imagen del animal:</label>
+    <input type="file" id="animalInput" accept="image/*">
+
+    <label>Imagen del celo (tape):</label>
+    <input type="file" id="tapeInput" accept="image/*">
+
+    <label>Imagen del sello (stamp):</label>
+    <input type="file" id="stampInput" accept="image/*">
+
+    <button onclick="resetCard()">Reestablecer</button>
+    <button onclick="downloadCard()">Descargar PNG</button>
+  </div>
+
+  <script>
+    const animalImage = document.getElementById('animalImage');
+    const stampImage = document.getElementById('stampImage');
+    const tapeImgs = [
+      document.getElementById('tapeTopLeft'),
+      document.getElementById('tapeTopRight'),
+      document.getElementById('tapeBottomLeft'),
+      document.getElementById('tapeBottomRight')
+    ];
+
+    document.getElementById('animalInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        animalImage.src = URL.createObjectURL(file);
+      }
+    });
+
+    document.getElementById('tapeInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const tapeURL = URL.createObjectURL(file);
+        tapeImgs.forEach(el => el.style.backgroundImage = `url('${tapeURL}')`);
+      }
+    });
+
+    document.getElementById('stampInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        stampImage.src = URL.createObjectURL(file);
+      }
+    });
+
+    function resetCard() {
+      animalImage.src = '';
+      stampImage.src = '';
+      tapeImgs.forEach(el => el.style.backgroundImage = '');
+    }
+
+    function downloadCard() {
+      html2canvas(document.getElementById('card')).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'animal_card.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+    function positionTapesOnImage() {
+  const rect = animalImage.getBoundingClientRect();
+  const wrapperRect = imageWrapper.getBoundingClientRect();
+
+  // Distancia de la imagen respecto al contenedor (top y left)
+  const offsetTop = rect.top - wrapperRect.top;
+  const offsetLeft = rect.left - wrapperRect.left;
+  const offsetRight = wrapperRect.right - rect.right;
+  
+  // Altura de la imagen dentro del wrapper
+  const imageHeight = rect.height;
+  
+  // Ajustar las posiciones de los tapes superiores para que estén en la esquina visible de la imagen
+  tapeImgs[0].style.top = offsetTop + 'px';       // top-left tape
+  tapeImgs[0].style.left = offsetLeft + 'px';
+
+  tapeImgs[1].style.top = offsetTop + 'px';       // top-right tape
+  tapeImgs[1].style.right = offsetRight + 'px';
+
+  // Ajustar las posiciones de los tapes inferiores para que estén en la esquina inferior de la imagen
+  // Ponemos el top en offsetTop + height - altura del tape (40px)
+  const tapeHeight = 12; // la altura de los tapes definida en CSS
+
+  tapeImgs[2].style.top = (offsetTop + imageHeight - tapeHeight) + 'px'; // bottom-left
+  tapeImgs[2].style.left = offsetLeft - 7 + 'px';
+
+  tapeImgs[3].style.top = (offsetTop + imageHeight - tapeHeight) + 'px'; // bottom-right
+  tapeImgs[3].style.right = offsetRight - 7 + 'px';
+}
+
+
+    // Ejecutar esta función cada vez que cambie la imagen
+    document.getElementById('animalInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        animalImage.src = URL.createObjectURL(file);
+      
+        animalImage.onload = () => {
+          positionTapesOnImage();
+        };
+      }
+    });
+    const animalNameDiv = document.getElementById('animalName');
+    const animalNameInput = document.getElementById('animalNameInput');
+
+    animalNameInput.addEventListener('input', () => {
+      animalNameDiv.textContent = animalNameInput.value || 'Weta Alpina';
+    });
+
+    // Ajustar al cargar imagen
+    animalImage.addEventListener('load', adjustBottomTape);
+
+    // También llamar tras cambios si hay
+    window.addEventListener('resize', adjustBottomTape);
+
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>

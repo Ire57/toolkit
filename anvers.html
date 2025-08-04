@@ -1,0 +1,745 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta Educativa: Tortuga de Galápagos</title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-principal: #8b7d5b;
+      --color-secundario: #e8dfc1;
+      --color-texto: #3a3426;
+      --color-fondo: #f5f1e6;
+      --color-barras-vacias: #d5c9a6;
+      --color-boton-exportar: #5a8b5b;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: var(--color-fondo);
+      font-family: 'IM Fell English', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      width: 840px;
+      height: 1400px;
+      background-color: var(--color-secundario);
+      border: 8px solid var(--color-principal);
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      position: relative;
+      padding: 20px;
+      box-sizing: border-box;
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(0,0,0,0.01) 5px);
+    }
+    .header {
+      background-color: var(--color-principal);
+      color: #f5f1e6;
+      padding: 30px;
+      transform: rotate(-1deg);
+      text-align: center;
+      border-radius: 10px;
+      font-family: 'Playfair Display', serif;
+    }
+    .animal-name {
+      font-size: 5rem;
+      text-transform: uppercase;
+    }
+    .scientific-name {
+      font-size: 2.5rem;
+      font-style: italic;
+      color: #5a4d38;
+      margin-top: 8px;
+    }
+    .description {
+      background-color: #f5f1e6;
+      border: 3px solid var(--color-principal);
+      height: 40%;
+      padding: 20px;
+      overflow-y: auto;
+      font-size: 2.5rem;
+      color: var(--color-texto);
+      margin-top: 20px;
+      box-sizing: border-box;
+    }
+    .attributes {
+      background-color: #f5f1e6;
+      border: 3px solid var(--color-principal);
+      margin-top: 20px;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    .attribute {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .attribute-name {
+      width: 50%;
+      font-size: 2.5rem;
+      align-items: center;
+    }
+    .attribute-bars {
+      width: 50%;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .bar {
+      flex: 1;
+      height: 50px;
+      background-color: var(--color-barras-vacias);
+      border: 1px solid var(--color-principal);
+      border-radius: 3px;
+    }
+    .bar.filled {
+      background-color: var(--color-principal);
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #5a4d38;
+      text-align: center;
+    }
+    .editor {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      flex: 1;
+      min-width: 300px;
+      max-width: 700px;
+    }
+    .editor label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .editor input, .editor select, .editor textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px 12px;
+      border: 1px solid #d5c9a6;
+      border-radius: 5px;
+      font-family: 'IM Fell English', serif;
+    }
+    .editor textarea {
+      height: 100px;
+      resize: vertical;
+    }
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .buttons button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-family: 'IM Fell English', serif;
+    }
+    .buttons button:hover {
+      filter: brightness(0.8);
+    }
+    #update { background-color: var(--color-principal); }
+    #reset { background-color: var(--color-principal); }
+    #export { background-color: var(--color-boton-exportar); }
+    #addAttr { background-color: #4a754a; }
+    #animalList {
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #animalList button {
+      padding: 8px 12px;
+      font-family: 'IM Fell English', serif;
+      border: 2px solid var(--color-principal);
+      background-color: var(--color-secundario);
+      cursor: pointer;
+      border-radius: 6px;
+      text-transform: uppercase;
+      color: var(--color-principal);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    #animalList button:hover, #animalList button.active {
+      background-color: var(--color-principal);
+      color: var(--color-secundario);
+    }
+    @media (max-width: 992px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      #animalList {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="animalList"></div>
+  <div class="container">
+    <div class="card" id="card">
+      <div class="header">
+        <div class="animal-name" id="animalName">Tortuga de Galápagos</div>
+        <div class="scientific-name" id="scientificName">Chelonoidis nigra</div>
+      </div>
+      <div class="description" id="description">
+        La tortuga gigante de Galápagos es una de las especies de tortugas más grandes del mundo.
+        Puede pesar hasta 400 kg y vivir más de 100 años. Es herbívora y se alimenta principalmente de cactus, hojas y frutas.
+        Su caparazón en forma de domo le proporciona protección contra depredadores.
+        Debido a la caza y la introducción de especies invasoras, está en peligro de extinción.
+      </div>
+      <div class="attributes" id="attributes">
+        <div class="attribute"><div class="attribute-name">🌡️ Pressió Alta</div><div class="attribute-bars" data-value="3"></div></div>
+        <div class="attribute"><div class="attribute-name">💧 Clima Fred</div><div class="attribute-bars" data-value="5"></div></div>
+        <div class="attribute"><div class="attribute-name">🏃 Gravetat Alta</div><div class="attribute-bars" data-value="1"></div></div>
+        <div class="attribute"><div class="attribute-name">🛡️ Poc Menjar</div><div class="attribute-bars" data-value="4"></div></div>
+        <div class="attribute"><div class="attribute-name">🧠 Competència Hostil</div><div class="attribute-bars" data-value="2"></div></div>
+      </div>
+      <div class="footer">Departament d'Astrosinbiologia  • Projecte Skippit </div>
+    </div>
+    <div class="editor">
+      <label>Nom de l'Animal</label>
+      <input id="inputName" value="Tortuga de Galápagos">
+      <label>Nom Científic</label>
+      <input id="inputScientific" value="Chelonoidis nigra">
+      <label>Descripció</label>
+      <textarea id="inputDescription">La tortuga gigante de Galápagos es una de las especies de tortugas más grandes del mundo.
+Puede pesar hasta 400 kg y vivir más de 100 años. Es herbívora y se alimenta principalmente de cactus, hojas y frutas.
+Su caparazón en forma de domo le proporciona protección contra depredadores.
+Debido a la caza y la introducción de especies invasoras, está en peligro de extinción.</textarea>
+      <label>Atributs</label>
+      <div id="inputsAttr"></div>
+      <button id="addAttr">Afegir habilitat</button>
+      <label>Colors</label>
+      <input type="color" id="colorPrincipal" value="#8b7d5b"> Principal<br>
+      <input type="color" id="colorSecundario" value="#e8dfc1"> Secundari<br>
+      <input type="color" id="colorTexto" value="#3a3426"> Text<br>
+      <div class="buttons">
+        <button id="update">Actualitzar Carta</button>
+        <button id="reset">Restableix</button>
+        <button id="export">Exportar com PNG</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    const defaultColors = {
+      principal: '#8b7d5b',
+      secundario: '#e8dfc1',
+      texto: '#3a3426'
+    };
+
+    // Datos de animales
+   const animals = [
+  {
+    name: "Pop Mímic",
+    scientific: "Thaumoctopus mimicus",
+    description: `Aquest pop pot imitar fins a 15 espècies diferents, des de serps fins a peixos verinosos, per dissuadir depredadors. 
+La seva capacitat de camuflatge instantani el converteix en un artista de l’engany. 
+És extremadament adaptable a amenaces biològiques, encara que no tant a canvis extrems de pressió o temperatura.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 2},
+      {name: "💧 Clima Fred", value: 2},
+      {name: "🏃 Gravetat Alta", value: 3},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Mixí",
+    scientific: "Classe Myxini",
+    description: `Aquest estrany peix sense mandíbula s’alimenta de cadàvers al fons de l’oceà, entrant per qualsevol orifici disponible. 
+Es defensa produint una baba tan espessa que pot entapar les brànquies dels depredadors. 
+Un supervivent per naturalesa, ideal per a entorns profunds i amb pocs recursos.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 5},
+      {name: "💧 Clima Fred", value: 3},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 4},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Llagostí Pistola",
+    scientific: "Alpheidae spp.",
+    description: `Aquest diminut crustaci pot generar una ona de xoc de més de 200 decibels en tancar la pinça a velocitats supersòniques. 
+El cop genera una bombolla de cavitació que emet llum quan col·lapsa. 
+Tot i no ser el més resistent físicament, és un veritable guerrer del microcosmos.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 3},
+      {name: "💧 Clima Fred", value: 2},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Aranya d’aigua",
+    scientific: "Argyroneta aquatica",
+    description: `L’única aranya coneguda que viu gairebé tota la seva vida submergida. 
+Fa servir una bombolla d’aire com a “campana de busseig”, permetent-li respirar sota l’aigua. 
+S’adapta bé a ambients pobres en oxigen i amb variacions de pressió i temperatura.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 2},
+      {name: "💧 Clima Fred", value: 3},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Tritó acanalat espanyol",
+    scientific: "Pleurodeles waltl",
+    description: `Quan se sent en perill, treu les costelles punxegudes a través de la pell com si fossin dagues. 
+Una defensa brutal!`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 2},
+      {name: "💧 Clima Fred", value: 4},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Zarihuella",
+    scientific: "Caluromys philander",
+    description: `Quan se sent amenaçada, es desmaia com si fos morta: queda rígida, treu la llengua i fins i tot desprèn una pudor forta per enganyar els depredadors.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 2},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Weta de pedra de muntanya",
+    scientific: "Hemideina maori",
+    description: `Insecte gegant de Nova Zelanda, semblant a un grill. 
+Pot sobreviure congelada durant l’hivern gràcies a proteïnes antigel. 
+Quan la temperatura puja, es descongela i continua viva. 
+També pot viure en alçades i amb molt poc menjar.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 3},
+      {name: "💧 Clima Fred", value: 5},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 2},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Pingüí Emperador",
+    scientific: "Aptenodytes forsteri",
+    description: `El pingüí emperador és l’únic animal que es reprodueix durant l’hivern antàrtic, suportant temperatures de fins a -60 °C. El seu plomatge dens i una capa de greix de diversos centímetres el converteixen en un mestre de l’aïllament tèrmic. A més, hiberna parcialment per conservar energia. Són campions del fred extrem!`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 2},
+      {name: "💧 Clima Fred", value: 5},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 1},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Ós Polar",
+    scientific: "Ursus maritimus",
+    description: `La seva pell és negra per absorbir la calor, i el seu pelatge, tot i ser blanc a la vista, és buit per atrapar aire calent. Pot dejunar durant mesos si no troba foques, la seva presa principal. Són experts a detectar el gel fi i l’olor de les foques a quilòmetres.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 5},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 3},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Peix Drac de l’Abisme",
+    scientific: "Idiacanthus atlanticus",
+    description: `Viu a més de 1.000 m de profunditat, on la pressió esclafaria altres éssers vius. Té òrgans bioluminiscents per atraure preses i comunicar-se. La seva mandíbula pot estendre’s enormement, engoleix preses gairebé de la seva mida!`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 5},
+      {name: "💧 Clima Fred", value: 4},
+      {name: "🏃 Gravetat Alta", value: 1},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 2},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Cefalòpode Vampir",
+    scientific: "Vampyroteuthis infernalis",
+    description: `No és ni pop ni vampir, sinó una criatura única. Viu a més de 900 m de profunditat, on la llum no arriba. Pot sobreviure en aigües amb menys del 5 % d’oxigen. La seva “capa” de pell sembla una capa de vampir, però no mossega!`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 5},
+      {name: "💧 Clima Fred", value: 3},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 1},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Camell Bactrià",
+    scientific: "Camelus bactrianus",
+    description: `El camell pot passar setmanes sense aigua, i les seves genetes no emmagatzemen aigua sinó greix, que pot metabolitzar per obtenir energia i humitat. El seu nas recull el vapor de l’aire exhalat per no perdre ni una gota. És el tanc del desert!`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 2},
+      {name: "🏃 Gravetat Alta", value: 3},
+      {name: "🛡️ Poc Menjar", value: 5},
+      {name: "🧠 Competència Hostil", value: 1},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Guineu Àrtica",
+    scientific: "Vulpes lagopus",
+    description: `El seu pelatge canvia segons l’estació: blanc a l’hivern per camuflar-se a la neu i marró a l’estiu. Les seves potes estan cobertes de pèl, fent de “botes naturals”. També pot sentir les seves preses sota la neu i fer salts precisos per atrapar-les.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 5},
+      {name: "🏃 Gravetat Alta", value: 3},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 4},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Catxalot",
+    scientific: "Physeter macrocephalus",
+    description: `El catxalot pot submergir-se més de 2.000 metres i aguantar la respiració fins a dues hores. Per evitar la pressió, col·lapsa parcialment els pulmons en baixar. Caza calamars gegants a les profunditats i fa servir ecolocalització com un sonar natural.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 5},
+      {name: "💧 Clima Fred", value: 3},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 3},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Peix Pulmonat Africà",
+    scientific: "Protopterus annectens",
+    description: `Aquest peix pot respirar aire i sobreviure en estat d’estivació durant períodes de sequera. Cava un forat i s’envolta en un capoll de mucositat endurida, vivint en un estat semi letàrgic durant mesos.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 2},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 5},
+      {name: "🧠 Competència Hostil", value: 1},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Cangur Vermell",
+    scientific: "Macropus rufus",
+    description: `Els cangurs són els únics animals grans que es desplacen fent salts. Els salts, que fan movent les potes del darrere simultàniament, són un mode de locomoció ràpid i econòmic, ja que a altes velocitats consumeixen només una fracció de l’energia que gastarien desplaçant-se d’una altra manera.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 2},
+      {name: "🏃 Gravetat Alta", value: 5},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 4},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Mol·lusc Escafòpode",
+    scientific: "Classe Scaphopoda",
+    description: `Els escafòpodes, també coneguts com “petxines ullals”, viuen enterrats en els fons marins a profunditats que sovint superen els 1.000 metres. El seu cos està adaptat a la vida en alta pressió i sediments pobres en oxigen, gràcies a un metabolisme lent i la capacitat d’absorbir nutrients directament del sediment. La seva forma allargada i tubular els permet excavar eficaçment, però la seva sensibilitat als canvis tèrmics i la limitada capacitat per regular la flotació els fa poc versàtils fora del seu hàbitat.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 5},
+      {name: "💧 Clima Fred", value: 2},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 3},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Panaque",
+    scientific: "Panaque nigrolineatus",
+    description: `El panaque és un dels pocs vertebrats coneguts que pot digerir fusta, gràcies a bacteris intestinals especialitzats. Viu en rius d’Amèrica del Sud, on s’alimenta de troncs i arrels. Aquesta dieta baixa en nutrients explica la seva lentitud i poca tolerància a l’esforç. Tot i que la seva capacitat per sobreviure amb recursos escassos és impressionant, no resistiria pressions o temperatures extremes.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 1},
+      {name: "🏃 Gravetat Alta", value: 3},
+      {name: "🛡️ Poc Menjar", value: 5},
+      {name: "🧠 Competència Hostil", value: 2},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Gripau Pèlut",
+    scientific: "Trichobatrachus robustus",
+    description: `Originari de Camerun, aquest gripau mascle desenvolupa unes “pelusses” laterals que en realitat són estructures riques en vasos sanguinis, cosa que augmenta la seva capacitat d’absorbir oxigen a través de la pell. És un dels pocs gripaus que es pot autolesionar per defensar-se: trenca els seus propis ossos i els treu com a urpes. Una adaptació extrema a entorns competitius i agressius!`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 3},
+      {name: "🏃 Gravetat Alta", value: 3},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Ratpenat",
+    scientific: "Chiroptera",
+    description: `Els ratpenats són els únics mamífers capaços de vol actiu. Gràcies a la seva relació pes/superfície alar, podrien adaptar-se bé a una gravetat augmentada. Alguns ratpenats hivernen durant mesos, cosa que els fa resistents a canvis estacionals d’aliment. La seva ecolocalització els permet caçar amb precisió fins i tot en entorns amb poca llum.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 2},
+      {name: "💧 Clima Fred", value: 3},
+      {name: "🏃 Gravetat Alta", value: 5},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 2},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Termites de Guinea",
+    scientific: "Macrotermes bellicosus",
+    description: `Aquestes termites construeixen veritables gratacels subterrànis amb ventilació natural, capaços de mantenir temperatura i humitat constants. Viuen en societat amb fongs simbionts, cultivats per elles mateixes. Són expertes en aprofitar recursos i defensar la seva colònia davant múltiples amenaces. Tanmateix, depenen de condicions tèrmiques estables i serien molt vulnerables al fred o a pressió elevada.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 1},
+      {name: "🏃 Gravetat Alta", value: 2},
+      {name: "🛡️ Poc Menjar", value: 3},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  },
+  {
+    name: "Drac de Komodo",
+    scientific: "Varanus komodoensis",
+    description: `És el llangardaix més gran del món. Té una mossegada infectada amb bacteris i una lleugera toxicitat, que utilitza per debilitar les seves preses. Poden passar setmanes sense menjar i detectar carn a diversos quilòmetres. La seva capacitat per regular el metabolisme i la seva força bruta el fan ideal per a ambients hostils, encara que no tolera bé el fred.`,
+    attributes: [
+      {name: "🌡️ Pressió Alta", value: 1},
+      {name: "💧 Clima Fred", value: 1},
+      {name: "🏃 Gravetat Alta", value: 3},
+      {name: "🛡️ Poc Menjar", value: 4},
+      {name: "🧠 Competència Hostil", value: 5},
+    ],
+    colors: {...defaultColors},
+  }
+];
+
+
+
+    let currentAnimalIndex = 0;
+
+    // Referencias DOM
+    const animalName = document.getElementById('animalName');
+    const scientificName = document.getElementById('scientificName');
+    const description = document.getElementById('description');
+    const attributesDiv = document.getElementById('attributes');
+    const inputsAttr = document.getElementById('inputsAttr');
+    const inputName = document.getElementById('inputName');
+    const inputScientific = document.getElementById('inputScientific');
+    const inputDescription = document.getElementById('inputDescription');
+    const colorPrincipal = document.getElementById('colorPrincipal');
+    const colorSecundario = document.getElementById('colorSecundario');
+    const colorTexto = document.getElementById('colorTexto');
+    const addAttrBtn = document.getElementById('addAttr');
+    const animalListDiv = document.getElementById('animalList');
+    const card = document.getElementById('card');
+
+    // Mostrar lista de animales para seleccionar
+    function renderAnimalButtons(){
+      animalListDiv.innerHTML = '';
+      animals.forEach((animal, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = animal.name;
+        btn.classList.toggle('active', idx === currentAnimalIndex);
+        btn.onclick = () => {
+          currentAnimalIndex = idx;
+          loadAnimal();
+          renderAnimalButtons();
+        };
+        animalListDiv.appendChild(btn);
+      });
+    }
+
+    // Mostrar atributos en la ficha
+    function renderAttributes(){
+      attributesDiv.innerHTML = '';
+      const attrs = animals[currentAnimalIndex].attributes;
+      attrs.forEach(attr => {
+        const attrDiv = document.createElement('div');
+        attrDiv.className = 'attribute';
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'attribute-name';
+        nameDiv.textContent = attr.name;
+        const barsDiv = document.createElement('div');
+        barsDiv.className = 'attribute-bars';
+        for(let i=0; i<5; i++){
+          const bar = document.createElement('div');
+          bar.className = 'bar' + (i < attr.value ? ' filled' : '');
+          barsDiv.appendChild(bar);
+        }
+        attrDiv.appendChild(nameDiv);
+        attrDiv.appendChild(barsDiv);
+        attributesDiv.appendChild(attrDiv);
+      });
+    }
+
+    // Render inputs para atributos en editor
+    function renderInputsAttributes(){
+      inputsAttr.innerHTML = '';
+      const attrs = animals[currentAnimalIndex].attributes;
+      attrs.forEach((attr, i) => {
+        const container = document.createElement('div');
+        container.style.display = 'flex';
+        container.style.gap = '10px';
+        container.style.marginBottom = '10px';
+
+        // Editable nombre
+        const inputNameAttr = document.createElement('input');
+        inputNameAttr.type = 'text';
+        inputNameAttr.value = attr.name;
+        inputNameAttr.style.flex = '3';
+        inputNameAttr.oninput = (e) => {
+          animals[currentAnimalIndex].attributes[i].name = e.target.value;
+        };
+
+        // Valor atributo (select 0-5)
+        const selectValue = document.createElement('select');
+        selectValue.style.flex = '1';
+        for(let v=0; v<=5; v++){
+          const option = document.createElement('option');
+          option.value = v;
+          option.textContent = v;
+          if(v === attr.value) option.selected = true;
+          selectValue.appendChild(option);
+        }
+        selectValue.onchange = (e) => {
+          animals[currentAnimalIndex].attributes[i].value = parseInt(e.target.value);
+        };
+
+        // Botón para eliminar atributo
+        const btnRemove = document.createElement('button');
+        btnRemove.textContent = '✕';
+        btnRemove.title = 'Eliminar habilidad';
+        btnRemove.style.flex = '0 0 25px';
+        btnRemove.style.background = '#d9534f';
+        btnRemove.style.color = 'white';
+        btnRemove.style.border = 'none';
+        btnRemove.style.borderRadius = '4px';
+        btnRemove.style.cursor = 'pointer';
+        btnRemove.onclick = () => {
+          animals[currentAnimalIndex].attributes.splice(i,1);
+          renderInputsAttributes();
+        };
+
+        container.appendChild(inputNameAttr);
+        container.appendChild(selectValue);
+        container.appendChild(btnRemove);
+        inputsAttr.appendChild(container);
+      });
+    }
+
+    // Cargar datos animal actual en la ficha y editor
+    function loadAnimal(){
+      const animal = animals[currentAnimalIndex];
+      inputName.value = animal.name;
+      inputScientific.value = animal.scientific;
+      inputDescription.value = animal.description;
+      colorPrincipal.value = animal.colors.principal;
+      colorSecundario.value = animal.colors.secundario;
+      colorTexto.value = animal.colors.texto;
+      applyColors(animal.colors.principal, animal.colors.secundario, animal.colors.texto);
+      renderAttributes();
+      renderInputsAttributes();
+      animalName.textContent = animal.name;
+      scientificName.textContent = animal.scientific;
+      description.textContent = animal.description;
+    }
+
+    // Aplicar colores a la ficha (variables CSS)
+    function applyColors(principal, secundario, texto){
+      document.documentElement.style.setProperty('--color-principal', principal);
+      document.documentElement.style.setProperty('--color-secundario', secundario);
+      document.documentElement.style.setProperty('--color-texto', texto);
+    }
+
+    // Actualizar datos animal con valores del editor
+    function updateAnimal(){
+      const animal = animals[currentAnimalIndex];
+      animal.name = inputName.value.trim() || animal.name;
+      animal.scientific = inputScientific.value.trim() || animal.scientific;
+      animal.description = inputDescription.value.trim() || animal.description;
+      animal.colors.principal = colorPrincipal.value;
+      animal.colors.secundario = colorSecundario.value;
+      animal.colors.texto = colorTexto.value;
+      applyColors(animal.colors.principal, animal.colors.secundario, animal.colors.texto);
+
+      animalName.textContent = animal.name;
+      scientificName.textContent = animal.scientific;
+      description.textContent = animal.description;
+      renderAttributes();
+      renderInputsAttributes();
+      renderAnimalButtons();
+    }
+
+    // Restablecer datos al valor original (de animals)
+    function resetAnimal(){
+      // Recarga los datos guardados en animals para el actual
+      loadAnimal();
+    }
+
+    // Añadir nueva habilidad (atributo)
+    function addAttribute(){
+      animals[currentAnimalIndex].attributes.push({name: "Nueva habilidad", value: 0});
+      renderInputsAttributes();
+    }
+
+    // Exportar tarjeta como imagen PNG
+    function exportPNG(){
+      // Quitar el borde para exportar sin el padding extra
+      html2canvas(card, {backgroundColor: null}).then(canvas => {
+        const link = document.createElement('a');
+        link.download = animals[currentAnimalIndex].name.replace(/\s+/g,'_').toLowerCase() + '.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+
+    // Eventos botones
+    document.getElementById('update').addEventListener('click', updateAnimal);
+    document.getElementById('reset').addEventListener('click', resetAnimal);
+    document.getElementById('export').addEventListener('click', exportPNG);
+    addAttrBtn.addEventListener('click', addAttribute);
+
+    // Inicializar
+    renderAnimalButtons();
+    loadAnimal();
+  </script>
+</body>
+</html>

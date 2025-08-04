@@ -1,0 +1,1293 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador Planetario Siglo XXX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+DW+Pica:ital@0;1&family=Pirata+One&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .vintage-font {
+            font-family: 'IM Fell English', serif;
+        }
+        
+        .title-font {
+            font-family: 'IM Fell DW Pica', serif;
+        }
+        
+        .map-title-font {
+            font-family: 'Pirata One', cursive;
+        }
+        
+        .planet-map {
+            position: relative;
+            background-color: #e8d6b0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 12px solid #8b5a2b;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cdefs%3E%3Cfilter id='paper' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23d9c8a9' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+        }
+        
+        .map-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(139, 90, 43, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 90, 43, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+        
+        .map-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .map-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 8px double #3f2305;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+        
+        .map-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+        }
+        
+        .corner-tl {
+            top: 10px;
+            left: 10px;
+            border-top: 3px solid #3f2305;
+            border-left: 3px solid #3f2305;
+        }
+        
+        .corner-tr {
+            top: 10px;
+            right: 10px;
+            border-top: 3px solid #3f2305;
+            border-right: 3px solid #3f2305;
+        }
+        
+        .corner-bl {
+            bottom: 10px;
+            left: 10px;
+            border-bottom: 3px solid #3f2305;
+            border-left: 3px solid #3f2305;
+        }
+        
+        .corner-br {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 3px solid #3f2305;
+            border-right: 3px solid #3f2305;
+        }
+        
+        .region {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+        }
+        
+        .region:hover {
+            filter: brightness(1.2) drop-shadow(0 0 4px rgba(0, 0, 0, 0.7));
+            transform: scale(1.02);
+        }
+        
+        .region-label {
+            position: absolute;
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            color: #3f2305;
+            text-shadow: 0 0 2px #e8d6b0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .region-info {
+            transition: all 0.3s ease;
+        }
+        
+        .planet-name {
+            background: linear-gradient(90deg, #8b5a2b, #a47148);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .btn {
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(139, 90, 43, 0.5);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .input-field {
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 1px solid #475569;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: #8b5a2b;
+            box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.2);
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+        
+        .compass {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            pointer-events: none;
+        }
+        
+        .map-decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .latitude-line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(63, 35, 5, 0.2);
+            pointer-events: none;
+        }
+        
+        .longitude-line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background-color: rgba(63, 35, 5, 0.2);
+            pointer-events: none;
+        }
+        
+        .latitude-label, .longitude-label {
+            position: absolute;
+            font-family: 'IM Fell English', serif;
+            font-size: 10px;
+            color: #3f2305;
+            pointer-events: none;
+        }
+        
+        .terrain-feature {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .region-border {
+            stroke: #3f2305;
+            stroke-width: 2;
+            stroke-dasharray: none;
+            fill: none;
+            filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.5));
+        }
+        
+        .region-icon {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+            filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.5));
+        }
+        
+        .region-characteristic {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+        }
+        
+        .map-title-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+            background-color: rgba(232, 214, 176, 0.8);
+            border: 2px solid #3f2305;
+            padding: 5px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(232, 214, 176, 0.9);
+            border: 2px solid #3f2305;
+            padding: 8px;
+            border-radius: 5px;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .map-scale {
+            position: absolute;
+            bottom: 20px;
+            right: 150px;
+            background-color: rgba(232, 214, 176, 0.9);
+            border: 2px solid #3f2305;
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .region-pattern {
+            opacity: 0.2;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-4 md:p-8 relative overflow-hidden">
+        <!-- Estrellas de fondo -->
+        <div id="stars" class="fixed top-0 left-0 w-full h-full -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <header class="text-center mb-8">
+                <h1 class="text-4xl md:text-6xl font-bold planet-name mb-2 vintage-font">Explorador Planetàri</h1>
+                <p class="text-xl text-amber-200 italic vintage-font">Expedició Científica Segle XXX</p>
+            </header>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Panel de control -->
+                <div class="bg-slate-800/80 p-6 rounded-xl backdrop-blur-sm border border-amber-900/50">
+                    <h2 class="text-2xl font-bold mb-4 text-amber-300 vintage-font">Panell de Control</h2>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2 text-amber-200">Nom del Planeta</label>
+                        <input id="planet-name" type="text" class="w-full px-4 py-2 rounded-lg input-field text-white" value="Xenoria Prime">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2 text-amber-200">Nom de la Nau</label>
+                        <input id="ship-name" type="text" class="w-full px-4 py-2 rounded-lg input-field text-white" value="NSEA Protector">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium mb-2 text-amber-200">Número de Regions</label>
+                        <input id="region-count" type="number" min="3" max="12" class="w-full px-4 py-2 rounded-lg input-field text-white" value="5">
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button id="generate-btn" class="btn bg-gradient-to-r from-amber-700 to-amber-900 text-amber-100 py-3 px-6 rounded-lg font-bold text-lg">
+                            Generar Nuevo
+                        </button>
+                        <button id="update-btn" class="btn bg-gradient-to-r from-blue-700 to-blue-900 text-blue-100 py-3 px-6 rounded-lg font-bold text-lg">
+                            Actualizar
+                        </button>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold mb-3 text-amber-300 vintage-font">Dades de l'Expedició</h3>
+                        <div class="space-y-2 text-sm">
+                            <p><span class="text-amber-200">Cap Científica:</span> Lynn Darwin</p>
+                            <p><span class="text-amber-200">Nau:</span> <span id="ship-display-name">NSEA Protector</span></p>
+                            <p><span class="text-amber-200">Any:</span> 2987</p>
+                            <p><span class="text-amber-200">Missió:</span> Departament d'Astrobiologia · Projecte Skippit</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold mb-3 text-amber-300 vintage-font">Característiques Ambientals</h3>
+                        <div class="grid grid-cols-1 gap-2">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12,3 L8,10 L16,10 L12,3 Z" fill="#a5f3fc" stroke="#0891b2" stroke-width="1"/>
+                                    <path d="M8,10 C8,14.4183 9.79086,18 12,18 C14.2091,18 16,14.4183 16,10 L8,10 Z" fill="#a5f3fc" stroke="#0891b2" stroke-width="1"/>
+                                </svg>
+                                <span class="text-white">Clima Fred</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="8" fill="#d8b4fe" stroke="#9333ea" stroke-width="1"/>
+                                    <path d="M8,12 L16,12 M12,8 L12,16" stroke="#9333ea" stroke-width="2"/>
+                                </svg>
+                                <span class="text-white">Gravetat Alta</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6,12 L10,8 M10,8 L14,12 M14,12 L18,8" stroke="#dc2626" stroke-width="2"/>
+                                    <path d="M6,16 L10,12 M10,12 L14,16 M14,16 L18,12" stroke="#dc2626" stroke-width="2"/>
+                                </svg>
+                                <span class="text-white">Competència Hostil</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12,5 C7,5 3,10 3,12 C3,14 7,19 12,19 C17,19 21,14 21,12 C21,10 17,5 12,5 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
+                                    <path d="M8,12 L16,12" stroke="#ca8a04" stroke-width="2"/>
+                                </svg>
+                                <span class="text-white">Poc Menjar</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="8" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
+                                    <path d="M8,8 L16,16 M8,16 L16,8" stroke="#0284c7" stroke-width="2"/>
+                                </svg>
+                                <span class="text-white">Presió Alta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visualización del planeta -->
+                <div class="lg:col-span-2">
+                    <div class="bg-slate-800/80 p-6 rounded-xl backdrop-blur-sm border border-amber-900/50 h-full">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-bold text-amber-300 vintage-font">Mapa Planetari</h2>
+                            <span id="planet-display-name" class="text-xl font-bold planet-name vintage-font">Xenoria Prime</span>
+                        </div>
+                        
+                        <div class="relative">
+                            <div id="planet-container" class="aspect-square max-w-[800px] mx-auto">
+                                <div id="planet" class="planet-map w-full h-full">
+                                    <!-- El contenido del mapa se generará dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Panel de información de regiones -->
+            <div class="mt-8 bg-slate-800/80 p-6 rounded-xl backdrop-blur-sm border border-amber-900/50">
+                <h2 class="text-2xl font-bold mb-4 text-amber-300 vintage-font">Regions Planetàries</h2>
+                <p class="mb-4 text-amber-200 italic">Fes clic a una regió del mapa o edita directament aquí:</p>
+                
+                <div id="regions-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Las regiones se generarán dinámicamente aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración y variables globales
+        const biomes = [
+            { name: "Bosque Cristalino", color: "#2a9d8f", description: "Árboles translúcidos que refractan la luz solar creando arcoíris permanentes." },
+            { name: "Desierto Magnético", color: "#e9c46a", description: "Arena ferromagnética que forma patrones complejos debido a los campos magnéticos del planeta." },
+            { name: "Océano Luminiscente", color: "#264653", description: "Vastos mares con microorganismos bioluminiscentes que brillan en la oscuridad." },
+            { name: "Montañas Flotantes", color: "#6d597a", description: "Formaciones rocosas que levitan debido a concentraciones de minerales antigravitatorios." },
+            { name: "Llanuras de Vapor", color: "#b56576", description: "Extensas praderas donde géiseres liberan vapor con propiedades curativas." },
+            { name: "Jungla Sónica", color: "#606c38", description: "Vegetación que emite frecuencias sonoras para comunicarse entre sí." },
+            { name: "Cráteres Gaseosos", color: "#457b9d", description: "Depresiones donde se acumulan gases nobles que crean auroras a nivel del suelo." },
+            { name: "Tundra Temporal", color: "#6c757d", description: "Zonas donde el tiempo fluye de manera diferente, acelerando o ralentizando procesos biológicos." },
+            { name: "Pantanos Prismáticos", color: "#588157", description: "Humedales donde el agua cambia de color según la temperatura y composición química." },
+            { name: "Cañones Resonantes", color: "#bc6c25", description: "Profundas grietas que amplifican y transforman cualquier sonido en melodías complejas." },
+            { name: "Mesetas Invertidas", color: "#5e548e", description: "Formaciones que desafían la gravedad, creciendo hacia abajo en lugar de hacia arriba." },
+            { name: "Archipiélago Volátil", color: "#219ebc", description: "Islas que cambian de posición periódicamente debido a corrientes submarinas." }
+        ];
+
+        const planetNames = [
+            "Xenoria", "Lumina", "Astralis", "Nebulox", "Chronos", "Terraforma",
+            "Pulsaris", "Quantica", "Biogenesis", "Novastella", "Etherium", "Vortexia"
+        ];
+
+        const suffixes = [
+            "Prime", "Nova", "Alpha", "Beta", "Proxima", "Ultima",
+            "Major", "Minor", "Centauri", "Omega", "Gama", "Delta"
+        ];
+
+        // Características ambientales
+        const environmentalCharacteristics = [
+            {
+                name: "Clima Fred",
+                icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,3 L8,10 L16,10 L12,3 Z" fill="#a5f3fc" stroke="#0891b2" stroke-width="1"/>
+                    <path d="M8,10 C8,14.4183 9.79086,18 12,18 C14.2091,18 16,14.4183 16,10 L8,10 Z" fill="#a5f3fc" stroke="#0891b2" stroke-width="1"/>
+                </svg>`
+            },
+            {
+                name: "Gravetat Alta",
+                icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="8" fill="#d8b4fe" stroke="#9333ea" stroke-width="1"/>
+                    <path d="M8,12 L16,12 M12,8 L12,16" stroke="#9333ea" stroke-width="2"/>
+                </svg>`
+            },
+            {
+                name: "Competència Hostil",
+                icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6,12 L10,8 M10,8 L14,12 M14,12 L18,8" stroke="#dc2626" stroke-width="2"/>
+                    <path d="M6,16 L10,12 M10,12 L14,16 M14,16 L18,12" stroke="#dc2626" stroke-width="2"/>
+                </svg>`
+            },
+            {
+                name: "Poc Menjar",
+                icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12,5 C7,5 3,10 3,12 C3,14 7,19 12,19 C17,19 21,14 21,12 C21,10 17,5 12,5 Z" fill="#fef08a" stroke="#ca8a04" stroke-width="1"/>
+                    <path d="M8,12 L16,12" stroke="#ca8a04" stroke-width="2"/>
+                </svg>`
+            },
+            {
+                name: "Presió Alta",
+                icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="8" fill="#bae6fd" stroke="#0284c7" stroke-width="1"/>
+                    <path d="M8,8 L16,16 M8,16 L16,8" stroke="#0284c7" stroke-width="2"/>
+                </svg>`
+            }
+        ];
+
+        // Decoraciones para el mapa
+        const mapDecorations = [
+            {
+                type: "mountains",
+                svg: `<g>
+                    <path d="M0,30 L10,10 L15,15 L25,0 L35,20 L40,10 L50,30" fill="none" stroke="#3f2305" stroke-width="1"/>
+                    <path d="M5,30 L10,15 L15,20 L20,10 L25,15 L30,5 L35,25 L40,15 L45,30" fill="none" stroke="#3f2305" stroke-width="0.7" stroke-dasharray="2,1"/>
+                    <path d="M10,30 L15,20 L20,25 L25,15 L30,20 L35,10 L40,30" fill="none" stroke="#3f2305" stroke-width="0.5" stroke-dasharray="1,1"/>
+                </g>`
+            },
+            {
+                type: "forest",
+                svg: `<g>
+                    <path d="M10,25 L5,15 L10,15 L7,10 L10,10 L10,5 L13,10 L16,10 L13,15 L18,15 L13,25 Z" fill="none" stroke="#3f2305" stroke-width="0.7"/>
+                    <path d="M25,25 L20,15 L25,15 L22,10 L25,10 L25,5 L28,10 L31,10 L28,15 L33,15 L28,25 Z" fill="none" stroke="#3f2305" stroke-width="0.7"/>
+                    <path d="M40,25 L35,15 L40,15 L37,10 L40,10 L40,5 L43,10 L46,10 L43,15 L48,15 L43,25 Z" fill="none" stroke="#3f2305" stroke-width="0.7"/>
+                    <line x1="10" y1="25" x2="10" y2="30" stroke="#3f2305" stroke-width="0.7"/>
+                    <line x1="25" y1="25" x2="25" y2="30" stroke="#3f2305" stroke-width="0.7"/>
+                    <line x1="40" y1="25" x2="40" y2="30" stroke="#3f2305" stroke-width="0.7"/>
+                </g>`
+            },
+            {
+                type: "desert",
+                svg: `<g>
+                    <path d="M5,20 Q10,15 15,20 Q20,25 25,20 Q30,15 35,20 Q40,25 45,20" fill="none" stroke="#3f2305" stroke-width="0.7" stroke-dasharray="1,1"/>
+                    <circle cx="10" cy="15" r="1" fill="#3f2305"/>
+                    <circle cx="20" cy="18" r="1" fill="#3f2305"/>
+                    <circle cx="30" cy="15" r="1" fill="#3f2305"/>
+                    <circle cx="40" cy="18" r="1" fill="#3f2305"/>
+                    <path d="M15,25 C17,23 19,23 20,25 C21,27 23,27 25,25" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                    <path d="M30,25 C32,23 34,23 35,25 C36,27 38,27 40,25" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                </g>`
+            },
+            {
+                type: "water",
+                svg: `<g>
+                    <path d="M0,15 Q5,10 10,15 Q15,20 20,15 Q25,10 30,15 Q35,20 40,15 Q45,10 50,15" fill="none" stroke="#3f2305" stroke-width="0.7"/>
+                    <path d="M0,25 Q5,20 10,25 Q15,30 20,25 Q25,20 30,25 Q35,30 40,25 Q45,20 50,25" fill="none" stroke="#3f2305" stroke-width="0.7"/>
+                    <path d="M10,20 L12,18 M25,20 L27,18 M40,20 L42,18" stroke="#3f2305" stroke-width="0.5"/>
+                </g>`
+            },
+            {
+                type: "crater",
+                svg: `<g>
+                    <circle cx="25" cy="20" r="15" fill="none" stroke="#3f2305" stroke-width="0.7"/>
+                    <circle cx="25" cy="20" r="10" fill="none" stroke="#3f2305" stroke-width="0.5" stroke-dasharray="2,1"/>
+                    <circle cx="25" cy="20" r="5" fill="none" stroke="#3f2305" stroke-width="0.3" stroke-dasharray="1,1"/>
+                    <line x1="10" y1="20" x2="40" y2="20" stroke="#3f2305" stroke-width="0.3" stroke-dasharray="1,1"/>
+                    <line x1="25" y1="5" x2="25" y2="35" stroke="#3f2305" stroke-width="0.3" stroke-dasharray="1,1"/>
+                </g>`
+            },
+            {
+                type: "unknown",
+                svg: `<g>
+                    <circle cx="25" cy="20" r="15" fill="none" stroke="#3f2305" stroke-width="0.7" stroke-dasharray="3,2"/>
+                    <text x="25" y="25" text-anchor="middle" font-family="'IM Fell English', serif" fill="#3f2305" font-size="12">?</text>
+                    <path d="M15,35 L35,5 M15,5 L35,35" stroke="#3f2305" stroke-width="0.3" stroke-dasharray="2,2"/>
+                </g>`
+            }
+        ];
+
+        // Elementos de terreno para añadir a las regiones
+        const terrainFeatures = [
+            {
+                type: "mountains",
+                svg: `<path d="M0,20 L5,5 L10,10 L15,0 L20,15 L25,5 L30,20" fill="none" stroke="#3f2305" stroke-width="0.7"/>`
+            },
+            {
+                type: "forest",
+                svg: `<g>
+                    <path d="M5,20 L2,10 L5,10 L3,5 L5,5 L5,2 L7,5 L9,5 L7,10 L10,10 L7,20 Z" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                    <path d="M15,20 L12,10 L15,10 L13,5 L15,5 L15,2 L17,5 L19,5 L17,10 L20,10 L17,20 Z" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                    <path d="M25,20 L22,10 L25,10 L23,5 L25,5 L25,2 L27,5 L29,5 L27,10 L30,10 L27,20 Z" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                </g>`
+            },
+            {
+                type: "water",
+                svg: `<path d="M0,10 Q5,5 10,10 Q15,15 20,10 Q25,5 30,10" fill="none" stroke="#3f2305" stroke-width="0.5"/>`
+            },
+            {
+                type: "hills",
+                svg: `<path d="M0,15 Q5,5 10,15 Q15,5 20,15 Q25,5 30,15" fill="none" stroke="#3f2305" stroke-width="0.5"/>`
+            },
+            {
+                type: "crater",
+                svg: `<circle cx="15" cy="15" r="10" fill="none" stroke="#3f2305" stroke-width="0.5" stroke-dasharray="2,1"/>`
+            }
+        ];
+
+        // Patrones para las regiones
+        const regionPatterns = [
+            {
+                id: "pattern-dots",
+                pattern: `<pattern id="pattern-dots" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="1" fill="#3f2305"/>
+                    <circle cx="7" cy="7" r="1" fill="#3f2305"/>
+                </pattern>`
+            },
+            {
+                id: "pattern-lines",
+                pattern: `<pattern id="pattern-lines" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <line x1="0" y1="0" x2="10" y2="10" stroke="#3f2305" stroke-width="0.5"/>
+                </pattern>`
+            },
+            {
+                id: "pattern-grid",
+                pattern: `<pattern id="pattern-grid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                </pattern>`
+            },
+            {
+                id: "pattern-waves",
+                pattern: `<pattern id="pattern-waves" x="0" y="0" width="20" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 0 5 Q 5 0, 10 5 Q 15 10, 20 5" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                </pattern>`
+            },
+            {
+                id: "pattern-zigzag",
+                pattern: `<pattern id="pattern-zigzag" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 0 0 L 5 10 L 10 0" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                </pattern>`
+            }
+        ];
+
+        let regions = [];
+        let selectedRegion = null;
+        let planetSize = 800; // Aumentado para un mapa más grande
+        let mapPadding = 60; // Padding para asegurar que las regiones estén dentro del mapa
+
+        // Inicializar estrellas de fondo
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            starsContainer.innerHTML = '';
+            
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Generar un nombre aleatorio para el planeta
+        function generatePlanetName() {
+            const nameIndex = Math.floor(Math.random() * planetNames.length);
+            const suffixIndex = Math.floor(Math.random() * suffixes.length);
+            return `${planetNames[nameIndex]} ${suffixes[suffixIndex]}`;
+        }
+
+        // Generar regiones aleatorias
+        function generateRegions(count) {
+            const regions = [];
+            const usedBiomes = new Set();
+            
+            // Crear puntos de Voronoi para dividir el mapa en regiones
+            const voronoiPoints = [];
+            for (let i = 0; i < count; i++) {
+                // Distribuir los puntos de manera más uniforme alrededor del centro
+                const angle = (i / count) * 2 * Math.PI;
+                // Ajustar la distancia para mantener las regiones dentro del mapa
+                const distance = (planetSize * 0.35 - mapPadding) * Math.random() + (planetSize * 0.15);
+                const x = planetSize / 2 + Math.cos(angle) * distance;
+                const y = planetSize / 2 + Math.sin(angle) * distance;
+                voronoiPoints.push({x, y});
+            }
+            
+            // Generar regiones basadas en los puntos de Voronoi
+            for (let i = 0; i < count; i++) {
+                // Seleccionar un bioma no utilizado si es posible
+                let biomeIndex;
+                do {
+                    biomeIndex = Math.floor(Math.random() * biomes.length);
+                } while (usedBiomes.has(biomeIndex) && usedBiomes.size < biomes.length);
+                
+                usedBiomes.add(biomeIndex);
+                const biome = biomes[biomeIndex];
+                
+                // Generar características ambientales aleatorias (3 características aleatorias)
+                const allCharacteristics = [...environmentalCharacteristics];
+                const characteristics = [];
+                
+                // Seleccionar 3 características aleatorias
+                for (let j = 0; j < 3; j++) {
+                    if (allCharacteristics.length > 0) {
+                        const randomIndex = Math.floor(Math.random() * allCharacteristics.length);
+                        characteristics.push(allCharacteristics[randomIndex]);
+                        allCharacteristics.splice(randomIndex, 1);
+                    }
+                }
+                
+                // Generar forma y posición de la región
+                const centerX = voronoiPoints[i].x;
+                const centerY = voronoiPoints[i].y;
+                
+                // Generar puntos para la forma de la región
+                const points = generateRegionPoints(centerX, centerY, planetSize * 0.15, voronoiPoints);
+                
+                // Asegurar que todos los puntos estén dentro del mapa
+                const adjustedPoints = points.map(point => {
+                    return {
+                        x: Math.max(mapPadding, Math.min(point.x, planetSize - mapPadding)),
+                        y: Math.max(mapPadding, Math.min(point.y, planetSize - mapPadding))
+                    };
+                });
+                
+                // Generar características de terreno para esta región
+                const terrainFeatureCount = 3 + Math.floor(Math.random() * 4); // 3-6 características
+                const terrainFeatures = [];
+                
+                for (let j = 0; j < terrainFeatureCount; j++) {
+                    const featureType = Math.floor(Math.random() * terrainFeatures.length);
+                    const x = -planetSize * 0.15 + Math.random() * planetSize * 0.3;
+                    const y = -planetSize * 0.15 + Math.random() * planetSize * 0.3;
+                    const scale = 0.5 + Math.random() * 0.5;
+                    const rotation = Math.random() * 360;
+                    
+                    terrainFeatures.push({
+                        type: featureType,
+                        x: x,
+                        y: y,
+                        scale: scale,
+                        rotation: rotation
+                    });
+                }
+                
+                // Seleccionar un patrón aleatorio para la región
+                const patternIndex = Math.floor(Math.random() * regionPatterns.length);
+                
+                regions.push({
+                    id: i,
+                    name: `Regió ${i + 1}`,
+                    color: biome.color,
+                    points: adjustedPoints,
+                    centerX: centerX,
+                    centerY: centerY,
+                    terrainFeatures: terrainFeatures,
+                    characteristics: characteristics,
+                    pattern: regionPatterns[patternIndex].id
+                });
+            }
+            
+            return regions;
+        }
+
+        // Generar puntos para la forma de la región basados en puntos de Voronoi
+        function generateRegionPoints(centerX, centerY, radius, voronoiPoints) {
+            const points = [];
+            const numPoints = 16 + Math.floor(Math.random() * 8); // Más puntos para formas más detalladas
+            
+            for (let i = 0; i < numPoints; i++) {
+                const angle = (i / numPoints) * 2 * Math.PI;
+                let r = radius * (0.7 + Math.random() * 0.6);
+                
+                // Ajustar el radio basado en la proximidad a otros puntos de Voronoi
+                for (const point of voronoiPoints) {
+                    if (point.x === centerX && point.y === centerY) continue;
+                    
+                    const dx = centerX + Math.cos(angle) * r - point.x;
+                    const dy = centerY + Math.sin(angle) * r - point.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < radius * 0.8) {
+                        r = dist * 0.8;
+                    }
+                }
+                
+                // Asegurar que el punto esté dentro de los límites del mapa
+                let x = centerX + Math.cos(angle) * r;
+                let y = centerY + Math.sin(angle) * r;
+                
+                // Limitar los puntos para que estén dentro del mapa con un margen
+                x = Math.max(mapPadding, Math.min(x, planetSize - mapPadding));
+                y = Math.max(mapPadding, Math.min(y, planetSize - mapPadding));
+                
+                points.push({ x, y });
+            }
+            
+            return points;
+        }
+
+        // Añadir decoraciones al mapa
+        function addMapDecorations() {
+            const planetElement = document.getElementById('planet');
+            
+            // Añadir título del mapa en estilo vintage
+            const titleContainer = document.createElement('div');
+            titleContainer.className = 'map-title-container';
+            titleContainer.innerHTML = `
+                <div class="map-title-font text-xl text-[#3f2305]">Mapa Cartogràfic de</div>
+                <div class="map-title-font text-2xl font-bold text-[#3f2305]" id="map-title">Xenoria Prime</div>
+                <div class="vintage-font text-sm italic text-[#3f2305] mt-1">Departament d'Astrobiologia · Projecte Skippit</div>
+            `;
+            planetElement.appendChild(titleContainer);
+            
+            // Añadir líneas de latitud y longitud
+            const gridCount = 6; // Número de líneas en cada dirección
+            
+            for (let i = 1; i < gridCount; i++) {
+                // Líneas de latitud
+                const latLine = document.createElement('div');
+                latLine.className = 'latitude-line';
+                latLine.style.top = `${(i / gridCount) * 100}%`;
+                planetElement.appendChild(latLine);
+                
+                // Etiquetas de latitud
+                const latLabel = document.createElement('div');
+                latLabel.className = 'latitude-label';
+                latLabel.textContent = `${90 - Math.round((i / gridCount) * 180)}°`;
+                latLabel.style.top = `${(i / gridCount) * 100}%`;
+                latLabel.style.left = '10px';
+                latLabel.style.transform = 'translateY(-50%)';
+                planetElement.appendChild(latLabel);
+                
+                // Líneas de longitud
+                const longLine = document.createElement('div');
+                longLine.className = 'longitude-line';
+                longLine.style.left = `${(i / gridCount) * 100}%`;
+                planetElement.appendChild(longLine);
+                
+                // Etiquetas de longitud
+                const longLabel = document.createElement('div');
+                longLabel.className = 'longitude-label';
+                longLabel.textContent = `${Math.round((i / gridCount) * 360) - 180}°`;
+                longLabel.style.left = `${(i / gridCount) * 100}%`;
+                longLabel.style.bottom = '5px';
+                longLabel.style.transform = 'translateX(-50%)';
+                planetElement.appendChild(longLabel);
+            }
+            
+            // Añadir decoraciones aleatorias en áreas no ocupadas por regiones
+            for (let i = 0; i < 8; i++) {
+                const decoration = document.createElement('div');
+                decoration.className = 'map-decoration';
+                
+                const decorType = mapDecorations[Math.floor(Math.random() * mapDecorations.length)];
+                
+                // Posicionar aleatoriamente, evitando los bordes
+                const posX = 50 + Math.random() * (planetSize - 100);
+                const posY = 50 + Math.random() * (planetSize - 100);
+                
+                // Tamaño aleatorio
+                const scale = 0.5 + Math.random() * 0.7;
+                
+                // Rotación aleatoria
+                const rotation = Math.random() * 360;
+                
+                decoration.style.left = `${posX}px`;
+                decoration.style.top = `${posY}px`;
+                decoration.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
+                
+                decoration.innerHTML = `
+                    <svg width="50" height="40" viewBox="0 0 50 40">
+                        ${decorType.svg}
+                    </svg>
+                `;
+                
+                planetElement.appendChild(decoration);
+            }
+            
+            // Añadir la rosa de los vientos
+            const compassElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            compassElement.setAttribute('class', 'compass');
+            compassElement.setAttribute('viewBox', '0 0 100 100');
+            compassElement.innerHTML = `
+                <defs>
+                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+                        <feOffset dx="1" dy="1" result="offsetblur" />
+                        <feComponentTransfer>
+                            <feFuncA type="linear" slope="0.5" />
+                        </feComponentTransfer>
+                        <feMerge>
+                            <feMergeNode />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#3f2305" stroke-width="1.5"/>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#3f2305" stroke-width="0.5" stroke-dasharray="2,1"/>
+                <path d="M50,5 L50,95 M5,50 L95,50" stroke="#3f2305" stroke-width="1"/>
+                <path d="M26.5,26.5 L73.5,73.5 M26.5,73.5 L73.5,26.5" stroke="#3f2305" stroke-width="0.7" stroke-dasharray="2,1"/>
+                <path d="M50,10 L45,45 L50,40 L55,45 Z" fill="#3f2305" filter="url(#shadow)"/>
+                <circle cx="50" cy="50" r="5" fill="none" stroke="#3f2305" stroke-width="0.5"/>
+                <text x="50" y="20" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="12" font-weight="bold">N</text>
+                <text x="80" y="53" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="12" font-weight="bold">E</text>
+                <text x="50" y="85" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="12" font-weight="bold">S</text>
+                <text x="20" y="53" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="12" font-weight="bold">O</text>
+                <text x="65" y="35" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="8">NE</text>
+                <text x="65" y="70" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="8">SE</text>
+                <text x="35" y="70" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="8">SO</text>
+                <text x="35" y="35" text-anchor="middle" fill="#3f2305" font-family="'IM Fell English', serif" font-size="8">NO</text>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#3f2305" stroke-width="0.3" stroke-dasharray="1,1"/>
+                <circle cx="50" cy="50" r="15" fill="none" stroke="#3f2305" stroke-width="0.3" stroke-dasharray="1,1"/>
+                <path d="M50,50 L70,30 M50,50 L30,30 M50,50 L30,70 M50,50 L70,70" stroke="#3f2305" stroke-width="0.3"/>
+            `;
+            planetElement.appendChild(compassElement);
+            
+            // Añadir esquinas ornamentadas
+            const corners = ['tl', 'tr', 'bl', 'br'];
+            corners.forEach(corner => {
+                const cornerElement = document.createElement('div');
+                cornerElement.className = `map-corner corner-${corner}`;
+                planetElement.appendChild(cornerElement);
+            });
+            
+            // Añadir borde ornamentado
+            const borderElement = document.createElement('div');
+            borderElement.className = 'map-border';
+            planetElement.appendChild(borderElement);
+            
+            // Añadir leyenda
+            const legendElement = document.createElement('div');
+            legendElement.className = 'map-legend';
+            legendElement.innerHTML = `
+                <div class="title-font text-sm font-bold text-[#3f2305] mb-2">Llegenda</div>
+                <div class="grid grid-cols-1 gap-1">
+                    <div class="flex items-center gap-1">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            ${environmentalCharacteristics[0].icon}
+                        </svg>
+                        <span class="text-xs text-[#3f2305]">Clima Fred</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            ${environmentalCharacteristics[1].icon}
+                        </svg>
+                        <span class="text-xs text-[#3f2305]">GravetatAlta</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            ${environmentalCharacteristics[2].icon}
+                        </svg>
+                        <span class="text-xs text-[#3f2305]">Competècia Hostil</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            ${environmentalCharacteristics[3].icon}
+                        </svg>
+                        <span class="text-xs text-[#3f2305]">Poc Mejar</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            ${environmentalCharacteristics[4].icon}
+                        </svg>
+                        <span class="text-xs text-[#3f2305]">Presió Alta</span>
+                    </div>
+                </div>
+            `;
+            planetElement.appendChild(legendElement);
+            
+            // Añadir escala
+            const scaleElement = document.createElement('div');
+            scaleElement.className = 'map-scale';
+            scaleElement.innerHTML = `
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center">
+                        <div class="w-20 h-1 bg-[#3f2305]"></div>
+                        <div class="w-20 h-1 bg-[#3f2305] border-r border-l border-[#3f2305]"></div>
+                    </div>
+                    <div class="flex w-full justify-between mt-1">
+                        <span class="text-xs text-[#3f2305]">0</span>
+                        <span class="text-xs text-[#3f2305]">500</span>
+                        <span class="text-xs text-[#3f2305]">1000 km</span>
+                    </div>
+                </div>
+            `;
+            planetElement.appendChild(scaleElement);
+        }
+
+        // Dibujar el mapa del planeta y sus regiones
+        function drawPlanet() {
+            const planetElement = document.getElementById('planet');
+            planetElement.innerHTML = '';
+            
+            // Añadir elementos base del mapa
+            const gridElement = document.createElement('div');
+            gridElement.className = 'map-grid';
+            planetElement.appendChild(gridElement);
+            
+            const textureElement = document.createElement('div');
+            textureElement.className = 'map-texture';
+            planetElement.appendChild(textureElement);
+            
+            // Crear un SVG para todas las regiones
+            const svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svgElement.setAttribute('width', '100%');
+            svgElement.setAttribute('height', '100%');
+            svgElement.style.position = 'absolute';
+            svgElement.style.top = '0';
+            svgElement.style.left = '0';
+            
+            // Añadir definiciones para patrones
+            const defsElement = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            regionPatterns.forEach(pattern => {
+                defsElement.innerHTML += pattern.pattern;
+            });
+            svgElement.appendChild(defsElement);
+            
+            // Añadir decoraciones del mapa
+            addMapDecorations();
+            
+            // Actualizar el título del mapa
+            document.getElementById('map-title').textContent = document.getElementById('planet-name').value;
+            
+            // Dibujar cada región
+            regions.forEach(region => {
+                const regionGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                regionGroup.setAttribute('id', `region-${region.id}`);
+                regionGroup.setAttribute('data-id', region.id);
+                regionGroup.classList.add('region');
+                
+                // Crear el polígono para la forma de la región
+                const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                const pointsString = region.points.map(p => `${p.x},${p.y}`).join(' ');
+                polygon.setAttribute('points', pointsString);
+                polygon.setAttribute('fill', region.color);
+                polygon.setAttribute('fill-opacity', '0.7');
+                
+                // Añadir el polígono al grupo
+                regionGroup.appendChild(polygon);
+                
+                // Añadir patrón a la región
+                const patternPolygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                patternPolygon.setAttribute('points', pointsString);
+                patternPolygon.setAttribute('fill', `url(#${region.pattern})`);
+                patternPolygon.classList.add('region-pattern');
+                regionGroup.appendChild(patternPolygon);
+                
+                // Añadir borde de la región
+                const borderPolygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+                borderPolygon.setAttribute('points', pointsString);
+                borderPolygon.classList.add('region-border');
+                regionGroup.appendChild(borderPolygon);
+                
+                // Añadir características de terreno dentro de la región
+                region.terrainFeatures.forEach(feature => {
+                    const featureGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    featureGroup.setAttribute('transform', `translate(${region.centerX + feature.x}, ${region.centerY + feature.y}) scale(${feature.scale}) rotate(${feature.rotation})`);
+                    
+                    // Crear el elemento SVG para la característica
+                    const featureSvg = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    featureSvg.innerHTML = terrainFeatures[feature.type].svg;
+                    
+                    featureGroup.appendChild(featureSvg);
+                    regionGroup.appendChild(featureGroup);
+                });
+                
+                // Añadir evento de clic para seleccionar la región
+                regionGroup.addEventListener('click', () => selectRegion(region.id));
+                
+                // Añadir el grupo al SVG
+                svgElement.appendChild(regionGroup);
+            });
+            
+            // Añadir el SVG al planeta
+            planetElement.appendChild(svgElement);
+            
+            // Añadir etiquetas de las regiones y características ambientales
+            regions.forEach(region => {
+                // Añadir etiqueta de la región
+                const labelElement = document.createElement('div');
+                labelElement.className = 'region-label';
+                labelElement.id = `region-label-${region.id}`;
+                labelElement.textContent = region.name;
+                labelElement.style.left = `${region.centerX}px`;
+                labelElement.style.top = `${region.centerY}px`;
+                planetElement.appendChild(labelElement);
+                
+                // Añadir iconos de características ambientales
+                region.characteristics.forEach((char, index) => {
+                    const iconElement = document.createElement('div');
+                    iconElement.className = 'region-characteristic';
+                    iconElement.innerHTML = char.icon;
+                    
+                    // Posicionar los iconos alrededor del centro de la región
+                    const angle = (index / region.characteristics.length) * 2 * Math.PI;
+                    const distance = 30;
+                    const x = region.centerX + Math.cos(angle) * distance;
+                    const y = region.centerY + Math.sin(angle) * distance;
+                    
+                    iconElement.style.left = `${x - 10}px`;
+                    iconElement.style.top = `${y - 10}px`;
+                    
+                    planetElement.appendChild(iconElement);
+                });
+            });
+        }
+
+        // Actualizar el panel de información de regiones
+        function updateRegionsPanel() {
+            const container = document.getElementById('regions-container');
+            container.innerHTML = '';
+            
+            regions.forEach(region => {
+                const regionCard = document.createElement('div');
+                regionCard.className = `p-4 rounded-lg border transition-all duration-300 region-info ${selectedRegion === region.id ? 'border-amber-400 bg-slate-700/80' : 'border-slate-600 bg-slate-800/40'}`;
+                regionCard.dataset.id = region.id;
+                
+                // Crear HTML para las características ambientales
+                const characteristicsHTML = region.characteristics.map(char => `
+                    <div class="flex items-center gap-1 mb-1">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24">
+                            ${char.icon}
+                        </svg>
+                        <span class="text-xs">${char.name}</span>
+                    </div>
+                `).join('');
+                
+                regionCard.innerHTML = `
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-4 h-4 rounded-full" style="background-color: ${region.color}"></div>
+                        <input type="text" class="bg-transparent border-b border-slate-600 focus:border-amber-400 outline-none px-2 py-1 font-semibold flex-grow vintage-font" 
+                            value="${region.name}" data-field="name" data-id="${region.id}">
+                    </div>
+                    
+                    <div class="space-y-2 text-sm">
+                        <div class="flex flex-col mt-2">
+                            <label class="text-amber-200 text-xs">Característiques Ambientals</label>
+                            <div class="bg-slate-700 border border-slate-600 rounded p-2 mt-1">
+                                ${characteristicsHTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(regionCard);
+                
+                // Añadir evento de clic para seleccionar la región
+                regionCard.addEventListener('click', (e) => {
+                    if (!e.target.matches('input')) {
+                        selectRegion(region.id);
+                    }
+                });
+            });
+            
+            // Añadir eventos para actualizar los datos de las regiones
+            document.querySelectorAll('[data-field]').forEach(input => {
+                input.addEventListener('change', updateRegionData);
+                input.addEventListener('input', updateRegionData);
+            });
+        }
+
+        // Seleccionar una región
+        function selectRegion(id) {
+            selectedRegion = id;
+            
+            // Actualizar estilos de las regiones en el mapa
+            document.querySelectorAll('.region').forEach(el => {
+                if (parseInt(el.dataset.id) === id) {
+                    el.style.filter = 'brightness(1.3) saturate(1.2)';
+                    el.style.transform = 'scale(1.05)';
+                    el.style.zIndex = '10';
+                } else {
+                    el.style.filter = '';
+                    el.style.transform = '';
+                    el.style.zIndex = '';
+                }
+            });
+            
+            // Actualizar panel de información
+            updateRegionsPanel();
+            
+            // Desplazarse hasta la tarjeta de la región seleccionada
+            const selectedCard = document.querySelector(`.region-info[data-id="${id}"]`);
+            if (selectedCard) {
+                selectedCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Actualizar datos de una región
+        function updateRegionData(e) {
+            const field = e.target.dataset.field;
+            const id = parseInt(e.target.dataset.id);
+            const value = e.target.value;
+            
+            const region = regions.find(r => r.id === id);
+            if (region) {
+                region[field] = value;
+            }
+        }
+
+        // Generar un nuevo planeta
+        function generatePlanet() {
+            // Obtener el nombre del planeta y el número de regiones
+            const nameInput = document.getElementById('planet-name');
+            const shipInput = document.getElementById('ship-name');
+            const countInput = document.getElementById('region-count');
+            
+            const planetName = nameInput.value || generatePlanetName();
+            const shipName = shipInput.value || "NSEA Protector";
+            const regionCount = parseInt(countInput.value) || 5;
+            
+            // Actualizar el nombre en la interfaz
+            nameInput.value = planetName;
+            document.getElementById('planet-display-name').textContent = planetName;
+            
+            // Actualizar el nombre de la nave
+            document.getElementById('ship-display-name').textContent = shipName;
+            
+            // Generar nuevas regiones
+            regions = generateRegions(Math.min(Math.max(regionCount, 3), 12));
+            
+            // Dibujar el planeta
+            drawPlanet();
+            
+            // Actualizar el panel de información
+            updateRegionsPanel();
+            
+            // Seleccionar la primera región
+            selectRegion(0);
+        }
+
+        // Actualizar el mapa sin generar nuevas regiones
+        function updatePlanet() {
+            // Actualizar nombres
+            const planetName = document.getElementById('planet-name').value;
+            const shipName = document.getElementById('ship-name').value;
+            
+            document.getElementById('planet-display-name').textContent = planetName;
+            document.getElementById('ship-display-name').textContent = shipName;
+            
+            // Actualizar el título del mapa
+            if (document.getElementById('map-title')) {
+                document.getElementById('map-title').textContent = planetName;
+            }
+            
+            // Actualizar etiquetas de regiones en el mapa
+            regions.forEach(region => {
+                const label = document.getElementById(`region-label-${region.id}`);
+                if (label) {
+                    label.textContent = region.name;
+                }
+            });
+            
+            // Mostrar mensaje de confirmación
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+            notification.textContent = 'Mapa actualizado correctamente';
+            document.body.appendChild(notification);
+            
+            // Eliminar la notificación después de 3 segundos
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // Inicializar la aplicación
+        function init() {
+            createStars();
+            
+            // Configurar el tamaño del planeta
+            const planetContainer = document.getElementById('planet-container');
+            planetSize = Math.min(planetContainer.offsetWidth, 800);
+            
+            // Generar el planeta inicial
+            generatePlanet();
+            
+            // Añadir evento al botón de generar
+            document.getElementById('generate-btn').addEventListener('click', generatePlanet);
+            
+            // Añadir evento al botón de actualizar
+            document.getElementById('update-btn').addEventListener('click', updatePlanet);
+            
+            // Actualizar el nombre del planeta cuando cambie el input
+            document.getElementById('planet-name').addEventListener('input', (e) => {
+                document.getElementById('planet-display-name').textContent = e.target.value;
+            });
+            
+            // Actualizar el nombre de la nave cuando cambie el input
+            document.getElementById('ship-name').addEventListener('input', (e) => {
+                document.getElementById('ship-display-name').textContent = e.target.value;
+            });
+            
+            // Ajustar el tamaño del planeta cuando cambie el tamaño de la ventana
+            window.addEventListener('resize', () => {
+                const newSize = Math.min(document.getElementById('planet-container').offsetWidth, 800);
+                const scale = newSize / planetSize;
+                
+                if (Math.abs(scale - 1) > 0.1) {
+                    planetSize = newSize;
+                    
+                    // Escalar las coordenadas de las regiones
+                    regions.forEach(region => {
+                        region.points = region.points.map(p => ({
+                            x: p.x * scale,
+                            y: p.y * scale
+                        }));
+                        region.centerX *= scale;
+                        region.centerY *= scale;
+                    });
+                    
+                    drawPlanet();
+                }
+            });
+        }
+
+        // Iniciar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9480a7b717210331',t:'MTc0ODYzMzUyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

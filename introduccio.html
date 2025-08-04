@@ -1,0 +1,2088 @@
+
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missió Margulis: La Nova Evolució</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú i Footer Futuristes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary: #6a3de8;
+            --primary-light: #8a5df8;
+            --primary-dark: #4a1db8;
+            --secondary: #42f5b3;
+            --secondary-light: #72f7c3;
+            --secondary-dark: #22d593;
+            --dark: #0a0a2a;
+            --darker: #050518;
+            --light: #f8f9fa;
+            --accent: #ff5a5a;
+            --accent-dark: #df3a3a;
+            --yellow: #ffde59;
+            --yellow-dark: #dfbe39;
+            --cyan: #00e5ff;
+            --cyan-dark: #00c5df;
+            --purple: #9c27b0;
+            --purple-dark: #7c0790;
+            --orange: #ff7a00;
+            --orange-dark: #df5a00;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            margin-top: 200px;
+        }
+        
+        .space-bg {
+            background: linear-gradient(to bottom, var(--darker), #1a103c);
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5);
+            animation: rotate 120s infinite linear;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        header {
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .title-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--light);
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--light);
+            background-color: rgba(10, 10, 42, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(106, 61, 232, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Comic Book Styles */
+        .comic-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .comic-narrative {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .comic-panel {
+            background-color: rgba(10, 10, 42, 0.8);
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: calc(var(--delay) * 0.2s);
+            border: 2px solid var(--primary);
+        }
+        
+        .comic-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(106, 61, 232, 0.1), transparent);
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .comic-panel-header {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+            padding: 15px 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comic-panel-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--light);
+            margin: 0;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+        }
+        
+        .comic-panel-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.9;
+            margin: 5px 0 0;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .comic-panel-content {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .comic-panel-row {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .comic-panel-text {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .comic-panel-image {
+            flex: 1;
+            position: relative;
+            min-height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .comic-panel-image svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+        }
+        
+        .comic-panel-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .comic-panel-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            color: var(--light);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .comic-panel-highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .comic-panel-quote {
+            font-style: italic;
+            border-left: 3px solid var(--secondary);
+            padding-left: 15px;
+            margin: 20px 0;
+            color: var(--light);
+            opacity: 0.9;
+        }
+        
+        .comic-panel-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comic-panel-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .comic-panel-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            margin: 30px 0;
+            border-radius: 3px;
+        }
+        
+        .comic-panel-list {
+            list-style: none;
+            margin: 20px 0;
+            padding: 0;
+        }
+        
+        .comic-panel-list-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: rgba(10, 10, 42, 0.5);
+        }
+        
+        .comic-panel-list-item:hover {
+            background-color: rgba(106, 61, 232, 0.2);
+            transform: translateX(10px);
+        }
+        
+        .comic-panel-list-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        /* Interactive Elements */
+        .info-popup {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .info-popup-button {
+            background: linear-gradient(90deg, var(--yellow), var(--orange));
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+        }
+        
+        .info-popup-button .icon {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .info-popup-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-popup-content {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            width: 300px;
+            background-color: rgba(10, 10, 42, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--yellow);
+            z-index: 99999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .info-popup-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid transparent;
+            border-top-color: var(--yellow);
+        }
+        
+        .info-popup-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--yellow);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .info-popup-content p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .info-popup-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-popup.active .info-popup-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        
+        /* Navigation */
+        .comic-nav {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            gap: 15px;
+        }
+        
+        .comic-nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .comic-nav-dot.active {
+            background-color: var(--secondary);
+            transform: scale(1.3);
+        }
+        
+        .comic-nav-dot:hover {
+            background-color: var(--secondary-light);
+        }
+        
+        .comic-nav-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .comic-nav-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .comic-nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Animation Keyframes */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Flow Comic Layout */
+        .flow-comic {
+            position: relative;
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1200px;
+        }
+        
+        .flow-path {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .flow-path svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .flow-panel {
+            position: relative;
+            margin-bottom: 100px;
+            z-index: 2;
+        }
+        
+        .flow-panel:nth-child(odd) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        
+        .flow-panel:nth-child(even) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        
+        .flow-panel-1 {
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .flow-panel-2 {
+            width: 90%;
+            max-width: 700px;
+            transform: rotate(-2deg);
+        }
+        
+        .flow-panel-3 {
+            width: 90%;
+            max-width: 700px;
+            transform: rotate(2deg);
+        }
+        
+        .flow-panel-4 {
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .flow-panel-5 {
+            width: 90%;
+            max-width: 700px;
+            transform: rotate(-1deg);
+        }
+        
+        .flow-panel-6 {
+            width: 90%;
+            max-width: 700px;
+            transform: rotate(1deg);
+        }
+        
+        .flow-panel-7 {
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .connector {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: -60px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 0;
+            border: 3px solid var(--light);
+        }
+        
+        .connector-1 {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector-2 {
+            left: 10%;
+        }
+        
+        .connector-3 {
+            right: 10%;
+        }
+        
+        .connector-4 {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector-5 {
+            left: 10%;
+        }
+        
+        .connector-6 {
+            right: 10%;
+        }
+        
+        .connector-7 {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .title {
+                font-size: 2.8rem;
+            }
+            
+            .comic-panel-row {
+                flex-direction: column;
+            }
+            
+            .comic-panel-image {
+                width: 100%;
+                min-height: 200px;
+            }
+            
+            .comic-panel-title {
+                font-size: 1.6rem;
+            }
+            
+            .flow-panel {
+                width: 100% !important;
+                max-width: 100% !important;
+                transform: none !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            
+            .connector {
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .comic-panel {
+                margin-bottom: 30px;
+            }
+            
+            .comic-panel-title {
+                font-size: 1.4rem;
+            }
+            
+            .comic-panel-subtitle {
+                font-size: 1rem;
+            }
+            
+            .comic-panel-content {
+                padding: 20px;
+            }
+            
+            .info-popup-content {
+                width: 250px;
+                z-index: 99999;
+            }
+            
+            .flow-panel {
+                margin-bottom: 80px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .comic-panel-title {
+                font-size: 1.3rem;
+            }
+            
+            .comic-panel-text {
+                font-size: 1rem;
+            }
+            
+            .comic-panel-icon {
+                font-size: 2.5rem;
+            }
+            
+            .connector {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    :root {
+            --primary: #6a3de8;
+            --primary-light: #8a5df8;
+            --primary-dark: #4a1db8;
+            --secondary: #42f5b3;
+            --secondary-light: #72f7c3;
+            --secondary-dark: #22d593;
+            --dark: #0a0a2a;
+            --darker: #050518;
+            --light: #f8f9fa;
+            --accent: #ff5a5a;
+            --accent-dark: #df3a3a;
+            --yellow: #ffde59;
+            --yellow-dark: #dfbe39;
+            --cyan: #00e5ff;
+            --cyan-dark: #00c5df;
+            --purple: #9c27b0;
+            --purple-dark: #7c0790;
+            --orange: #ff7a00;
+            --orange-dark: #df5a00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* ===== HEADER & NAVIGATION ===== */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 5, 24, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(106, 61, 232, 0.1), transparent, rgba(66, 245, 179, 0.1));
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .main-header.scrolled {
+            padding: 5px 0;
+            background: rgba(5, 5, 24, 0.95);
+        }
+        
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--light);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-logo-icon {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .nav-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(66, 245, 179, 0.3), transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        
+        .nav-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .nav-logo-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.3;
+            filter: blur(4px);
+            z-index: -1;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            position: relative;
+        }
+        
+        .nav-menu::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .main-nav:hover .nav-menu::before {
+            opacity: 0.3;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-link:hover::before {
+            width: 100%;
+        }
+        
+        .nav-link.active {
+            color: var(--secondary);
+        }
+        
+        .nav-link.active::before {
+            width: 100%;
+        }
+        
+        .nav-link-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-link:hover .nav-link-icon {
+            transform: translateY(-3px);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--secondary));
+            background-size: 200% 200%;
+            animation: borderAnimation 3s linear infinite;
+            z-index: -1;
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-button:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-button-outline {
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            background: transparent;
+        }
+        
+        .nav-button-outline:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(66, 245, 179, 0.3);
+        }
+        
+        .nav-button-fill {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-button-fill:hover {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(106, 61, 232, 0.4);
+        }
+        
+        .nav-button-icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            position: relative;
+        }
+        
+        .mobile-menu-btn:focus {
+            outline: none;
+        }
+        
+        .mobile-menu-btn .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 3px;
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        .nav-indicator {
+            position: absolute;
+            bottom: -2px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+        
+        /* Glowing dots */
+        .nav-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .nav-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            opacity: 0.5;
+            filter: blur(1px);
+            animation: floatDot 15s infinite linear;
+        }
+        
+        @keyframes floatDot {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes borderAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+        }
+        
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background-color: rgba(5, 5, 24, 0.95);
+            border-top: 1px solid var(--primary);
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(106, 61, 232, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-logo-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .footer-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(66, 245, 179, 0.3), transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        
+        .footer-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .footer-logo-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.3;
+            filter: blur(4px);
+            z-index: -1;
+        }
+        
+        .footer-description {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            position: relative;
+            padding-left: 15px;
+            border-left: 2px solid var(--primary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .footer-social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .footer-social-link:hover::before {
+            opacity: 1;
+        }
+        
+        .footer-social-link i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-social-link:hover {
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .footer-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .footer-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
+        .footer-link:hover::before {
+            background-color: var(--secondary);
+            box-shadow: 0 0 8px var(--secondary);
+        }
+        
+        .footer-link-icon {
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-newsletter {
+            margin-top: 20px;
+        }
+        
+        .footer-newsletter-form {
+            display: flex;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .footer-newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border-radius: 5px 0 0 5px;
+            font-family: 'Exo 2', sans-serif;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .footer-newsletter-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(106, 61, 232, 0.3);
+        }
+        
+        .footer-newsletter-button {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-newsletter-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .footer-newsletter-button:hover {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            box-shadow: 0 0 15px rgba(106, 61, 232, 0.5);
+        }
+        
+        .footer-newsletter-button:hover::before {
+            left: 100%;
+        }
+        
+        .footer-bottom {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            position: relative;
+        }
+        
+        .footer-bottom::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        .footer-bottom-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .footer-bottom-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-bottom-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-bottom-link:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-bottom-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            overflow: hidden;
+        }
+        
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .back-to-top i {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover::before {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .back-to-top:hover i {
+            transform: translateY(-3px);
+        }
+        
+        /* Footer decorative elements */
+        .footer-decoration {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .footer-decoration-1 {
+            top: 20px;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+        }
+        
+        .footer-decoration-2 {
+            bottom: 50px;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            border: 1px dashed var(--secondary);
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
+        
+        .footer-decoration-3 {
+            top: 40%;
+            left: 20%;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(66, 245, 179, 0.1), transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s infinite;
+        }
+        
+        .footer-decoration-4 {
+            top: 30%;
+            right: 15%;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, rgba(106, 61, 232, 0.1), transparent 70%);
+            border-radius: 50%;
+            animation: pulse 5s infinite;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(5, 5, 24, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.5s ease;
+                z-index: 1000;
+                padding: 50px 0;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .nav-link {
+                font-size: 1.2rem;
+            }
+            
+            .nav-buttons {
+                display: none;
+            }
+            
+            .nav-menu::before {
+                display: none;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .footer-bottom-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="creativitat.html" class="nav-logo">
+                <span class="nav-logo-text" data-text="PROJECTE SKIPPIT">PROJECTE SKIPPIT</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="creativitat.html" class="nav-link">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="guia.html" class="nav-link">
+                        <span>Guia del professor</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="introduccio.html" class="nav-link active">
+                        <span>Introducció pels alumnes</span>
+                    </a>
+                </li>
+               
+
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span>Altres activitats</span>
+                    </a>
+                </li>
+                
+            </ul>
+            
+            
+            <button class="mobile-menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <!-- Decorative dots -->
+            <div class="nav-dots">
+                <div class="nav-dot" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+                <div class="nav-dot" style="top: 30%; left: 20%; animation-delay: 2s;"></div>
+                <div class="nav-dot" style="top: 70%; left: 15%; animation-delay: 4s;"></div>
+                <div class="nav-dot" style="top: 40%; left: 80%; animation-delay: 1s;"></div>
+                <div class="nav-dot" style="top: 60%; left: 85%; animation-delay: 3s;"></div>
+                <div class="nav-dot" style="top: 80%; left: 75%; animation-delay: 5s;"></div>
+            </div>
+        </nav>
+    </header>
+    <div class="space-bg">
+        <!-- Particles background -->
+        <div id="particles-js"></div>
+        
+        <!-- Planets -->
+        <div class="planet" style="width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #6a3de8, #3a1c87); top: 15%; right: -30px; opacity: 0.7;"></div>
+        <div class="planet" style="width: 80px; height: 80px; background: radial-gradient(circle at 30% 30%, #42f5b3, #0e7a55); bottom: 10%; left: 10%; opacity: 0.6;"></div>
+        
+        <div class="container">
+            <header>
+                <div class="title-container">
+                    <h1 class="title">MISSIÓ MARGULIS: LA NOVA EVOLUCIÓ</h1>
+                </div>
+            </header>
+            
+            <div class="flow-comic">
+                <!-- Flow path SVG -->
+                <div class="flow-path">
+                    <svg viewBox="0 0 1200 2500" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M600,100 C800,300 400,500 600,700 C800,900 400,1100 600,1300 C800,1500 400,1700 600,1900 C800,2100 400,2300 600,2500" 
+                              fill="none" 
+                              stroke="url(#gradient)" 
+                              stroke-width="8" 
+                              stroke-dasharray="20,10" 
+                              stroke-linecap="round"/>
+                        
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#6a3de8" />
+                                <stop offset="50%" stop-color="#42f5b3" />
+                                <stop offset="100%" stop-color="#ff5a5a" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                
+                <!-- Panel 1: Benvinguts a la Missió Margulis -->
+                <div class="flow-panel flow-panel-1">
+                    <div class="connector connector-1">1</div>
+                        <div class="comic-panel" style="--delay: 1">
+                            <div class="comic-panel-header">
+                                <h2 class="comic-panel-title"> Benvinguts a la Missió Margulis</h2>
+                            </div>
+                            <div class="comic-panel-content">
+                                <div class="comic-panel-row">
+                                    <div class="comic-panel-text">
+                                        <p>Som a l'any 2423, i formeu part de la tripulació de la bioastronauta Lynn Margulis.</p>
+                                        <p>La vostra missió: crear vida que pugui sobreviure en condicions extremes.</p>
+                                    </div>
+                                    <div class="comic-panel-image">
+                                        <img src="imatges/comic/lynn.png" alt="Missió Margulis" style="width: 100%; border-radius: 12px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                <!-- Panel 2: Objectiu de l'Expedició -->
+                <div class="flow-panel flow-panel-2">
+                    <div class="connector connector-2">2</div>
+                        <div class="comic-panel" style="--delay: 2">
+                            <div class="comic-panel-header">
+                                <h2 class="comic-panel-title"> Objectiu de l'Expedició</h2>
+                            </div>
+                            <div class="comic-panel-content">
+                                <div class="comic-panel-text">
+                                    <p>La vostra tasca és dissenyar organismes simbiótics que combinen trets d'espècies reals.</p>
+                                    <p>Cada equip haurà de:</p>
+                                    <ul class="comic-panel-list">
+                                        <li class="comic-panel-list-item">
+                                            
+                                            <span>Investigar adaptacions d'animals reals</span>
+                                        </li>
+                                        <li class="comic-panel-list-item">
+                                            
+                                            <span>Combinar trets de diferents espècies</span>
+                                        </li>
+                                        <li class="comic-panel-list-item">
+                                            
+                                            <span>Dissenyar un organisme simbiótic viable</span>
+                                        </li>
+                                        <li class="comic-panel-list-item">
+                                            
+                                            <span>Justificar científicament les adaptacions</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="comic-panel-image">
+                                    <img src="imatges/comic/analitzar.png" alt="Missió Margulis" style="width: 100%; border-radius: 12px;" />
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                <!-- Panel 3: Notes del passat: El Diari de Darwin -->
+                <div class="flow-panel flow-panel-3">
+                    <div class="connector connector-3">3</div>
+                        <div class="comic-panel" style="--delay: 3">
+                            <div class="comic-panel-header">
+                                <h2 class="comic-panel-title"> Notes del passat: El Diari de Darwin</h2>
+                            </div>
+                            <div class="comic-panel-content">
+                                <div class="comic-panel-row">
+                                    <div class="comic-panel-text">
+                                        <p>Per a preparar-vos durant l'expedició, us llegiu el diari de Charles Darwin, pioner de la teoria de la selecció natural.</p>
+                                        <div class="comic-panel-quote">
+                                            "No és l'espècie més forta la que sobreviu, ni la més intel·ligent, sinó la que millor s'adapta als canvis."
+                                        </div>
+                                    </div>
+                                    <div class="comic-panel-image">
+                                        <img src="imatges/comic/llibre.png" alt="Missió Margulis" style="width: 100%; border-radius: 12px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                <!-- Panel 4: El Misteri dels Pinsans -->
+                <div class="flow-panel flow-panel-4">
+                    <div class="connector connector-4">4</div>
+                        <div class="comic-panel" style="--delay: 4">
+                            <div class="comic-panel-header">
+                                <h2 class="comic-panel-title"> El Misteri dels Pinsans</h2>
+                            </div>
+                            <div class="comic-panel-content">
+                                <div class="comic-panel-row">
+                                    <div class="comic-panel-text">
+                                        <p>"A les illes Galàpagos vaig observar diferents espècies de pinsans: totes s'assemblaven molt, però tenien becs adaptats a menjar ben diferent.</p>
+                                        <p>Vaig començar a sospitar que provenien d'un mateix avantpassat i que havien canviat amb el temps per adaptar-se al seu entorn."</p>
+                                        <div class="info-popup" id="finchesInfo">
+                                            <button class="info-popup-button">
+                                                <span class="icon">🔍</span> Descobreix més sobre els pinsans de Darwin
+                                            </button>
+                                            <div class="info-popup-content">
+                                                <h4>Els Pinsans de Darwin</h4>
+                                                <p>Darwin va trobar 13 espècies diferents de pinsans a les illes Galàpagos, totes descendents d'un únic avantpassat comú.</p>
+                                                <p>Cada espècie tenia un bec especialitzat per a un tipus d'aliment específic:</p>
+                                                <p>- <strong>Becs grans i forts:</strong> Per trencar llavors dures</p>
+                                                <p>- <strong>Becs prims i llargs:</strong> Per extreure insectes de l'escorça</p>
+                                                <p>- <strong>Becs curts:</strong> Per menjar fruits petits i tous</p>
+                                                <p>Aquesta descoberta va ser clau per desenvolupar la teoria de l'evolució per selecció natural.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comic-panel-image">
+                                        <img src="imatges/comic/pinçons.png" alt="Missió Margulis" style="width: 100%; border-radius: 12px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                <!-- Panel 5: Més que competència: Evolució i Simbiosi -->
+                <div class="flow-panel flow-panel-5">
+                    <div class="connector connector-5">5</div>
+                        <div class="comic-panel" style="--delay: 5">
+                            <div class="comic-panel-header">
+                                <h2 class="comic-panel-title"> Més que competència: Evolució i Simbiosi</h2>
+                            </div>
+                            <div class="comic-panel-content">
+                                <div class="comic-panel-text">
+                                    <p>Darwin va explicar la selecció natural, però Lynn us recorda que la teoria ha anat evolucionant molt des d'aleshores.</p>
+                                    <p>Gràcies a la Lynn Margulis, avui sabem que no tot és competència: algunes espècies han evolucionat plegades, ajudant-se mútuament per sobreviure.</p>
+                                    <div class="comic-panel-quote">
+                                        "La vida no va conquerir el planeta mitjançant la lluita, sinó mitjançant la cooperació." - Lynn Margulis
+                                    </div>
+                                    <div class="info-popup" id="symbiosisInfo">
+                                        <button class="info-popup-button">
+                                            <span class="icon">🌿</span> Descobreix la teoria de Lynn Margulis
+                                        </button>
+                                        <div class="info-popup-content">
+                                            <h4>La Teoria de la Simbiogènesi</h4>
+                                            <p>Lynn Margulis va revolucionar la biologia amb la seva teoria de la simbiogènesi, que explica com alguns orgànuls cel·lulars (com els mitocondris) van ser originalment organismes independents que van establir relacions simbiòtiques.</p>
+                                            <p>Exemples de simbiosi a la natura:</p>
+                                            <p>- <strong>Coralls i algues:</strong> L'alga proporciona nutrients i el corall protecció</p>
+                                            <p>- <strong>Mitocondris:</strong> Antics bacteris que ara són part de les nostres cèl·lules</p>
+                                            <p>- <strong>Líquens:</strong> Fongs i algues que viuen junts formant un nou organisme</p>
+                                            <p>Aquesta visió complementa la teoria de Darwin, mostrant que la cooperació és tan important com la competència en l'evolució.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comic-panel-image">
+                                    <img src="imatges/comic/seleccio.png" alt="Missió Margulis" style="width: 100%; border-radius: 12px;" />
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                <!-- Panel 6: Bioinspiració: El vostre paper com a dissenyadors de vida -->
+                <div class="flow-panel flow-panel-6">
+                    <div class="connector connector-6">6</div>
+                        <div class="comic-panel" style="--delay: 6">
+                            <div class="comic-panel-header">
+                                <h2 class="comic-panel-title"> Bioinspiració: El vostre paper</h2>
+                            </div>
+                            <div class="comic-panel-content">
+                                <div class="comic-panel-text">
+                                    <p>Per a la vostra missió, necesitareu aquests coneixements. Fareu el mateix que fa la natura: combinareu espècies que s'adapten bé a entorns concrets i, amb l'ajuda de la biologia sintètica, en creareu de noves.</p>
+                                    <p>Aquesta manera d'inspirar-nos en la natura per innovar s'anomena bioinspiració.</p>
+                                    <div class="info-popup" id="bioInfo">
+                                        <button class="info-popup-button">
+                                            <span class="icon">💡</span> Saps què és la bioinspiració i la biologia sintètica?
+                                        </button>
+                                        <div class="info-popup-content">
+                                            <h4>Bioinspiració i Biologia Sintètica</h4>
+                                            <p><strong>Bioinspiració:</strong> Observar la natura per copiar solucions intel·ligents. Ex: el bec del martinet inspirant el tren bala japonès.</p>
+                                            <p><strong>Biologia sintètica:</strong> Crear o modificar éssers vius combinant gens. Permet dissenyar bacteris, cultius resistents o organismes adaptats a altres planetes.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                
+                <!-- Panel 7: El Repte Final: Dissenyeu Vida per a Nous Planetes -->
+                <div class="flow-panel flow-panel-7">
+                    <div class="connector connector-7">7</div>
+                        <div class="comic-panel" style="--delay: 7">
+                            <div class="comic-panel-header">
+                                <h2 class="comic-panel-title"> El Repte Final: Dissenyeu Vida per a Nous Planetes</h2>
+                            </div>
+                            <div class="comic-panel-content">
+                                <div class="comic-panel-row">
+                                    <div class="comic-panel-text">
+                                        <p>El repte és vostre: ajudeu Lynn a dissenyar nous organismes que superin els reptes de mons desconeguts!</p>
+                                        <p class="comic-panel-highlight" style="margin-top: 20px;">Com dissenyaries tu un organisme per sobreviure a un planeta de lava? O a un planeta gelat?</p>
+                                    </div>
+                                    <div class="comic-panel-image">
+                                        <img src="imatges/comic/vosaltres.png" alt="Missió Margulis" style="width: 100%; border-radius: 12px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Footer -->
+    <footer class="main-footer">
+        <!-- Decorative elements -->
+        <div class="footer-decoration footer-decoration-1"></div>
+        <div class="footer-decoration footer-decoration-2"></div>
+        <div class="footer-decoration footer-decoration-3"></div>
+        <div class="footer-decoration footer-decoration-4"></div>
+        
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <span class="footer-logo-text" data-text="Astrosimbiologia">Astrosimbiologia</span>
+                </div>
+                <p class="footer-description">
+                    Explorant els límits de l'evolució i la simbiosi en un viatge científic cap al futur. Descobreix com la cooperació entre espècies pot ser la clau per a la supervivència en entorns extrems.
+                </p>
+                
+            </div>
+            
+        
+            <div class="footer-column">
+                <h3 class="footer-heading">Enllaços realcionats</h3>
+                <ul class="footer-links">
+                    <li><a href="https://www.fundaciocatalunya-lapedrera.com/ca" class="footer-link">Fundació la Pedrera</a></li>
+                    <li><a href="#" class="footer-link">Projecte Skippit Real</a></li>
+                    <li><a href="#" class="footer-link">Preguntes freqüents</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/igemubarcelona/?hl=es" class="footer-social-link" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/skippit-igem-ub/posts/?feedView=all" class="footer-social-link" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.gofundme.com/f/help-us-represent-barcelona-at-the-igem-jamboree-in-paris" class="footer-social-link" target="_blank" aria-label="GoFundMe">
+                    <i class="fas fa-hand-holding-heart"></i> </a>
+            </div>
+            
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 PROJECTE SKIPPIT. </p>
+            <div class="footer-bottom-links">
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i>↑</i>
+    </div>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Header scroll effect
+        const header = document.querySelector('.main-header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Nav indicator
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navIndicator = document.querySelector('.nav-indicator');
+        
+        function updateNavIndicator(elem) {
+            if (!elem) return;
+            const width = elem.offsetWidth;
+            const left = elem.offsetLeft;
+            navIndicator.style.width = `${width}px`;
+            navIndicator.style.left = `${left}px`;
+        }
+        
+        // Initialize indicator position
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            updateNavIndicator(activeLink);
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                updateNavIndicator(link);
+            });
+        });
+        
+        document.querySelector('.nav-menu').addEventListener('mouseleave', () => {
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                updateNavIndicator(activeLink);
+            }
+        });
+        
+       
+    </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const popups = document.querySelectorAll(".info-popup");
+
+        popups.forEach((popup) => {
+            const button = popup.querySelector(".info-popup-button");
+
+            if (button) {
+                button.addEventListener("click", function (e) {
+                    e.stopPropagation(); // evita que se cierre inmediatamente
+                    popup.classList.toggle("active");
+                });
+            }
+        });
+
+        // Cierra cualquier popup si se hace clic fuera de él
+        document.addEventListener("click", function (e) {
+            popups.forEach((popup) => {
+                if (!popup.contains(e.target)) {
+                    popup.classList.remove("active");
+                }
+            });
+        });
+    });
+
+</script>
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95b890cb80bbec87',t:'MTc1MTkwNDE0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

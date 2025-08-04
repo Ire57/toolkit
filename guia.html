@@ -1,0 +1,2138 @@
+
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Missió Galàctica: la Nova Evolució</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú i Footer Futuristes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary: #6a3de8;
+            --primary-light: #8a5df8;
+            --secondary: #42f5b3;
+            --secondary-light: #72f7c3;
+            --dark: #0a0a2a;
+            --darker: #050518;
+            --light: #f8f9fa;
+            --accent: #ff5a5a;
+            --yellow: #ffde59;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .space-bg {
+            background: linear-gradient(to bottom, var(--dark), #1a103c);
+            position: relative;
+            min-height: 100vh;
+            margin-top: 150px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+         .futuristic-link {
+            color: #cceeff; /* azul claro suave, buen contraste sin ser estridente */
+            font-weight: normal;
+            font-family: 'Orbitron', sans-serif; /* si quieres mantener el toque sci-fi */
+            text-decoration: underline;
+            text-shadow: none;
+            transition: color 0.3s ease;
+        }
+    
+        .futuristic-link:hover {
+            color: #ffffff;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5);
+            animation: rotate 120s infinite linear;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        header {
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--light);
+            background-color: rgba(10, 10, 42, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+        }
+        
+        .section {
+            padding: 60px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            text-align: center;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        
+        .objectives-list {
+            list-style: none;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: rgba(10, 10, 42, 0.7);
+            border-radius: 10px;
+            border: 1px solid var(--primary);
+        }
+        
+        .objectives-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 1.1rem;
+        }
+        
+        .objectives-list li .icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .material-card {
+            background-color: rgba(26, 16, 60, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--primary);
+        }
+        
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px var(--secondary);
+        }
+        
+        .material-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        /* New Journey Path Styles */
+        .journey-container {
+            position: relative;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px 0;
+        }
+        
+        .journey-path {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transform: translateX(-50%);
+            border-radius: 3px;
+            z-index: 1;
+        }
+        
+        .session-header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .session-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            font-family: 'Orbitron', sans-serif;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .session-badge::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -15px);
+            z-index: -1;
+        }
+        
+        .step-container {
+            position: relative;
+            margin-bottom: 60px;
+            z-index: 2;
+        }
+        
+        .step-node {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--dark);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            box-shadow: 0 0 0 5px rgba(106, 61, 232, 0.3);
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+        
+        .step-container:hover .step-node {
+            background: var(--primary);
+            color: var(--light);
+            box-shadow: 0 0 0 8px rgba(106, 61, 232, 0.5), 0 0 20px var(--secondary);
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        .step-content {
+            width: calc(50% - 50px);
+            background-color: rgba(10, 10, 42, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .step-container:hover .step-content {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--secondary);
+            border-color: var(--secondary);
+        }
+        
+        .step-left .step-content {
+            margin-right: 50px;
+            margin-left: auto;
+            border-top-right-radius: 0;
+            position: relative;
+        }
+        
+        .step-right .step-content {
+            margin-left: 50px;
+            border-top-left-radius: 0;
+            position: relative;
+        }
+        
+        .step-left .step-content::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 0;
+            border: 10px solid transparent;
+            border-left-color: var(--primary);
+            border-top-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .step-right .step-content::after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            border: 10px solid transparent;
+            border-right-color: var(--primary);
+            border-top-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .step-container:hover .step-content::after {
+            border-left-color: var(--secondary);
+            border-top-color: var(--secondary);
+            border-right-color: var(--secondary);
+        }
+        
+        .step-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-title .step-number {
+            background-color: var(--primary);
+            color: var(--light);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .condition-list {
+            list-style: none;
+            margin: 10px 0;
+        }
+        
+        .condition-list li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .condition-list li .icon {
+            margin-right: 10px;
+        }
+        
+        .spaceship {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: float 6s infinite ease-in-out;
+            z-index: 2;
+            right: 5%;
+            top: 150px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), #3a1c87);
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .download-btn:hover {
+            background: linear-gradient(to right, var(--secondary), #0e7a55);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .download-btn .icon {
+            margin-right: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: rgba(5, 5, 24, 0.8);
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .title {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .spaceship {
+                width: 80px;
+                height: 80px;
+                top: 100px;
+            }
+            
+            .journey-path {
+                left: 30px;
+            }
+            
+            .step-node {
+                left: 30px;
+                transform: none;
+            }
+            
+            .step-container:hover .step-node {
+                transform: scale(1.1);
+            }
+            
+            .step-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+                margin-right: 0 !important;
+            }
+            
+            .step-left .step-content::after,
+            .step-right .step-content::after {
+                left: -20px;
+                right: auto;
+                border: 10px solid transparent;
+                border-right-color: var(--primary);
+                border-top-color: var(--primary);
+            }
+            
+            .step-container:hover .step-content::after {
+                border-right-color: var(--secondary);
+                border-top-color: var(--secondary);
+                border-left-color: transparent;
+            }
+            
+            .session-badge {
+                font-size: 1.1rem;
+                padding: 12px 25px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .objectives-list li {
+                font-size: 1rem;
+            }
+            
+            .spaceship {
+                width: 60px;
+                height: 60px;
+                right: 10px;
+                top: 80px;
+            }
+            
+            .step-title {
+                font-size: 1.1rem;
+            }
+        }
+    :root {
+            --primary: #6a3de8;
+            --primary-light: #8a5df8;
+            --primary-dark: #4a1db8;
+            --secondary: #42f5b3;
+            --secondary-light: #72f7c3;
+            --secondary-dark: #22d593;
+            --dark: #0a0a2a;
+            --darker: #050518;
+            --light: #f8f9fa;
+            --accent: #ff5a5a;
+            --accent-dark: #df3a3a;
+            --yellow: #ffde59;
+            --yellow-dark: #dfbe39;
+            --cyan: #00e5ff;
+            --cyan-dark: #00c5df;
+            --purple: #9c27b0;
+            --purple-dark: #7c0790;
+            --orange: #ff7a00;
+            --orange-dark: #df5a00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* ===== HEADER & NAVIGATION ===== */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(5, 5, 24, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(106, 61, 232, 0.1), transparent, rgba(66, 245, 179, 0.1));
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .main-header.scrolled {
+            padding: 5px 0;
+            background: rgba(5, 5, 24, 0.95);
+        }
+        
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--light);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-logo-icon {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .nav-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(66, 245, 179, 0.3), transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        
+        .nav-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .nav-logo-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.3;
+            filter: blur(4px);
+            z-index: -1;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            position: relative;
+        }
+        
+        .nav-menu::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .main-nav:hover .nav-menu::before {
+            opacity: 0.3;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-link:hover::before {
+            width: 100%;
+        }
+        
+        .nav-link.active {
+            color: var(--secondary);
+        }
+        
+        .nav-link.active::before {
+            width: 100%;
+        }
+        
+        .nav-link-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-link:hover .nav-link-icon {
+            transform: translateY(-3px);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .nav-button {
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--secondary));
+            background-size: 200% 200%;
+            animation: borderAnimation 3s linear infinite;
+            z-index: -1;
+            border-radius: 50px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-button:hover::before {
+            opacity: 1;
+        }
+        
+        .nav-button-outline {
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            background: transparent;
+        }
+        
+        .nav-button-outline:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(66, 245, 179, 0.3);
+        }
+        
+        .nav-button-fill {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-button-fill:hover {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(106, 61, 232, 0.4);
+        }
+        
+        .nav-button-icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            position: relative;
+        }
+        
+        .mobile-menu-btn:focus {
+            outline: none;
+        }
+        
+        .mobile-menu-btn .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 3px;
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        .nav-indicator {
+            position: absolute;
+            bottom: -2px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+        
+        /* Glowing dots */
+        .nav-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .nav-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            opacity: 0.5;
+            filter: blur(1px);
+            animation: floatDot 15s infinite linear;
+        }
+        
+        @keyframes floatDot {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes borderAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+        }
+        
+        /* ===== FOOTER ===== */
+        .main-footer {
+            background-color: rgba(5, 5, 24, 0.95);
+            border-top: 1px solid var(--primary);
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(106, 61, 232, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .footer-logo-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .footer-logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(66, 245, 179, 0.3), transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        
+        .footer-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        
+        .footer-logo-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.3;
+            filter: blur(4px);
+            z-index: -1;
+        }
+        
+        .footer-description {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            position: relative;
+            padding-left: 15px;
+            border-left: 2px solid var(--primary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .footer-social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .footer-social-link:hover::before {
+            opacity: 1;
+        }
+        
+        .footer-social-link i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-social-link:hover {
+            transform: translateY(-3px) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .footer-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .footer-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary);
+            opacity: 1;
+            transform: translateX(5px);
+        }
+        
+        .footer-link:hover::before {
+            background-color: var(--secondary);
+            box-shadow: 0 0 8px var(--secondary);
+        }
+        
+        .footer-link-icon {
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-newsletter {
+            margin-top: 20px;
+        }
+        
+        .footer-newsletter-form {
+            display: flex;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .footer-newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border-radius: 5px 0 0 5px;
+            font-family: 'Exo 2', sans-serif;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .footer-newsletter-input:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(106, 61, 232, 0.3);
+        }
+        
+        .footer-newsletter-button {
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            color: var(--light);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-newsletter-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .footer-newsletter-button:hover {
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            box-shadow: 0 0 15px rgba(106, 61, 232, 0.5);
+        }
+        
+        .footer-newsletter-button:hover::before {
+            left: 100%;
+        }
+        
+        .footer-bottom {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            position: relative;
+        }
+        
+        .footer-bottom::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        .footer-bottom-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .footer-bottom-link {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-bottom-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-bottom-link:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-bottom-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            overflow: hidden;
+        }
+        
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .back-to-top i {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover::before {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .back-to-top:hover i {
+            transform: translateY(-3px);
+        }
+        
+        /* Footer decorative elements */
+        .footer-decoration {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .footer-decoration-1 {
+            top: 20px;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+        }
+        
+        .footer-decoration-2 {
+            bottom: 50px;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            border: 1px dashed var(--secondary);
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
+        
+        .footer-decoration-3 {
+            top: 40%;
+            left: 20%;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(66, 245, 179, 0.1), transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s infinite;
+        }
+        
+        .footer-decoration-4 {
+            top: 30%;
+            right: 15%;
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle, rgba(106, 61, 232, 0.1), transparent 70%);
+            border-radius: 50%;
+            animation: pulse 5s infinite;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(5, 5, 24, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.5s ease;
+                z-index: 1000;
+                padding: 50px 0;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .nav-link {
+                font-size: 1.2rem;
+            }
+            
+            .nav-buttons {
+                display: none;
+            }
+            
+            .nav-menu::before {
+                display: none;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .footer-bottom-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+         .resources-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .resource-item {
+            display: flex;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(106, 61, 232, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(106, 61, 232, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .resource-icon {
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(106, 61, 232, 0.2);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .resource-info {
+            flex: 1;
+        }
+        
+        .resource-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #00e5ff;
+            margin-bottom: 8px;
+        }
+        
+        .resource-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .resource-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .resource-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .resource-download {
+            background: linear-gradient(90deg, #42f5b3, #2dd4bf);
+            color: #0a0a2a;
+        }
+        
+        .resource-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 245, 179, 0.4);
+        }
+        
+        .resource-link {
+            background: linear-gradient(90deg, #6a3de8, #3a1078);
+            color: #f8f9fa;
+        }
+        
+        .resource-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 61, 232, 0.4);
+        }
+        
+        .resource-button-icon {
+            font-size: 1rem;
+        }
+        
+        .image-examples {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .example-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .example-image {
+            width: 250px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid rgba(106, 61, 232, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .example-image:hover {
+            border-color: rgba(106, 61, 232, 0.6);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(106, 61, 232, 0.3);
+        }
+        
+        .example-label {
+            font-size: 0.8rem;
+            color: #00e5ff;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="creativitat.html" class="nav-logo">
+                <span class="nav-logo-text" data-text="PROJECTE SKIPPIT">PROJECTE SKIPPIT</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="creativitat.html" class="nav-link">
+                        <span>Inici</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="guia.html" class="nav-link active">
+                        <span>Guia del professor</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="introduccio.html" class="nav-link">
+                        <span>Introducció per l'alumne</span>
+                    </a>
+                </li>
+                
+                
+
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span>Altres activitats</span>
+                    </a>
+                </li>
+                
+            </ul>
+            
+            
+            <button class="mobile-menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <!-- Decorative dots -->
+            <div class="nav-dots">
+                <div class="nav-dot" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+                <div class="nav-dot" style="top: 30%; left: 20%; animation-delay: 2s;"></div>
+                <div class="nav-dot" style="top: 70%; left: 15%; animation-delay: 4s;"></div>
+                <div class="nav-dot" style="top: 40%; left: 80%; animation-delay: 1s;"></div>
+                <div class="nav-dot" style="top: 60%; left: 85%; animation-delay: 3s;"></div>
+                <div class="nav-dot" style="top: 80%; left: 75%; animation-delay: 5s;"></div>
+            </div>
+        </nav>
+    </header>
+    <div class="space-bg">
+        <!-- Stars will be added by JavaScript -->
+        <div id="stars"></div>
+        
+        <!-- Planets -->
+        <div class="planet" style="width: 150px; height: 150px; background: radial-gradient(circle at 30% 30%, #6a3de8, #3a1c87); top: 15%; right: -30px; opacity: 0.7;"></div>
+        <div class="planet" style="width: 80px; height: 80px; background: radial-gradient(circle at 30% 30%, #42f5b3, #0e7a55); bottom: 10%; left: 10%; opacity: 0.6;"></div>
+        
+        <!-- Spaceship -->
+        <div class="spaceship">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="shipGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                        <stop offset="0%" stop-color="#42f5b3" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#42f5b3" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+                <circle cx="100" cy="100" r="50" fill="url(#shipGlow)" opacity="0.7"/>
+                <path d="M100,60 L120,110 L100,100 L80,110 Z" fill="#d8d8d8"/>
+                <path d="M80,110 L100,100 L120,110 L100,140 Z" fill="#a0a0a0"/>
+                <circle cx="100" cy="90" r="15" fill="#6a3de8"/>
+                <path d="M90,140 L100,160 L110,140 Z" fill="#ff5a5a"/>
+                <path d="M85,145 L75,170 L95,150 Z" fill="#ff7a00" opacity="0.8">
+                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1s" repeatCount="indefinite"/>
+                </path>
+                <path d="M115,145 L125,170 L105,150 Z" fill="#ff7a00" opacity="0.8">
+                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1s" repeatCount="indefinite"/>
+                </path>
+            </svg>
+        </div>
+        
+        <div class="container">
+            <header>
+                <h1 class="title">PROJECTE SKIPPIT: LA NOVA EVOLUCIÓ</h1>
+                <p class="subtitle">Crearan un organisme simbiótic capaç de sobreviure a un planeta amb condicions extremes, combinant trets d'animals reals. 
+                    Aplicaran el que han après sobre adaptacions, evolució i simbiosi, treballant com veritables biòlegs del futur.</p>
+            </header>
+            
+            <section class="section" id="objectives">
+                <h2 class="section-title">Objectius d'aprenentatge</h2>
+                <ul class="objectives-list">
+                    <li>
+                        <span>Repassar i contextualitzar els principis bàsics de l'evolució segons Darwin (selecció natural i adaptació)</span>
+                    </li>
+                </ul>
+                <ul class="objectives-list">
+                    <li>
+                        <span>Explorar el concepte de simbiosi com a motor evolutiu a través de la teoria de Lynn Margulis</span>
+                    </li>
+                </ul>
+                <ul class="objectives-list">
+                    <li>
+                        <span>Aplicar el coneixement biològic a situacions noves i imaginatives mitjançant la bioinspiració</span>
+                    </li>
+                </ul>
+                <ul class="objectives-list">
+                    <li>
+                        <span>Desenvolupar competències de treball en equip, expressió oral i pensament creatiu</span>
+                    </li>
+                </ul>
+            </section>
+            
+            <section class="section" id="materials">
+                <h2 class="section-title">Materials</h2>
+                <div class="materials-grid">
+                    <div class="material-card">
+                        <h3>Fitxes</h3>
+                        <p>Informació d'animals adaptats a diferents condicions (digital o imprès), així com una fitxa per a que emplenin els alumnes.</p>
+                        <a href="#" class="download-btn">Descarregar fitxes</a>
+                    </div>
+                    <div class="material-card">
+                        <h3>Generador Mapa Planetàri</h3>
+                        <p>Per escollir condicions extremes aleatòriament</p>
+                        <a href="generador.html" class="download-btn">Accedir al generador</a>
+                    </div>
+                    <div class="material-card">
+                        <h3>Material de dibuix</h3>
+                        <p>Paper, llapis i colors per dibuixar els organismes. Opcionalment poden fer-se unes fitxes personalitzades com les de l'activitat.</p>
+                        <a href="personalitzador.html" class="download-btn">Personalitzador Fitxes</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section" id="sessions">
+                <h2 class="section-title">Sessions de l'activitat</h2>
+                
+                <div class="journey-container">
+                    <div class="journey-path"></div>
+                    
+                    <!-- Session 1 Header -->
+                    <div class="session-header">
+                        <div class="session-badge"> SESSIÓ 1: DISSENY D'UN ORGANISME SIMBIÒTIC</div>
+                    </div>
+                    
+                    <!-- Step 1.1 -->
+                    <div class="step-container step-right">
+                        <div class="step-content">
+                            <h3 class="step-title" id="introduccio"><span class="step-number">1</span>Introducció</h3>
+                            <p><strong>Durada:</strong> 10 minuts</p>
+                            <p>
+                                Podeu utilitzar la historieta que hi ha a la 
+                            </p>
+                            <p>
+                                <a href="introduccio.html" class="futuristic-link">secció Introducció</a>.
+                            </p>
+                            <p>Explicació curta sobre:</p>
+                            <ul>
+                                <li>Darwin i la selecció natural</li>
+                                <li>Margulis i la simbiosi</li>
+                                <li>Exemples: coralls, líquens, mitocondris</li>
+                                <li>Narrativa: La Lynn Darwin ens envia a dissenyar vida per repoblar planetes. Hem d'evolucionar!</li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+
+                    
+                    <!-- Step 1.2 -->
+                    <div class="step-container step-left">
+                        <div class="step-content">
+                            <h3 class="step-title"><span class="step-number">2</span>Assignació de condicions extremes</h3>
+                            <p><strong>Durada:</strong> 5 minuts</p>
+                            <p>
+                                Podeu utilitzar el generador que hi ha al
+                            </p>
+                            <p>
+                                <a href="generador.html" class="futuristic-link">Generador Mapa Planetàri</a>.
+                            </p>
+                            <p>
+                                Cada classe que hi participi, s'ocuparà d'un planeta diferent, i cada grup, d'un continent amb 3 condicions extremes d'entre:
+                            </p>
+                            <ul class="condition-list">
+                                <li><span class="icon">🌊</span> Pressió Alta</li>
+                                <li><span class="icon">❄️</span> Clima Fred</li>
+                                <li><span class="icon">🪨</span> Gravetat Alta</li>
+                                <li><span class="icon">🍽️</span> Poca Alimentació</li>
+                                <li><span class="icon">⚔️</span> Competència Hostil</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 1.3 -->
+                    <div class="step-container step-right">
+                        <div class="step-node">🧬</div> <!-- Puedes cambiar este icono por uno que represente ambos pasos -->
+                        <div class="step-content">
+                            <h3 class="step-title"><span class="step-number">3</span>Disseny de l'organisme</h3>
+                            <p><strong>Durada total:</strong> 35 minuts</p>
+
+                            <p><strong>1. Consulta de fitxes</strong></p>
+                            <p>
+                                Es poden utilitzar les <a href="generador.html" class="futuristic-link">Fitxes d'animals</a>
+                            </p>
+                            <p>per inspirar-se en adaptacions reals d'animals a condicions extremes, combinar-les, etc..</p>
+
+                            <p><strong>2. Emplenar fitxa tècnica</strong></p>
+                            <p>Amb una <a href="generador.html" class="futuristic-link">fitxa de guia</a>, en defineixen les característiques:
+                            </p>
+                        </div>
+                    </div>
+
+                    
+                    <!-- Session 2 Header -->
+                    <div class="session-header">
+                        <div class="session-badge"> SESSIÓ 2: EXPRESSIÓ CREATIVA I PRESENTACIÓ</div>
+                    </div>
+                    
+                    <!-- Step 2.1 -->
+                    <div class="step-container step-right">
+                        <div class="step-content">
+                            <h3 class="step-title"><span class="step-number">1</span>Dibuix de l'organisme</h3>
+                            <p><strong>Durada:</strong> 20 minuts</p>
+                            <ul>
+                                <li>Dibuixen l'organisme simbiótic amb tots els detalls</li>
+                                <li>Escriuen el nom de l'espècie i del seu continents, i proposen un nom pel planeta</li>
+                                <li>Afegeixen una llegenda amb punts clau:
+                                    <ul>
+                                        <li>Adaptacions a les 3 condicions</li>
+                                        <li>Animals d'origen dels trets</li>
+                                        <li>Relacions simbiòtiques entre les parts</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2.2 -->
+                    <div class="step-container step-left">
+                        <div class="step-content">
+                            <h3 class="step-title"><span class="step-number">2</span>Presentació oral per grups</h3>
+                            <p><strong>Durada:</strong> 15 minuts</p>
+                            <p>Cada grup presenta davant la classe:</p>
+                            <ul>
+                                <li>El seu organisme simbiótic i les seves característiques</li>
+                                <li>Com s'adapta a les condicions extremes del planeta</li>
+                                <li>Quins animals reals han inspirat el disseny</li>
+                                <li>Com funciona la relació simbiòtica entre les parts</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2.3 -->
+                    <div class="step-container step-right">
+                        <div class="step-content">
+                            <h3 class="step-title"><span class="step-number">3</span>Votació col·lectiva</h3>
+                            <p><strong>Durada:</strong> 15 minuts</p>
+                            <p>Premis simbòlics:</p>
+                            <ul class="condition-list">
+                                <li><span class="icon">🌍</span> Nom del planeta que representa la seva classe</li>
+                                <li><span class="icon">🎨</span> Organisme més original</li>
+                                <li><span class="icon">🔬</span> El més realista científicament</li>
+                                <li><span class="icon">🤪</span> El més divertit</li>
+                            </ul>
+                            <p> Opcional: poden fer murals per penjar per l'escola en lloc de l'exposició a classe.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+    <div class="resources-section">
+        <section id="fitxes-animals">
+            <div class="resource-item">
+            <div class="resource-icon">🐾</div>
+                <div class="resource-info">
+
+                        <h3 class="resource-title">Fitxes d'Animals</h3>
+                        <p class="resource-description">
+                            Aquests són animals reals de la Terra que s'adapten a situacions molt diverses. 
+                            Perfectes per inspirar les vostres creacions evolutives!
+                        </p>
+                        <div class="resource-buttons">
+                            <button class="resource-button resource-download" data-file="fitxes-animals">
+                                <span class="resource-button-icon">📥</span>
+                                <span>Descarregar PDF</span>
+                            </button>
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="resource-item">
+                <div class="resource-icon">📋</div>
+                <div class="resource-info">
+                    <h3 class="resource-title">Fitxa Guia</h3>
+                    <p class="resource-description">
+                        Guia completa per utilitzar les fitxes d'animals en les vostres activitats educatives.
+                    </p>
+                    <div class="resource-buttons">
+                        <button class="resource-button resource-download" data-file="fitxa-guia">
+                            <span class="resource-button-icon">📥</span>
+                            <span>Descarregar Guia</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="Personalitza">
+            <div class="resource-item">
+                <div class="resource-icon">✏️</div>
+                <div class="resource-info">
+                    <h3 class="resource-title">Personalitza les Fitxes</h3>
+                    <p class="resource-description">
+                        Crea les teves pròpies fitxes d'organismes amb aquestes eines interactives.
+                    </p>
+
+                    <!-- Exemples d'imatges -->
+                    <div class="image-examples">
+                        <div class="example-item">
+                            <img src="imatges/anvers.jpg" alt="Exemple fitxa anvers" class="example-image">
+                            <span class="example-label">Exemple anvers</span>
+                            <a href="anvers.html" class="resource-button resource-link" data-link="personalitza-anvers">
+                                <span class="resource-button-icon">🔗</span>
+                                <span>Personalitza l'anvers</span>
+                            </a>
+                        </div>
+                        <div class="example-item">
+                            <img src="imatges/revers.jpg" alt="Exemple fitxa revers" class="example-image">
+                            <span class="example-label">Exemple revers</span>
+                            <a href="revers.html" class="resource-button resource-link" data-link="personalitza-revers">
+                                <span class="resource-button-icon">🔗</span>
+                                <span>Personalitza el revers</span>
+                            </a>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </section>
+        
+    </div>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <!-- Decorative elements -->
+        <div class="footer-decoration footer-decoration-1"></div>
+        <div class="footer-decoration footer-decoration-2"></div>
+        <div class="footer-decoration footer-decoration-3"></div>
+        <div class="footer-decoration footer-decoration-4"></div>
+        
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <span class="footer-logo-text" data-text="Astrosimbiologia">Astrosimbiologia</span>
+                </div>
+                <p class="footer-description">
+                    Explorant els límits de l'evolució i la simbiosi en un viatge científic cap al futur. Descobreix com la cooperació entre espècies pot ser la clau per a la supervivència en entorns extrems.
+                </p>
+                
+            </div>
+            
+        
+            <div class="footer-column">
+                <h3 class="footer-heading">Enllaços realcionats</h3>
+                <ul class="footer-links">
+                    <li><a href="https://www.fundaciocatalunya-lapedrera.com/ca" class="footer-link">Fundació la Pedrera</a></li>
+                    <li><a href="#" class="footer-link">Projecte Skippit Real</a></li>
+                    <li><a href="#" class="footer-link">Preguntes freqüents</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/igemubarcelona/?hl=es" class="footer-social-link" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/skippit-igem-ub/posts/?feedView=all" class="footer-social-link" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.gofundme.com/f/help-us-represent-barcelona-at-the-igem-jamboree-in-paris" class="footer-social-link" target="_blank" aria-label="GoFundMe">
+                    <i class="fas fa-hand-holding-heart"></i> </a>
+            </div>
+            
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 PROJECTE SKIPPIT. </p>
+            <div class="footer-bottom-links">
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i>↑</i>
+    </div>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const screenWidth = window.innerWidth;
+            const screenHeight = Math.max(document.body.scrollHeight, window.innerHeight);
+            
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 1-3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                const left = Math.random() * screenWidth;
+                const top = Math.random() * screenHeight;
+                star.style.left = `${left}px`;
+                star.style.top = `${top}px`;
+                
+                // Random twinkle delay
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Initialize stars on load
+        window.addEventListener('load', createStars);
+        
+        // Recreate stars on window resize
+        window.addEventListener('resize', () => {
+            const starsContainer = document.getElementById('stars');
+            starsContainer.innerHTML = '';
+            createStars();
+        });
+        
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            if (anchor.getAttribute('href') && anchor.getAttribute('href').startsWith('#')) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.classList.add('ring-4', 'ring-cyan-400');
+                    setTimeout(() => {
+                        this.classList.remove('ring-4', 'ring-cyan-400');
+                    }, 500);
+                });
+            }
+        });
+    </script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Header scroll effect
+        const header = document.querySelector('.main-header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Nav indicator
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navIndicator = document.querySelector('.nav-indicator');
+        
+        function updateNavIndicator(elem) {
+            if (!elem) return;
+            const width = elem.offsetWidth;
+            const left = elem.offsetLeft;
+            navIndicator.style.width = `${width}px`;
+            navIndicator.style.left = `${left}px`;
+        }
+        
+        // Initialize indicator position
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            updateNavIndicator(activeLink);
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                updateNavIndicator(link);
+            });
+        });
+        
+        document.querySelector('.nav-menu').addEventListener('mouseleave', () => {
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink) {
+                updateNavIndicator(activeLink);
+            }
+        });
+        
+        // Info popup functionality
+        const infoPopups = document.querySelectorAll('.info-popup');
+        
+        infoPopups.forEach(popup => {
+            const button = popup.querySelector('.info-popup-button');
+            
+            button.addEventListener('click', () => {
+                popup.classList.toggle('active');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!popup.contains(e.target) && popup.classList.contains('active')) {
+                    popup.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    <script>
+        // Handle resource downloads
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.resource-download')) {
+                const button = e.target.closest('.resource-download');
+                const fileType = button.getAttribute('data-file');
+                downloadResource(fileType);
+            }
+        });
+        
+        function downloadResource(fileType) {
+            let fileName, filePath;
+
+            if (fileType === 'fitxes-animals') {
+                fileName = 'Fitxes_Animals.pdf';
+                filePath = 'docs/Fitxes_Animals.pdf';
+            } else if (fileType === 'fitxa-guia') {
+                fileName = 'Fitxa_Guia.pdf';
+                filePath = 'docs/Fitxa_Guia.pdf';
+            }
+        
+            const a = document.createElement('a');
+            a.href = filePath;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95c72073956ccf94',t:'MTc1MjA1NjgyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
