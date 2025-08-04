@@ -374,12 +374,6 @@
             border-left-color: #e62e25;
         }
 
-        .statement-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #2d3748;
-        }
 
         .statement-result {
             display: none;
@@ -393,7 +387,41 @@
         .statement-result.show {
             display: block;
         }
+        .reveal-button {
+            /* Estilos básicos */
+            display:block; /* Ocupa el ancho completo */
+            width: 80%;
+            position:absolute;
+            bottom: 15px; /* Distancia desde la parte de abajo de la tarjeta */
+            left: 50%; /* Centra el botón horizontalmente */
+            transform: translateX(-50%); /* Ajuste para un centrado perfecto */
 
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+
+            /* Colores y tipografía */
+            background-color: #ea534e; /* Un color rojo llamativo */
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+
+            /* Transición suave para el efecto hover */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Estilos al pasar el ratón por encima (efecto hover) */
+        .reveal-button:hover {
+            background-color: #e41513; /* Un azul más oscuro */
+        }
+
+        /* Estilos para el botón cuando está activo (al hacer clic) */
+        .reveal-button:active {
+            background-color: #f28f8c; /* Un azul aún más oscuro */
+        }
         .result-badge {
             display: inline-block;
             padding: 8px 16px;
@@ -419,16 +447,7 @@
             margin-bottom: 15px;
         }
 
-        .result-link {
-            color: #e41513;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .result-link:hover {
-            text-decoration: underline;
-        }
-
+        
         .control-buttons {
             text-align: center;
             margin: 30px 0;
@@ -1124,7 +1143,7 @@
         .statement-text {
             font-size: 1.1rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
             color: #2d3748;
         }
 
@@ -1164,6 +1183,9 @@
             color: #4a5568;
             line-height: 1.6;
             margin-bottom: 15px;
+        }
+        .result-link-container {
+            margin-bottom: 4rem; 
         }
 
         .result-link {
@@ -2668,37 +2690,44 @@
             {
                 statement: "L'aigua amb llimona fa perdre pes",
                 isTrue: false,
-                explanation: "No hi ha evidència científica sòlida que l'aigua amb llimona tingui efectes significatius en la pèrdua de pes."
+                explanation: "No hi ha evidència científica sòlida que l'aigua amb llimona tingui efectes significatius en la pèrdua de pes.",
+                link: "https://www.youtube.com/watch?v=ByN88AbmAyU"
             },
             {
                 statement: "La Terra és plana",
                 isTrue: false,
-                explanation: "La Terra és esfèrica, com demostren múltiples evidències científiques, observacions astronòmiques i fotografies de l'espai."
+                explanation: "La Terra és esfèrica, com demostren múltiples evidències científiques, observacions astronòmiques i fotografies de l'espai.",
+                link: "https://youtu.be/taDddzbN6VY"
             },
             {
                 statement: "Descobreixen quatre tipus de dinosaures carnívors en un jaciment del Pallars",
                 isTrue: true,
-                explanation: "Aquest és un descobriment paleontològic real fet a Catalunya i publicat en revistes científiques."
+                explanation: "Aquest és un descobriment paleontològic real fet a Catalunya i publicat en revistes científiques.",
+                link: "https://www.vilaweb.cat/noticies/descobreixen-quatre-tipus-de-dinosaures-carnivors-en-un-jaciment-del-pallars/#google_vignette"
             },
             {
                 statement: "Sirena captada a una platja d'Israel",
                 isTrue: false,
-                explanation: "Les sirenes són criatures mitològiques que no existeixen en la realitat. Aquestes notícies solen ser falses o manipulades."
+                explanation: "Les sirenes són criatures mitològiques que no existeixen en la realitat. Aquestes notícies solen ser falses o manipulades.",
+                link: "https://www.youtube.com/watch?v=hCiSbz5AP-w"
             },
             {
                 statement: "Apagó massiu a Espanya el 28 d'Abril de 2025",
                 isTrue: true,
-                explanation: "Aquest va ser un esdeveniment real reportat pels mitjans de comunicació oficials."
+                explanation: "Aquest va ser un esdeveniment real reportat pels mitjans de comunicació oficials.",
+                link: "https://www.rtve.es/noticias/20250428/apagon-espana-directo/16557691.shtml"
             },
             {
                 statement: "L'arbre més gran del món mesura 115 metres i està a Califòrnia",
                 isTrue: true,
-                explanation: "Es refereix a les sequoies gegants de Califòrnia, que són efectivament els arbres més alts del món."
+                explanation: "Es refereix a les sequoies gegants de Califòrnia, que són efectivament els arbres més alts del món.",
+                link: "https://youtube.com/shorts/6DckeRLjmLo?si=GofD3TTGcbeFkFDm"
             },
             {
                 statement: "Dieta per baixar 10 quilos en 3 dies",
                 isTrue: false,
-                explanation: "Perdre 10 quilos en 3 dies és impossible de manera saludable i pot ser molt perillós per a la salut."
+                explanation: "Perdre 10 quilos en 3 dies és impossible de manera saludable i pot ser molt perillós per a la salut.",
+                link: "https://youtu.be/45hO90zedFw?si=32n1nKNUbqbvBnfF"
             }
         ];
 
@@ -2831,24 +2860,31 @@
 
         // Activity 1: Truth or Lie Cards
         function generateTruthLieCards() {
-            const container = document.getElementById('truthLieCards');
-            container.innerHTML = '';
-            truthLieStatements.forEach((statement, index) => {
-                const card = document.createElement('div');
-                card.className = 'statement-card';
-                card.innerHTML = `
-                    <div class="statement-text">${statement.statement}</div>
-                    <div class="statement-result">
-                        <div class="result-badge ${statement.isTrue ? 'true' : 'false'}">
-                            ${statement.isTrue ? 'CERT' : 'FALS'}
-                        </div>
-                        <div class="result-explanation">${statement.explanation}</div>
-                        ${statement.link ? `<a href="${statement.link}" target="_blank" class="result-link">Més informació →</a>` : ''}
-                    </div>
-                `;                
-                card.addEventListener('click', () => revealAnswer(card, statement.isTrue));
-                container.appendChild(card);
-            });
+          const container = document.getElementById('truthLieCards');
+          container.innerHTML = '';
+          truthLieStatements.forEach((statement, index) => {
+            const card = document.createElement('div');
+            card.className = 'statement-card';
+            card.innerHTML = `
+              <div class="statement-text">${statement.statement}</div>
+              <div class="result-link-container">
+                    <a href="${statement.link}" target="_blank" class="result-link">Més informació →</a>
+             </div>
+              <div class="statement-result">
+                <div class="result-badge ${statement.isTrue ? 'true' : 'false'}">
+                  ${statement.isTrue ? 'CERT' : 'FALS'}
+                </div>
+                <div class="result-explanation">${statement.explanation}</div>
+              </div>
+              <button class="reveal-button">Veure resposta</button>
+            `;
+          
+            // Añade el evento de clic solo al botón
+            const revealButton = card.querySelector('.reveal-button');
+            revealButton.addEventListener('click', () => revealAnswer(card, statement.isTrue));
+          
+            container.appendChild(card);
+          });
         }
 
         function revealAnswer(card, isTrue) {
