@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #FFFEE8;
+            min-height: 100vh;
+            color: #53110e;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 254, 232, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid #f28f8c;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 145, 139, 0.15);
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e41513;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #be1818;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 25px;
+        }
+
+        .nav-item a:hover {
+            color: #e41513;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 15px rgba(255, 29, 17, 0.1);
+            line-height: 1.2;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #be1818;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Internal Navigation */
+        .internal-nav {
+            background: #fbdad9;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: sticky;
+            top: 90px;
+            z-index: 100;
+            box-shadow: 0 8px 25px rgba(255, 145, 139, 0.15);
+        }
+
+        .internal-nav-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .internal-nav-item {
+            background: rgba(255, 254, 232, 0.8);
+            color: #be1818;
+            padding: 15px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .internal-nav-item:hover,
+        .internal-nav-item.active {
+            background: linear-gradient(135deg, #f28f8c, #e52920);
+            color: white;
+            border-color: #e41513;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px #9d1915;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            background: #fdeeee;
+            padding: 50px;
+            border-radius: 25px;
+            border: 3px solid #f28f8c;
+            box-shadow: 0 10px 30px rgba(255, 145, 139, 0.1);
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section h3 {
+            color: #e41513;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .content-section h4 {
+            color: #e52920;
+            font-size: 1.4rem;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .content-section p {
+            color: #be1818;
+            line-height: 1.8;
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+        }
+
+        /* Mission Briefing Style */
+        .mission-briefing {
+            background: linear-gradient(135deg, #92C9F9, #f7bcbb);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 15px 40px rgba(146, 201, 249, 0.3);
+        }
+
+        .mission-briefing h4 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .mission-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .start-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #f7bcbb;
+            border: none;
+            padding: 18px 35px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .start-button:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Interactive Elements */
+        .interactive-qa {
+            margin: 30px 0;
+        }
+
+        .qa-item {
+            background: rgba(146, 201, 249, 0.1);
+            border: 2px solid #92C9F9;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .qa-question {
+            background: #92C9F9;
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qa-question:hover {
+            background: #f7bcbb;
+        }
+
+        .qa-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .qa-answer.active {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        .qa-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .qa-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        /* Protocol Steps */
+        .protocol-timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .protocol-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #92C9F9, #f7bcbb);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(146, 201, 249, 0.3);
+        }
+
+        .step-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            flex: 1;
+            border: 2px solid #92C9F9;
+        }
+
+        .step-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #f7bcbb;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .step-checkbox {
+            margin-top: 15px;
+        }
+
+        .step-checkbox input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
+        /* Comic Slideshow */
+        .comic-slideshow {
+            background: linear-gradient(135deg, rgba(255, 145, 139, 0.1), rgba(255, 220, 218, 0.3));
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #f28f8c;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comic-frame {
+            display: none;
+            background: white;
+            border: 4px solid #e41513;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 8px 25px rgba(255, 29, 17, 0.2);
+            position: relative;
+        }
+
+        .comic-frame.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .comic-frame::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 15px solid #e41513;
+        }
+
+        .comic-character {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .comic-text {
+            font-size: 1.1rem;
+            color: #53110e;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .comic-controls {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .comic-btn {
+            background: linear-gradient(135deg, #f28f8c, #e52920);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .comic-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px #9d1915;
+        }
+
+        .comic-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .comic-progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 145, 139, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #f28f8c;
+            transform: scale(1.2);
+        }
+
+        .cell-diagram {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            position: relative;
+            background: radial-gradient(circle, #E9F8FF, #92C9F9);
+            border-radius: 50%;
+            border: 4px solid #f7bcbb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cell-diagram:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(146, 201, 249, 0.4);
+        }
+
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #f7bcbb, #92C9F9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(255, 142, 142, 0.3);
+        }
+
+        /* Virtual Lab */
+        .virtual-lab {
+            background: rgba(146, 201, 249, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #92C9F9;
+            margin: 30px 0;
+        }
+
+        .fruit-selector {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .fruit-option {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .fruit-option:hover,
+        .fruit-option.selected {
+            border-color: #f7bcbb;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 142, 142, 0.3);
+        }
+
+        .fruit-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .dna-tube {
+            width: 80px;
+            height: 200px;
+            background: linear-gradient(to top, #92C9F9 0%, transparent 100%);
+            border: 3px solid #333;
+            border-radius: 0 0 40px 40px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dna-content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 142, 142, 0.8);
+            transition: height 0.8s ease;
+            border-radius: 0 0 37px 37px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .internal-nav-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .internal-nav-item {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .content-section {
+                padding: 30px 20px;
+            }
+
+            .mission-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .protocol-step {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-bottom: 15px;
+                margin-right: 0;
+            }
+
+            .cell-diagram {
+                width: 250px;
+                height: 250px;
+            }
+
+            .fruit-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 20px 10px;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .internal-nav {
+                position: static;
+            }
+        }
+        /* Media query para móviles */
+        @media (max-width: 768px) {
+          .footer-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+
+          .footer-section {
+              text-align: center;
+          }
+      
+          .footer-nav, .footer-social, .footer-collaborations {
+              align-items: center;
+          }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                backdrop-filter: blur(10px);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+        }
+        .materials-section, .procedure-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 25px;
+            border: 3px solid #f28f8c;
+            box-shadow: 0 15px 40px rgba(255, 145, 139, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 220, 218, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 145, 139, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .material-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 145, 139, 0.2);
+        }
+
+        .material-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .material-text {
+            color: #be1818;
+            line-height: 1.5;
+        }
+
+        .material-text strong {
+            color: #e41513;
+            font-weight: 600;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            background: rgba(255, 220, 218, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #9d1915;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 145, 139, 0.25);
+        }
+
+        .step-number {
+            background: #e41513;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(255, 29, 17, 0.3);
+        }
+
+        .step-content h3 {
+            color: #e41513;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: #be1818;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .explanation-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 25px;
+            border: 3px solid #f28f8c;
+            box-shadow: 0 15px 40px rgba(255, 145, 139, 0.2);
+        }
+
+        .explanation-item {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: rgba(255, 220, 218, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 2px solid #9d1915;
+            transition: all 0.3s ease;
+        }
+
+        .explanation-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 145, 139, 0.3);
+        }
+
+        .animation-container {
+            flex-shrink: 0;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background: rgba(255, 145, 139, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(255, 145, 139, 0.3);
+            overflow: hidden;
+        }
+
+        .explanation-text {
+            flex: 1;
+        }
+
+        .explanation-text h3 {
+            color: #e41513;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .explanation-text p {
+            color: #be1818;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Soap Animation */
+        .soap-animation {
+            width: 160px;
+            height: 160px;
+            position: relative;
+        }
+
+        .cell-large {
+            width: 140px;
+            height: 140px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            border: 4px solid #e52920;
+            border-radius: 50%;
+            background: rgba(255, 182, 193, 0.2);
+            animation: cell-break 5s ease-in-out infinite;
+        }
+
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: #9d1915;
+            border: 3px solid #e52920;
+            border-radius: 50%;
+            animation: nucleus-break 5s ease-in-out infinite;
+        }
+
+        .soap-circle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #FFD700;
+            border-radius: 50%;
+            opacity: 0;
+            animation: soap-appear 5s ease-in-out infinite;
+        }
+
+        .soap-circle:nth-child(3) {
+            top: 0px;
+            left: 50px;
+            animation-delay: 1s;
+        }
+
+        .soap-circle:nth-child(4) {
+            top: 40px;
+            left: -5px;
+            animation-delay: 1.2s;
+        }
+
+        .soap-circle:nth-child(5) {
+            top: 80px;
+            right: -5px;
+            animation-delay: 1.4s;
+        }
+
+        .soap-circle:nth-child(6) {
+            bottom: 0px;
+            left: 60px;
+            animation-delay: 1.6s;
+        }
+
+        .soap-circle:nth-child(7) {
+            top: 20px;
+            right: 20px;
+            animation-delay: 1.8s;
+        }
+
+        .soap-circle:nth-child(8) {
+            bottom: 30px;
+            left: 20px;
+            animation-delay: 2s;
+        }
+
+        .dna-thread {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            opacity: 0;
+            animation: dna-liberation 5s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes cell-break {
+            0%, 40% { 
+                border-color: #e52920;
+                transform: scale(1);
+                border-style: solid;
+            }
+            60% { 
+                border-color: #f28f8c;
+                transform: scale(1.05);
+                border-style: dashed;
+            }
+            80% { 
+                border-color: rgba(255, 145, 139, 0.3);
+                transform: scale(1.1);
+                border-style: dotted;
+            }
+            100% { 
+                border-color: rgba(255, 145, 139, 0.1);
+                transform: scale(1.15);
+                border-style: dotted;
+            }
+        }
+
+        @keyframes nucleus-break {
+            0%, 60% { 
+                border-color: #e52920;
+                transform: translate(-50%, -50%) scale(1);
+                border-style: solid;
+            }
+            80% { 
+                border-color: rgba(255, 145, 139, 0.5);
+                transform: translate(-50%, -50%) scale(1.1);
+                border-style: dashed;
+            }
+            100% { 
+                border-color: rgba(255, 145, 139, 0.2);
+                transform: translate(-50%, -50%) scale(1.2);
+                border-style: dotted;
+            }
+        }
+
+        @keyframes soap-appear {
+            0%, 20% { 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            40% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes dna-liberation {
+            0%, 70% { 
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            85% { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% { 
+                opacity: 1;
+                transform: translate(-20%, -20%) scale(1.2);
+            }
+        }
+
+        /* Salt Animation */
+        .salt-animation {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            background: radial-gradient(circle, rgba(135, 206, 235, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            border: 3px solid #87CEEB;
+            overflow: hidden;
+        }
+
+        .dna-thread-mixed {
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            animation: dna-mixed 5s ease-in-out infinite;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        }
+
+        .dna-thread-mixed:nth-child(1) {
+            top: 30%;
+            left: 20%;
+            transform: rotate(15deg);
+        }
+
+        .dna-thread-mixed:nth-child(2) {
+            top: 50%;
+            left: 40%;
+            transform: rotate(-20deg);
+        }
+
+        .dna-thread-mixed:nth-child(3) {
+            top: 60%;
+            left: 15%;
+            transform: rotate(45deg);
+        }
+
+        .protein-ball {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f7bcbb;
+            border-radius: 50%;
+            animation: protein-separation 5s ease-in-out infinite;
+        }
+
+        .protein-ball:nth-child(4) {
+            top: 25%;
+            left: 35%;
+        }
+
+        .protein-ball:nth-child(5) {
+            top: 45%;
+            left: 55%;
+        }
+
+        .protein-ball:nth-child(6) {
+            top: 65%;
+            left: 30%;
+        }
+
+        .protein-ball:nth-child(7) {
+            top: 35%;
+            right: 20%;
+        }
+
+        .salt-sphere {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: salt-arrival 5s ease-in-out infinite;
+        }
+
+        .salt-sphere.positive {
+            background: #FF6B6B;
+            border: 2px solid #FF4757;
+        }
+
+        .salt-sphere.positive::before {
+            content: '+';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .salt-sphere.negative {
+            background: #4ECDC4;
+            border: 2px solid #26D0CE;
+        }
+
+        .salt-sphere.negative::before {
+            content: '−';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .salt-sphere:nth-child(8) {
+            top: 20px;
+            left: 10px;
+            animation-delay: 2s;
+        }
+
+        .salt-sphere:nth-child(9) {
+            top: 40px;
+            right: 15px;
+            animation-delay: 2.2s;
+        }
+
+        .salt-sphere:nth-child(10) {
+            bottom: 50px;
+            left: 25px;
+            animation-delay: 2.4s;
+        }
+
+        .salt-sphere:nth-child(11) {
+            bottom: 30px;
+            right: 30px;
+            animation-delay: 2.6s;
+        }
+
+        .salt-sphere:nth-child(12) {
+            top: 60px;
+            left: 60px;
+            animation-delay: 2.8s;
+        }
+
+        .salt-sphere:nth-child(13) {
+            top: 80px;
+            right: 50px;
+            animation-delay: 3s;
+        }
+
+        .separated-dna {
+            position: absolute;
+            width: 45px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            opacity: 0;
+            animation: dna-separate 5s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .separated-dna:nth-child(14) {
+            top: 15%;
+            right: 10%;
+            transform: rotate(30deg);
+            animation-delay: 3.5s;
+        }
+
+        .separated-dna:nth-child(15) {
+            top: 70%;
+            right: 15%;
+            transform: rotate(-15deg);
+            animation-delay: 3.7s;
+        }
+
+        .separated-dna:nth-child(16) {
+            bottom: 15%;
+            right: 25%;
+            transform: rotate(60deg);
+            animation-delay: 3.9s;
+        }
+
+        @keyframes dna-mixed {
+            0%, 40% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            60% { 
+                opacity: 0.7;
+                transform: scale(0.9);
+            }
+            100% { 
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        @keyframes protein-separation {
+            0%, 40% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            70% { 
+                transform: scale(1.1) translateX(-20px) translateY(-10px);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: scale(0.9) translateX(-40px) translateY(-20px);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes salt-arrival {
+            0%, 35% { 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes dna-separate {
+            0%, 65% { 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            80% { 
+                opacity: 1;
+                transform: scale(1) translateX(10px) translateY(5px);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(1.1) translateX(20px) translateY(10px);
+            }
+        }
+
+        /* Alcohol Animation */
+        .alcohol-animation {
+            width: 160px;
+            height: 160px;
+            border-radius: 15px;
+            border: 3px solid #333;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 182, 193, 0.8);
+        }
+
+        .test-tube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 12px;
+        }
+
+        .aqueous-solution {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: rgba(255, 182, 193, 0.8);
+            border-radius: 0 0 12px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .faint-dna {
+            position: absolute;
+            width: 20px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 1px;
+            animation: faint-float 3s ease-in-out infinite;
+        }
+
+        .faint-dna:nth-child(2) {
+            top: 70%;
+            left: 20%;
+            transform: rotate(15deg);
+            animation-delay: 0s;
+        }
+
+        .faint-dna:nth-child(3) {
+            top: 75%;
+            right: 25%;
+            transform: rotate(-30deg);
+            animation-delay: 0.5s;
+        }
+
+        .faint-dna:nth-child(4) {
+            bottom: 20%;
+            left: 60%;
+            transform: rotate(45deg);
+            animation-delay: 1s;
+        }
+
+        .faint-dna:nth-child(5) {
+            top: 65%;
+            left: 50%;
+            transform: rotate(-10deg);
+            animation-delay: 1.5s;
+        }
+
+        .faint-dna:nth-child(6) {
+            bottom: 25%;
+            right: 40%;
+            transform: rotate(60deg);
+            animation-delay: 2s;
+        }
+
+        .alcohol-pour {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0%;
+            background: rgba(230, 230, 250, 0.9);
+            border-radius: 12px 12px 0 0;
+            animation: alcohol-falling 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .interface-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 145, 139, 0.8);
+            top: 40%;
+            opacity: 0;
+            animation: interface-formation 6s ease-in-out infinite;
+        }
+
+        .precipitating-dna {
+            position: absolute;
+            width: 25px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            opacity: 0;
+            animation: dna-precipitation 6s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .precipitating-dna::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            top: -4px;
+            left: 3px;
+            transform: rotate(30deg);
+        }
+
+        .precipitating-dna::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background: white;
+            border-radius: 1px;
+            top: 2px;
+            left: 3px;
+            transform: rotate(-30deg);
+        }
+
+        .precipitating-dna:nth-child(6) {
+            top: 38%;
+            left: 15%;
+            animation-delay: 3s;
+        }
+
+        .precipitating-dna:nth-child(7) {
+            top: 42%;
+            right: 20%;
+            animation-delay: 3.2s;
+        }
+
+        .precipitating-dna:nth-child(8) {
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 3.4s;
+        }
+
+        .precipitating-dna:nth-child(9) {
+            top: 39%;
+            left: 70%;
+            animation-delay: 3.6s;
+        }
+
+        .precipitating-dna:nth-child(10) {
+            top: 41%;
+            left: 30%;
+            animation-delay: 3.8s;
+        }
+
+        .dna-cloud {
+            position: absolute;
+            top: 35%;
+            left: 10%;
+            right: 10%;
+            height: 10%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            opacity: 0;
+            animation: cloud-formation 6s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+
+
+        @keyframes faint-float {
+            0%, 45% { 
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            60% { 
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+            80% { 
+                opacity: 1;
+                transform: scale(2) translateY(-20px);
+            }
+            100% { 
+                opacity: 1;
+                transform: scale(2.5) translateY(-30px);
+            }
+        }
+
+        @keyframes alcohol-falling {
+            0%, 30% { 
+                height: 0%;
+            }
+            60% { 
+                height: 40%;
+            }
+            100% { 
+                height: 40%;
+            }
+        }
+
+        @keyframes interface-formation {
+            0%, 45% { 
+                opacity: 0;
+            }
+            60% { 
+                opacity: 1;
+                top: 40%;
+            }
+            100% { 
+                opacity: 1;
+                top: 40%;
+            }
+        }
+
+        @keyframes dna-precipitation {
+            0%, 45% { 
+                opacity: 0;
+                transform: translateY(-10px) scale(0.5);
+            }
+            60% { 
+                opacity: 0.5;
+                transform: translateY(0px) scale(0.8);
+            }
+            80% { 
+                opacity: 1;
+                transform: translateY(2px) scale(1);
+            }
+            100% { 
+                opacity: 0.9;
+                transform: translateY(0px) scale(1.1);
+            }
+        }
+
+        @keyframes cloud-formation {
+            0%, 60% { 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            80% { 
+                opacity: 0.6;
+                transform: scale(1.2);
+            }
+            100% { 
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .explanation-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .animation-container {
+                width: 150px;
+                height: 150px;
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .explanation-section, .materials-section, .procedure-section {
+                padding: 30px 20px;
+            }
+
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .soap-animation,
+            .salt-animation {
+                width: 100px;
+                height: 100px;
+            }
+
+            .alcohol-animation {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .explanation-text h3, .step-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .explanation-text p, .step-content p {
+                font-size: 1rem;
+            }
+
+            .material-item {
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .material-icon {
+                font-size: 2rem;
+            }
+
+            .step-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo" onclick="showHome()">Experimental</a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item active"><a href="#" onclick="showContent('professorat')">Guia professorat</a></li>
+                <li class="nav-item"><a href="#" onclick="showContent('alumne')">Introducció per l'alumne</a></li>
+                <li class="nav-item"><a href="#" onclick="showContent('procediment')">Procediment</a></li>
+                <li class="nav-item"><a href="index.html" onclick="showSection('procediment')">Les altres cares de la ciència</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">Extracció de DNA a partir de fruites</h1>
+        <p class="page-subtitle">Descobreix els secrets genètics amagats dins les fruites</p>
+        
+        
+
+        <!-- Introducció per l'alumne -->
+        <div id="alumne" class="content-section">
+            <h3> Introducció per l'alumne</h3>
+            
+            <p>Tots els éssers vius tenim un llibre d'instruccions dins les nostres cèl·lules: l'ADN (àcid desoxiribonucleic). Aquest llibre conté tota la informació que diu com hem de ser i com funcionem. Per exemple, per què tens els ulls d'un color determinat, o per què una maduixa té un gust dolç.</p>
+            
+            <p>L'ADN es troba dins del nucli de les cèl·lules, i avui el que farem serà extreure'l d'una fruita amb materials de cuina!</p>
+            
+            <div class="comic-slideshow">
+                <h4 style="color: #e41513; margin-bottom: 20px;"> Història: L'equip GenCodis</h4>
+                
+                <div class="comic-frame active" id="frame1">
+                    <span class="comic-character">🌍</span>
+                    <div class="comic-text">
+                        En un futur no gaire llunyà, el món ha canviat. Una estranya malaltia ha començat a afectar les plantes de cultiu més comunes, i els científics de tot el planeta treballen a contrarellotge per descobrir què hi passa.
+                    </div>
+                </div>
+                
+                <div class="comic-frame" id="frame2">
+                    <span class="comic-character">🧬</span>
+                    <div class="comic-text">
+                        La sospita principal: alguna cosa ha canviat en el seu ADN. Però per confirmar-ho, cal fer el que pocs han intentat fora d'un laboratori avançat... cal extreure l'ADN i examinar-lo amb detall.
+                    </div>
+                </div>
+                
+                <div class="comic-frame" id="frame3">
+                    <span class="comic-character">👥</span>
+                    <div class="comic-text">
+                        Tu formes part d'un petit equip d'investigadors anomenat GenCodis, especialitzat a analitzar l'origen genètic dels organismes vius. Heu rebut una mostra misteriosa: una fruita aparentment normal, però que podria contenir les pistes clau per entendre la mutació.
+                    </div>
+                </div>
+                
+                <div class="comic-frame" id="frame4">
+                    <span class="comic-character">🎯</span>
+                    <div class="comic-text">
+                        El teu repte és clar: aconseguir veure l'ADN amb els teus propis ulls. Amb els recursos que teniu al vostre abast —sabó, sal, alcohol i una mica d'enginy— comença la missió.
+                    </div>
+                </div>
+                
+                <div class="comic-frame" id="frame5">
+                    <span class="comic-character">🔬</span>
+                    <div class="comic-text">
+                        La fruita amaga dins seu un codi antic i valuós: l'ADN, el llibre de la vida. Si aconseguiu fer-lo visible, podreu comparar-lo amb altres mostres i buscar-ne alteracions. És una carrera contra el temps, però també una oportunitat única per descobrir com funciona la vida a escala microscòpica.
+                    </div>
+                </div>
+                
+                <div class="comic-controls">
+                    <button class="comic-btn" id="prevBtn" onclick="changeFrame(-1)">← Anterior</button>
+                    <button class="comic-btn" id="nextBtn" onclick="changeFrame(1)">Següent →</button>
+                </div>
+                
+                <div class="comic-progress">
+                    <div class="progress-dot active"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Procediment -->
+        <div id="procediment" class="content-section">
+    
+            <h1 class="page-title"> Extracció d'ADN de Fruites</h1>
+            
+            <div class="materials-section">
+                <h2 class="section-title"> MATERIALS</h2>
+                <div class="materials-grid">
+                    <div class="material-item">
+                        <div class="material-icon">🍓</div>
+                        <div class="material-text">
+                            <strong>Fruites</strong><br>
+                            Millor si són toves com maduixa, kiwi o plàtan
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">💧</div>
+                        <div class="material-text">
+                            <strong>Aigua</strong><br>
+                            40 mL
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">🧂</div>
+                        <div class="material-text">
+                            <strong>Sal de cuina</strong><br>
+                            Una culleradeta petita
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">🧼</div>
+                        <div class="material-text">
+                            <strong>Sabó líquid per a plats</strong><br>
+                            1 culleradeta petita
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">🍶</div>
+                        <div class="material-text">
+                            <strong>Alcohol fred</strong><br>
+                            Etanol o alcohol de 96º, millor refrigerat
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">🥤</div>
+                        <div class="material-text">
+                            <strong>Gots de plàstic</strong><br>
+                            O recipients transparents
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">🛍️</div>
+                        <div class="material-text">
+                            <strong>Bosses zip</strong><br>
+                            Amb tancament hermètic
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">🔪</div>
+                        <div class="material-text">
+                            <strong>Ganivet</strong><br>
+                            Amb supervisió d'adults
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">🥄</div>
+                        <div class="material-text">
+                            <strong>Bastonets</strong><br>
+                            O varetes per remenar
+                        </div>
+                    </div>
+                    <div class="material-item">
+                        <div class="material-icon">📄</div>
+                        <div class="material-text">
+                            <strong>Paper de cuina</strong><br>
+                            Per fer de filtre i embut
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="procedure-section">
+                <h2 class="section-title">PROCEDIMENT</h2>
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Talla la fruita en trossets petits</h3>
+                            <p>Utilitza el ganivet amb cura per tallar la fruita en trossos petits. Això ajudarà a trencar més cèl·lules.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Prepara la solució d'extracció</h3>
+                            <p>En un got, barreja 40 mL d'aigua amb 1 culleradeta de sabó i 1 culleradeta de sal. Remena bé fins que es dissolgui.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Tritura la fruita</h3>
+                            <p>Posa la fruita dins d'una bossa zip, afegeix-hi la solució d'extracció, tanca-la bé i tritura-la amb les mans durant uns 2-3 minuts fins que es torni gairebé líquida.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Deixa reposar</h3>
+                            <p>Deixa reposar la mescla 5 minuts a temperatura ambient perquè el sabó i la sal facin efecte.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Filtra el contingut</h3>
+                            <p>Filtra el contingut amb paper de cuina sobre un embut per separar el líquid (filtrat) de la polpa.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3>Afegeix alcohol fred</h3>
+                            <p>Recull el líquid filtrat en un got. Amb molta cura, afegeix-hi alcohol fred fent que es posi suaument damunt (fes servir una cullera o fes-ho pel costat).</p>
+                        </div>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h3>Observa el resultat!</h3>
+                            <p>A la interfície entre el líquid i l'alcohol començarà a aparèixer una substància blanca i filamentosa: és l'ADN!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <h2 class="section-title">QUÈ ESTÀ PASSANT?</h2>
+                <div class="explanation-item">
+                    <div class="animation-container">
+                        <div class="soap-animation">
+                            <div class="cell-large">
+                                <div class="nucleus">
+                                    <div class="dna-thread"></div>
+                                </div>
+                            </div>
+                            <div class="soap-circle"></div>
+                            <div class="soap-circle"></div>
+                            <div class="soap-circle"></div>
+                            <div class="soap-circle"></div>
+                            <div class="soap-circle"></div>
+                            <div class="soap-circle"></div>
+                        </div>
+                    </div>
+                    <div class="explanation-text">
+                        <h3>El sabó trenca les membranes</h3>
+                        <p>Una animació mostra una cèl·lula rodona, envoltada per una membrana doble formada per dues capes de lípids. De sobte, apareixen molècules de sabó representades com gotetes amb una "cua" corbada i greixosa. Aquestes molècules s'acosten i s'insereixen entre els lípids de la membrana, fent-la inestable. Es formen bombolles i petits forats, i la membrana es comença a trencar. El contingut cel·lular comença a sortir suaument, i s'hi veu el nucli, també envoltat per una membrana que es desfà de la mateixa manera. L'ADN, representat com una llarg fil cargolat, s'allibera lentament cap a l'exterior.</p>
+                    </div>
+                </div>
+
+                <div class="explanation-item">
+                    <div class="animation-container">
+                        <div class="salt-animation">
+                            <div class="dna-thread-mixed"></div>
+                            <div class="dna-thread-mixed"></div>
+                            <div class="dna-thread-mixed"></div>
+                            <div class="protein-ball"></div>
+                            <div class="protein-ball"></div>
+                            <div class="protein-ball"></div>
+                            <div class="protein-ball"></div>
+                            <div class="salt-sphere positive"></div>
+                            <div class="salt-sphere negative"></div>
+                            <div class="salt-sphere positive"></div>
+                            <div class="salt-sphere negative"></div>
+                            <div class="salt-sphere positive"></div>
+                            <div class="salt-sphere negative"></div>
+                            <div class="separated-dna"></div>
+                            <div class="separated-dna"></div>
+                            <div class="separated-dna"></div>
+                        </div>
+                    </div>
+                    <div class="explanation-text">
+                        <h3>La sal separa l'ADN de les proteïnes</h3>
+                        <p>L'escena comença amb una cadena d'ADN cargolada que està fortament enganxada a unes estructures rodones, que representen les proteïnes. Tot està suspès dins la cèl·lula. Llavors arriben molècules de sal, visualitzades com petites esferes amb signes "+" (Na⁺) i "–" (Cl⁻). Aquestes esferes es col·loquen estratègicament entre l'ADN i les proteïnes, com si trenquessin una connexió magnètica. A poc a poc, la cadena d'ADN es desprèn de les proteïnes i comença a flotar lliurement, mentre les proteïnes queden aïllades. La càmera destaca la separació i la llibertat de moviment de l'ADN.</p>
+                    </div>
+                </div>
+
+                <div class="explanation-item">
+                    <div class="animation-container">
+                        <div class="alcohol-animation">
+                            <div class="test-tube">
+                                <div class="aqueous-solution">
+                                    Solució aquosa
+                                    <div class="faint-dna"></div>
+                                    <div class="faint-dna"></div>
+                                    <div class="faint-dna"></div>
+                                    <div class="faint-dna"></div>
+                                    <div class="faint-dna"></div>
+                                </div>
+                                <div class="alcohol-pour">Alcohol</div>
+                                <div class="interface-line"></div>
+                                <div class="precipitating-dna"></div>
+                                <div class="precipitating-dna"></div>
+                                <div class="precipitating-dna"></div>
+                                <div class="precipitating-dna"></div>
+                                <div class="precipitating-dna"></div>
+                                <div class="dna-cloud">🧬</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explanation-text">
+                        <h3>L'alcohol precipita l'ADN</h3>
+                        <p>L'animació mostra una proveta mig plena amb una solució aquosa on l'ADN dissolt és invisible. Des de dalt, cau lentament una capa d'alcohol fred, que no es barreja, i forma una franja clara al damunt. Quan les dues capes es toquen, comencen a aparèixer fils blancs molt fins a la interfície. Aquests filaments es cargolen i es fan més densos, formant una mena de núvol blanquinós. L'animació destaca aquest moment: les molècules d'ADN s'ajunten i surten de la solució, mentre el fred evita que es trenquin. L'escena transmet com l'alcohol fa visible allò que abans estava amagat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Guia Professorat -->
+        <div id="professorat" class="content-section active">
+            <h3>Guia pel professorat</h3>
+            
+            <h4>Objectius didàctics</h4>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li>Comprendre l'estructura bàsica de l'ADN i la seva ubicació cel·lular</li>
+                <li>Aplicar el mètode científic a través d'un experiment pràctic</li>
+                <li>Desenvolupar habilitats d'observació i anàlisi</li>
+                <li>Fomentar la curiositat científica i el pensament crític</li>
+                <li>Connectar conceptes teòrics amb aplicacions pràctiques</li>
+            </ul>
+
+            <h4>Durada i planificació</h4>
+            <div style="background: rgba(146, 201, 249, 0.1); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <p><strong>Durada total:</strong> 60 minuts</p>
+                <p><strong>Introducció teòrica:</strong> 15 minuts</p>
+                <p><strong>Experiment pràctic:</strong> 30 minuts</p>
+                <p><strong>Discussió i conclusions:</strong> 15 minuts</p>
+            </div>
+
+            <h4>Suggeriments per treballar per grups</h4>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li><strong>Grups de 3-4 estudiants:</strong> Permet col·laboració i discussió</li>
+                <li><strong>Rols assignats:</strong> Coordinador, observador, registrador, portaveu</li>
+                <li><strong>Rotació de rols:</strong> Cada grup pot repetir l'experiment amb diferents fruites</li>
+                <li><strong>Competició amistosa:</strong> Quin grup extreu més ADN visible?</li>
+            </ul>
+
+            <h4>Preguntes per estimular el pensament crític</h4>
+            <div style="background: rgba(255, 142, 142, 0.1); padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <p><strong>Abans de l'experiment:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Què creus que veurem quan extraguem l'ADN?</li>
+                    <li>Per què utilitzem sabó en aquest experiment?</li>
+                    <li>Totes les fruites tindran la mateixa quantitat d'ADN?</li>
+                </ul>
+                
+                <p><strong>Durant l'experiment:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Què observes quan afegeixes l'alcohol?</li>
+                    <li>Per què és important que l'alcohol estigui fred?</li>
+                </ul>
+                
+                <p><strong>Després de l'experiment:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Per què creus que no es veu sempre igual l'ADN?</li>
+                    <li>Com ho faríem si fos una mostra real de laboratori?</li>
+                    <li>Quines aplicacions reals té l'extracció d'ADN?</li>
+                </ul>
+            </div>
+
+            
+
+            
+        </div>
+    </main>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function showContent(contentType) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all nav items
+            document.querySelectorAll('.internal-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(contentType).classList.add('active');
+            
+            // Activate corresponding nav item
+            event.target.classList.add('active');
+            
+            // Reset comic slideshow when switching to alumne section
+            if (contentType === 'alumne') {
+                currentFrame = 1;
+                document.querySelectorAll('.comic-frame').forEach(frame => frame.classList.remove('active'));
+                document.querySelectorAll('.progress-dot').forEach(dot => dot.classList.remove('active'));
+                document.getElementById('frame1').classList.add('active');
+                document.querySelectorAll('.progress-dot')[0].classList.add('active');
+                document.getElementById('prevBtn').disabled = true;
+                document.getElementById('nextBtn').disabled = false;
+            }
+        }
+
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.qa-toggle');
+            
+            answer.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+
+        function foundDNA() {
+            const nucleus = document.getElementById('nucleus');
+            const found = document.getElementById('dna-found');
+            
+            nucleus.style.background = 'linear-gradient(135deg, #f7bcbb, #92C9F9)';
+            nucleus.style.animation = 'pulse 1s infinite';
+            found.style.display = 'block';
+            
+            // Add pulse animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { transform: translate(-50%, -50%) scale(1); }
+                    50% { transform: translate(-50%, -50%) scale(1.1); }
+                    100% { transform: translate(-50%, -50%) scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        let currentFrame = 1;
+        const totalFrames = 5;
+
+        function changeFrame(direction) {
+            // Hide current frame
+            document.getElementById(`frame${currentFrame}`).classList.remove('active');
+            document.querySelectorAll('.progress-dot')[currentFrame - 1].classList.remove('active');
+            
+            // Update frame number
+            currentFrame += direction;
+            
+            // Show new frame
+            document.getElementById(`frame${currentFrame}`).classList.add('active');
+            document.querySelectorAll('.progress-dot')[currentFrame - 1].classList.add('active');
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = currentFrame === 1;
+            document.getElementById('nextBtn').disabled = currentFrame === totalFrames;
+        }
+
+        // Initialize buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('prevBtn').disabled = true;
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            // Add any additional mobile menu logic here if needed
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96944e43d35dcbcf',t:'MTc1NDIwODI4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96948a7d33546663',t:'MTc1NDIxMDc0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+
+</html>
