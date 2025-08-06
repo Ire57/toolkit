@@ -125,7 +125,7 @@
         .cube-container {
             perspective: 1200px;
             perspective-origin: center center;
-            margin-bottom: 30px;
+            margin: 3rem;
         }
 
         .cube {
@@ -327,6 +327,29 @@
             font-size: 1.1rem;
             line-height: 1.7;
             font-weight: 400;
+        }
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+           
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
         }
 
         .collaborations-section {
