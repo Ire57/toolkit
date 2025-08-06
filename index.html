@@ -342,7 +342,7 @@
 
         .collaborations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(1000px, 1fr));
             gap: 30px;
         }
 
@@ -409,7 +409,7 @@
 
         .card-back p {
             color: #53110e;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
@@ -719,20 +719,21 @@
         }
         
         .featured-card .card-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 2rem;
         }
         
         .card-description {
-            font-size: 1rem;
-            color: #4a5568;
+            font-size: 1.2rem;
+            color: #2d3748;
+            font-weight: 500;
             line-height: 1.7;
             margin-bottom: 2rem;
             flex-grow: 1;
         }
         
         .featured-card .card-description {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 2.5rem;
         }
         
@@ -745,7 +746,7 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1rem;
+            font-size: 1.1rem;
             background: linear-gradient(135deg, #e52920 0%, #9d1915 100%);
             color: white;
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
@@ -997,7 +998,7 @@
                         Les Moltes Cares<br>de la<br>Ciència
                     </h2>
                     <p id="descText">
-                        Utilitza les fletxes, el ratolí o els botons superiors per a veure les diferents cares de la ciència.    
+                        ACCEDEIX A LES ACTIVITATS: Utilitza les fletxes, el ratolí o els botons superiors per a veure les diferents cares de la ciència.    
                     </p>
                     <a href="#" class="visit-btn" id="visitBtn"></a>
                 </div>
@@ -1011,7 +1012,7 @@
                     <div class="card-inner">
                       <div class="card-front">
                         <!-- Imagen representativa del Institut -->
-                        <img src="imatges/verificat.png" alt="Verifica't" class="institut-img" />
+                        <img src="imatges/verificat.png" style="max-width: 100%; height: auto;" alt="Verifica't" class="institut-img" />
                       </div>
                       <div class="card-back">
                         <div class="social-icons">
@@ -1036,18 +1037,21 @@
                     <div class="card-inner">
                       <div class="card-front">
                         <!-- Imagen representativa del Institut -->
-                        <img src="imatges/pedrera.png" alt="Institut Educatiu" class="institut-img" />
+                        <img src="imatges/SANTMARTI.JPG" alt="Ajuntament de Sant Martí" class="institut-img" />
                       </div>
                       <div class="card-back">
                         <p>
-                            A la Fundació Catalunya La Pedrera tenim un somni: volem millorar la qualitat de vida de les persones generant oportunitats que transformin positivament la societat.
+                           Situat entre la vall del Congost, on limita amb el Parc Natural del Montseny, i l'Espai Natural dels Cingles de Bertí,
+                            el terme de Sant Martí de Centelles es caracteritza per una gran diversitat paisatgística i nombrosos elements patrimonials, 
+                            tant culturals com naturals.
                         </p>
                         <div class="social-icons">
-                          <a href="https://www.instagram.com/fclp_fundacio/#" class="fa-brands fa-instagram"></a>
-                          <a href="https://x.com/FCLP_Fundacio" class="fa-brands fa-twitter"></a>
+                          <a href="https://www.instagram.com/santmarticentelles/?hl=es" class="fa-brands fa-instagram"></a>
+                          <a href="https://x.com/ajuntamentsmc" class="fa-brands fa-twitter"></a>
+                          <a href="https://www.facebook.com/santmarticentelles/?locale=ca_ES" class="fa-brands fa-facebook"></a>
                         </div>
 
-                        <a href="https://fundaciocatalunya-lapedrera.com/ca" target="_blank" class="web-link">Visita la web →</a>
+                        <a href="https://www.santmarticentelles.cat/" target="_blank" class="web-link">Visita la web →</a>
                       </div>
                     </div>
 
@@ -1172,7 +1176,7 @@
         const faces = {
             cares: {
                 title: 'Les moltes cares de la ciència',
-                description: 'Utilitza les fletxes, el ratolí o els botons superiors per a veure les diferents cares de la ciència.',
+                description: "<b>ACCEDEIX A LES ACTIVITATS</b>: Utilitza el cub o els botons superiors per a seleccionar la cara que t'interessi i després clica al botó que apareixi abaix",
                 rotation: { x: 80, y: 15 },
                 url: 'index.html'
             },
@@ -1243,7 +1247,7 @@
             // Actualizar el botón activo
             document.querySelectorAll('.control-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.textContent.includes(faces[faceName].icon)) {
+                if (btn.innerHTML.includes(faces[faceName].icon)) {
                     btn.classList.add('active');
                 }
             });
@@ -1257,7 +1261,7 @@
             
             setTimeout(() => {
                 descTitle.innerHTML = face.title;
-                descText.textContent = face.description;
+                descText.innerHTML = face.description;
                 visitBtn.textContent = `Visitar pàgina de ${face.title.replace(' Científica', '').replace(' Científic', '')}`;
                 visitBtn.href = face.url;
                 descriptionPanel.classList.add('show');
@@ -1329,7 +1333,7 @@
         function updateActiveButton(faceName) {
             document.querySelectorAll('.control-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.textContent.includes(faces[faceName].icon)) {
+                if (btn.innerHTML.includes(faces[faceName].icon)) {
                     btn.classList.add('active');
                 }
             });
