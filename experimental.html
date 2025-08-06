@@ -1992,9 +1992,14 @@
 
 
     <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
         function goBack() {
             window.history.back();
         }
+        
 
         function showContent(contentType) {
             // Hide all content sections
