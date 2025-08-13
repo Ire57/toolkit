@@ -1258,39 +1258,42 @@
         </div>
          <div class="mobile-version">
             <div class="mobile-instructions">
-                <h4>🔬 Tria una àrea científica</h4>
+                <h4> Tria una àrea científica</h4>
                 <p>Fes clic sobre qualsevol targeta per explorar aquesta cara de la ciència</p>
             </div>
 
             <div class="mobile-cards">
-                <a href="#home" class="mobile-card main-card" onclick="goToSection('cares')">
-                    <h3>🏠 Inici</h3>
-                    <p>Torna a la pàgina principal</p>
+                
+
+                <a href="bioetica.html" class="mobile-card light" onclick="goToSection('etica')">
+                    <h3>Bioètica</h3>
+                    <p>L'ètica científica és fonamental per garantir que la recerca es desenvolupi de manera responsable i beneficiosa per a la societat. Inclou la integritat en la investigació, el respecte pels subjectes
+                         d'estudi, la transparència en els resultats i la consideració de les implicacions socials i ambientals del treball científic.</p>
                 </a>
 
-                <a href="#bioethics" class="mobile-card light" onclick="goToSection('etica')">
-                    <h3>⚖️ Bioètica</h3>
-                    <p>Explora els dilemes ètics en la investigació</p>
+                <a href="creativitat.html" class="mobile-card" onclick="goToSection('creativitat')">
+                    <h3> Creativitat</h3>
+                    <p>La creativitat és el motor de la innovació científica. Permet als investigadors 
+                        plantejar noves hipòtesis, desenvolupar metodologies originals i trobar solucions inesperades als problemes complexos.
+                    La ciència avança gràcies a la capacitat de pensar fora dels esquemes establerts.</p>
                 </a>
 
-                <a href="#creativity" class="mobile-card" onclick="goToSection('creativitat')">
-                    <h3>🎨 Creativitat</h3>
-                    <p>Descobreix la creativitat en la ciència</p>
+                <a href="experimental.html" class="mobile-card light" onclick="goToSection('experimental')">
+                    <h3>Experimental</h3>
+                    <p>El mètode experimental és la base del coneixement científic rigorós. A través de la formulació d'hipòtesis, el disseny d'experiments controlats
+                         i l'anàlisi sistemàtica de dades, els científics poden validar o refutar teories i construir coneixement fiable sobre el món natural.</p>
                 </a>
 
-                <a href="#experimental" class="mobile-card light" onclick="goToSection('experimental')">
-                    <h3>🧪 Experimental</h3>
-                    <p>Aprèn sobre el mètode experimental</p>
+                <a href="tecnologia.html" class="mobile-card" onclick="goToSection('tecnologia')">
+                    <h3>Tecnologia</h3>
+                    <p>La tecnologia és tant una eina com un producte de la ciència. Els avenços tecnològics permeten noves formes d'investigació i mesurament, 
+                        mentre que la recerca científica impulsa el desenvolupament de tecnologies innovadores que transformen la societat.</p>
                 </a>
 
-                <a href="#technology" class="mobile-card" onclick="goToSection('tecnologia')">
-                    <h3>💻 Tecnologia</h3>
-                    <p>Veu com la tecnologia impulsa la ciència</p>
-                </a>
-
-                <a href="#communication" class="mobile-card" onclick="goToSection('comunicacio')">
-                    <h3>📢 Comunicació</h3>
-                    <p>Descobreix com comunicar la ciència</p>
+                <a href="comunicacio.html" class="mobile-card light" onclick="goToSection('comunicacio')">
+                    <h3>Comunicació</h3>
+                    <p>La comunicació científica és essencial per compartir descobriments, facilitar la col·laboració entre investigadors i fer accessible el coneixement científic al públic general. 
+                        Una comunicació efectiva promou la comprensió pública de la ciència i fomenta la presa de decisions informades.</p>
                 </a>
             </div>
         </div>
@@ -1454,6 +1457,36 @@
     
 
     <script>
+        // Navigation functions
+        function showHome() {
+            hideAllSections();
+            document.getElementById('home').style.display = 'block';
+        }
+
+        function showSection(sectionName) {
+            hideAllSections();
+            document.getElementById(sectionName).style.display = 'block';
+        }
+
+        function hideAllSections() {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('activitat1').style.display = 'none';
+            document.getElementById('activitat2').style.display = 'none';
+            document.getElementById('activitat3').style.display = 'none';
+        }
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-item a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
         const cube = document.getElementById('cube');
         const descriptionPanel = document.getElementById('descriptionPanel');
         const descTitle = document.getElementById('descTitle');
