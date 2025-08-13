@@ -23,7 +23,121 @@
             color: #53110e;
             line-height: 1.6;
         }
+        /* Header */
+        .header {
+            background: rgba(255, 254, 232, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid #f28f8c;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 145, 139, 0.15);
+        }
 
+        
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 7rem;
+        }
+
+        .logo {
+            width: 10%;
+            font-weight: bold;
+            color: #e41513;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .logo img{
+            width: 100%;
+        }
+        .logo:hover {
+            color: #e52920;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 25px;
+        }
+
+        .nav-item a:hover {
+            color: #e41513;
+            background: rgba(229, 62, 62, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: 0.3s;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.95);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                backdrop-filter: blur(10px);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+            }
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -33,7 +147,6 @@
         .hero-section {
             text-align: center;
             margin-bottom: 60px;
-            margin-top: 60px;
             background: #9d1915;
             padding: 40px 20px;
             border-radius: 20px;
@@ -113,9 +226,12 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            margin-bottom: 80px;
         }
+        
 
+        .mobile-version {
+            display: none;
+        }
         .cube-section {
             display: flex;
             flex-direction: column;
@@ -230,11 +346,11 @@
             padding: 10px 15px;
             border-radius: 10px;
             font-size: 12px;
-            opacity: 0.8;
         }
         .keyboard-hint p{
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            padding-bottom: 0.5rem;
         }
         .controls {
             display: flex;
@@ -328,28 +444,109 @@
             line-height: 1.7;
             font-weight: 400;
         }
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-            
-           
+        /* Versión Mobile - Tarjetas */
+        .mobile-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
         }
-        
+
+        .mobile-card {
+            background: linear-gradient(135deg, #f28f8c, #e62e25);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 145, 139, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 29, 17, 0.4);
+        }
+
+        .mobile-card.main-card {
+            background: linear-gradient(135deg, #9d1915, #53110e);
+            grid-column: 1;
+            order: -1;
+        }
+
+        .mobile-card.light {
+            background: linear-gradient(135deg, #fdeeee, #f7bcbb);
+            color: #53110e;
+        }
+
+        .mobile-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .mobile-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .mobile-instructions {
+            background: #9d1915;
+            color: #FFFFEE;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .mobile-instructions h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .mobile-instructions p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Media Queries */
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .desktop-version {
+                display: none;
+            }
+
+            .mobile-version {
+                display: block;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            body {
+                padding: 15px;
             }
         }
-        
+
         @media (max-width: 480px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .main-title {
+                font-size: 1.8rem;
             }
-            
+
+            .mobile-card {
+                padding: 20px;
+            }
+
+            .mobile-card h3 {
+                font-size: 1.3rem;
+            }
         }
 
         .collaborations-section {
@@ -938,6 +1135,24 @@
     </style>
 </head>
 <body>
+
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo" onclick="showHome()"> <img src="imatges/Reineta.png" alt="Logo que consta d'una Reineta" ></a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item active"><a href="bioetica.html" >Bioètica</a></li>
+                <li class="nav-item"><a href="creativitat.html" >Creativitat</a></li>
+                <li class="nav-item"><a href="experimental.html" >Experimental</a></li>
+                <li class="nav-item"><a href="tecnologia.html" >Tecnologia</a></li>
+                <li class="nav-item"><a href="comunicacio.html" >Comunicació</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
     <div class="container">
         
         <div class="hero-section">
@@ -985,61 +1200,104 @@
           <button class="expand-btn" onclick="toggleIntro()" id="expandBtn">Més informació</button>
         </div>
         <h2>Accedeix a les activitats</h2>
-        <div class="keyboard-hint">
-            <p>Usa ← → per navegar, clica amb el ratolí sobre el cub i mou-lo, o clica als botons per a veure les moltes cares de la ciència.</p>
-        </div>
-        <div class="main-content">
-            <div class="cube-section" id="activitats">
-                <div class="controls">                    
-                    <button class="control-btn active" onclick="showFace('cares')"> Reset</button>
-                    <button class="control-btn" onclick="showFace('etica')"> Bioètica</button>
-                    <button class="control-btn" onclick="showFace('creativitat')"> Creativitat</button>
-                    <button class="control-btn" onclick="showFace('experimental')"> Experimental</button>
-                    <button class="control-btn" onclick="showFace('tecnologia')"> Tecnologia</button>
-                    <button class="control-btn" onclick="showFace('comunicacio')"> Comunicació</button>
-                </div>
+        
+        
+        <div class="desktop-version">
+            <div class="keyboard-hint">
+                <p>Usa ← → per navegar, clica amb el ratolí sobre el cub i mou-lo, o clica als botons per a veure les moltes cares de la ciència.</p>
+                <p><b>Fes clic sobre el botó de la targeta per a visitar l'activitat de la cara seleccionada.</b></p>
+            </div>
+            
+            <div class="main-content">
+                <div class="cube-section" id="activitats">
+                    <div class="controls">                    
+                        <button class="control-btn active" onclick="showFace('cares')"> Reset</button>
+                        <button class="control-btn" onclick="showFace('etica')"> Bioètica</button>
+                        <button class="control-btn" onclick="showFace('creativitat')"> Creativitat</button>
+                        <button class="control-btn" onclick="showFace('experimental')"> Experimental</button>
+                        <button class="control-btn" onclick="showFace('tecnologia')"> Tecnologia</button>
+                        <button class="control-btn" onclick="showFace('comunicacio')"> Comunicació</button>
+                    </div>
 
-                <div class="cube-container">
-                    <div class="cube" id="cube">
-                        <div class="face etica" onclick="selectFace('etica')">
-                            <h3>Ètica</h3>
-                        </div>
-                        <div class="face creativitat" onclick="showFace('creativitat')">
-                            <h3>Creativitat</h3>
-                        </div>
-                        <div class="face experimental" onclick="showFace('experimental')">
-                            <h3>Experimental</h3>
-                        </div>
-                        <div class="face tecnologia" onclick="showFace('tecnologia')">
-                            <h3>Tecnologia</h3>
-                        </div>
-                        <div class="face comunicacio" onclick="showFace('comunicacio')">
-                            <h3>Comunicació</h3>
-                        </div>
-                        <div class="face cares" onclick="showFace('cares')">
-                            <h3>Les Moltes Cares<br>de la<br>Ciència</h3>
+                    <div class="cube-container">
+                        <div class="cube" id="cube">
+                            <div class="face etica" onclick="selectFace('etica')">
+                                <h3>Ètica</h3>
+                            </div>
+                            <div class="face creativitat" onclick="showFace('creativitat')">
+                                <h3>Creativitat</h3>
+                            </div>
+                            <div class="face experimental" onclick="showFace('experimental')">
+                                <h3>Experimental</h3>
+                            </div>
+                            <div class="face tecnologia" onclick="showFace('tecnologia')">
+                                <h3>Tecnologia</h3>
+                            </div>
+                            <div class="face comunicacio" onclick="showFace('comunicacio')">
+                                <h3>Comunicació</h3>
+                            </div>
+                            <div class="face cares" onclick="showFace('cares')">
+                                <h3>Les Moltes Cares<br>de la<br>Ciència</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="content-section">
-                <div class="description-panel" id="descriptionPanel">
-                    <h2 id="descTitle">
-                        Les Moltes Cares<br>de la<br>Ciència
-                    </h2>
-                    <p id="descText">
-                        ACCEDEIX A LES ACTIVITATS: Utilitza les fletxes, el ratolí o els botons superiors per a veure les diferents cares de la ciència.    
-                    </p>
-                    <a href="#" class="visit-btn" id="visitBtn"></a>
+                <div class="content-section">
+                    <div class="description-panel" id="descriptionPanel">
+                        <h2 id="descTitle">
+                            Les Moltes Cares<br>de la<br>Ciència
+                        </h2>
+                        <p id="descText">
+                            ACCEDEIX A LES ACTIVITATS: Utilitza les fletxes, el ratolí o els botons superiors per a veure les diferents cares de la ciència.    
+                        </p>
+                        <a href="#" class="visit-btn" id="visitBtn"></a>
+                    </div>
                 </div>
             </div>
         </div>
-        
+         <div class="mobile-version">
+            <div class="mobile-instructions">
+                <h4>🔬 Tria una àrea científica</h4>
+                <p>Fes clic sobre qualsevol targeta per explorar aquesta cara de la ciència</p>
+            </div>
+
+            <div class="mobile-cards">
+                <a href="#home" class="mobile-card main-card" onclick="goToSection('cares')">
+                    <h3>🏠 Inici</h3>
+                    <p>Torna a la pàgina principal</p>
+                </a>
+
+                <a href="#bioethics" class="mobile-card light" onclick="goToSection('etica')">
+                    <h3>⚖️ Bioètica</h3>
+                    <p>Explora els dilemes ètics en la investigació</p>
+                </a>
+
+                <a href="#creativity" class="mobile-card" onclick="goToSection('creativitat')">
+                    <h3>🎨 Creativitat</h3>
+                    <p>Descobreix la creativitat en la ciència</p>
+                </a>
+
+                <a href="#experimental" class="mobile-card light" onclick="goToSection('experimental')">
+                    <h3>🧪 Experimental</h3>
+                    <p>Aprèn sobre el mètode experimental</p>
+                </a>
+
+                <a href="#technology" class="mobile-card" onclick="goToSection('tecnologia')">
+                    <h3>💻 Tecnologia</h3>
+                    <p>Veu com la tecnologia impulsa la ciència</p>
+                </a>
+
+                <a href="#communication" class="mobile-card" onclick="goToSection('comunicacio')">
+                    <h3>📢 Comunicació</h3>
+                    <p>Descobreix com comunicar la ciència</p>
+                </a>
+            </div>
+        </div>
 
         <section class="collaboration-section">
             <div class="header">
-                <h2 class="main-title">🤝 Vols col·laborar amb nosaltres?</h2>
+                <h2 class="main-title"> Vols col·laborar amb nosaltres?</h2>
                 <p class="subtitle">Ajuda'ns a fer créixer el projecte i a fer-lo millor!</p>
             </div>
             
